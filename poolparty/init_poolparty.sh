@@ -10,7 +10,7 @@ while true; do
         break
     fi
 done
-
+# curl -L install.poolparty.stridelabs.co | sh
 # curl https://raw.githubusercontent.com/Stride-Labs/testnet/main/poolparty/init_poolparty.sh | sh
 TESTNET="internal"
 INSTALL_FOLDER="$HOME/.stride/$TESTNET"
@@ -18,7 +18,7 @@ STRIDE_FOLDER="$INSTALL_FOLDER/stride"
 
 mkdir -p $STRIDE_FOLDER
 cd $INSTALL_FOLDER
-echo $STRIDE_FOLDER
+echo "Installing to $STRIDE_FOLDER...\n"
 
 if [ -d $STRIDE_FOLDER ] 
 then
