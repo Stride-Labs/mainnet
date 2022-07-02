@@ -18,7 +18,7 @@ sh -c "$(curl -sSL install.poolparty.stridelabs.co)"
 
 Please add the repo with your stride binary (defaults to `$HOME/go/bin`) to your `.bashrc` or `.zshrc` file. Then, you can run `strided` automatically.
 
-For example, run `strided q bank balances stride159atdlc3ksl50g0659w5tq42wwer334ajl7xnq` to see the bank balance of this address.
+For example, run `strided q bank balances stride159atdlc3ksl50g0659w5tq42wwer334ajl7xnq` to see the bank balance of Stride's address.
 
 Another, practical example, if you run 
 
@@ -45,7 +45,19 @@ and follow the prompts.
 
 ### Where can I get some tokens?
 
-To get tokens, message `$faucet {{ADDRESS}}` on Discord. For example, I would type `$fauct stride159atdlc3ksl50g0659w5tq42wwer334ajl7xnq`. Please don't spam this.
+To get tokens, message `$faucet {{ADDRESS}}` on Discord. For example, I would type `$fauct stride159atdlc3ksl50g0659w5tq42wwer334ajl7xnq`. 
+
+Please don't spam this.
+
+### Are there any variables I should know about?
+
+If your local `strided` is asking you for any of these, please know:
+
+    CHAIN_ID = STRIDE
+    KEYRING_BACKEND = os
+    HOST_ZONE = GAIA 
+    STRIDE_CURRENCY = ustrd (1,000,000 ustrd = 1 STRD)
+    GAIA_CURRENCY = uatom (1,000,000 uatom = 1 ATOM)
 
 ###  How can I relaunch my Node?
 
