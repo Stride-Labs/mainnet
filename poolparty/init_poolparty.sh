@@ -126,4 +126,13 @@ while true; do
     esac
 done
 
+# kill ports if they're already running
+PORT_NUMBER=6060
+lsof -i tcp:${PORT_NUMBER} | awk 'NR!=1 {print $2}' | xargs kill
+PORT_NUMBER=26657
+lsof -i tcp:${PORT_NUMBER} | awk 'NR!=1 {print $2}' | xargs kill 
+PORT_NUMBER=26557
+lsof -i tcp:${PORT_NUMBER} | awk 'NR!=1 {print $2}' | xargs kill
+
+
 sh $launch_file
