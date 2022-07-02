@@ -75,6 +75,10 @@ If you used the presets, you should be able to run the following command to rela
 or
 ``` sh $HOME/.stride/poolparty/launch_poolparty.sh```
 
+### Why does my node need a nickname?
+
+Your node's nickname is how others can see it on the block explorer. For example, if you become a validator, you'll appear as your node's nickname. 
+
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change. We also welcome all discussion in #engineering or #questions in our [Discord](https://stride.zone/discord). 

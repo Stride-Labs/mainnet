@@ -27,7 +27,7 @@ TESTNET="internal"
 INSTALL_FOLDER="$HOME/.stride/$TESTNET"
 STRIDE_FOLDER="$HOME/.stride"
 
-BLINE="\n${BLUE}===============================================================================${NC}\n"
+BLINE="\n${BLUE}============================================================================================${NC}\n"
 printf $BLINE
 
 printf "\nGreat, now we'll download the latest version of Stride.\n"
@@ -96,15 +96,16 @@ rm -f $launch_file
 echo $fstr >> $launch_file
 printf $BLINE
 printf "\n\n"
-echo "You're all done! You can now launch your node with the following command:"
-echo "     ${PURPLE}strided start${NC}"
-echo "Or, if you'd prefer:"
-echo "     ${PURPLE}sh $launch_file${NC}"
+echo "You're all done! You can now launch your node with the following command:\n"
+echo "     ${PURPLE}strided start${NC}\n"
+echo "Or, if you'd prefer:\n"
+echo "     ${PURPLE}sh $launch_file${NC}\n"
 echo "Just make sure $BINARY_LOCATION is in your PATH."
 
 sleep 2
-
 printf "\nNow for the fun part.\n\n"
+sleep 2
+
 while true; do
     read -p "$(echo $PURPLE"Do you want to launch your blockchain? [y/n] "$NC)" yn
     case $yn in
