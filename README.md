@@ -79,6 +79,14 @@ or
 
 Your node's nickname is how others can see it on the block explorer. For example, if you become a validator, you'll appear as your node's nickname. 
 
+### I'm running into a permissions issue when building, what should I do?
+
+If you're running into a permission error of the flavor 
+
+    mkdir: {{path}}: Permission Denied
+
+If so, you should run `chmod 777 {{path}}` to fix the permissions.
+
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change. We also welcome all discussion in #engineering or #questions in our [Discord](https://stride.zone/discord). 

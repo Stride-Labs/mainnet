@@ -2,7 +2,7 @@
 set -e
 clear 
 
-SCRIPT_VERSION="v0.0.1"
+SCRIPT_VERSION="v0.0.2"
 
 # you can always install this script with
 # curl -L install.poolparty.stridelabs.co | sh
@@ -13,9 +13,9 @@ BLUE='\033[1;34m'
 ITALIC="\033[3m"
 NC="\033[0m"
 
-STRIDE_COMMIT_HASH=cf86615ccf1a471be1f948f71702b1d3fee7bbba
-GENESIS_URL=https://bafkreifiq36zamwbigkfubish6czuuaacse4wtbldggxjzuzeu52emyadq.ipfs.dweb.link/
-PERSISTENT_PEER_ID="8c40c28fbdcbf6a61b79d16ac0e2ec0543616631@stride-node1.internal.stridenet.co:26656"
+STRIDE_COMMIT_HASH=f17617695a9a411a045cf236f9ef20991702b6b3
+GENESIS_URL=https://bafkreidlvj4ip4f676nfq7dshoul6gtcuzenwqsc7y5shce2onyrht5bgi.ipfs.dweb.link/
+PERSISTENT_PEER_ID="51e4d159b6aa0c1a7816049244e78a357e02efb9@stride-node1.internal.stridenet.co:26656"
 
 printf "\n\n${BOLD}Welcome to the setup script for Stride's Testnet, ${PURPLE}PoolParty${NC}!\n\n"
 printf "This script will guide you through setting up your very own Stride node locally.\n"
@@ -70,8 +70,6 @@ echo "\nFetching Stride's code...\n"
 git clone https://github.com/Stride-Labs/stride.git > /dev/null 2>&1
 cd $INSTALL_FOLDER/stride 
 git checkout $STRIDE_COMMIT_HASH > /dev/null 2>&1
-
-mkdir -p $INSTALL_FOLDER/build/
 
 # pick install location
 DEFAULT_BINARY="$HOME/go/bin"
