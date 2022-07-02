@@ -11,6 +11,10 @@ BLUE='\033[1;34m'
 ITALIC="\033[3m"
 NC="\033[0m"
 
+STRIDE_COMMIT_HASH=cf86615ccf1a471be1f948f71702b1d3fee7bbba
+GENESIS_URL=https://bafkreifiq36zamwbigkfubish6czuuaacse4wtbldggxjzuzeu52emyadq.ipfs.dweb.link/
+PERSISTENT_PEER_ID="8c40c28fbdcbf6a61b79d16ac0e2ec0543616631@stride-node1.internal.stridenet.co:26656"
+
 printf "\n\n${BOLD}Welcome to the setup script for Stride's Testnet, ${PURPLE}PoolParty${NC}!\n\n"
 printf "This script will guide you through setting up your very own Stride node locally.\n\n"
 
@@ -62,7 +66,7 @@ cd $INSTALL_FOLDER
 echo "\nFetching Stride's code...\n"
 git clone https://github.com/Stride-Labs/stride.git > /dev/null 2>&1
 cd $INSTALL_FOLDER/stride 
-git checkout 62e897c34f66d9cd0a7e0307517cd41c55a8f473 > /dev/null 2>&1
+git checkout $STRIDE_COMMIT_HASH > /dev/null 2>&1
 
 mkdir -p $INSTALL_FOLDER/build/
 
@@ -86,13 +90,12 @@ printf "\nLast step, we need to setup your genesis state to match PoolParty...\n
 $BINARY init $NODE_NAME --home $STRIDE_FOLDER --chain-id STRIDE --overwrite > /dev/null 2>&1
 
 # Now pull the genesis file
-curl https://bafkreid3dxxitn75gwr6dllhouasrdzgwmlj6wcyvrbspzzlsi453iskye.ipfs.dweb.link/ -o $STRIDE_FOLDER/config/genesis.json > /dev/null 2>&1
+curl $GENESIS_URL -o $STRIDE_FOLDER/config/genesis.json > /dev/null 2>&1
 
 # # add persistent peer
 config_path="$STRIDE_FOLDER/config/config.toml"
 app_path="$STRIDE_FOLDER/config/app.toml"
-PEER_ID="2ccf88e4c18e072f6173f80392ed5e61fccaf719@stride-node1.internal.stridenet.co:26656"
-sed -i -E "s|persistent_peers = \".*\"|persistent_peers = \"$PEER_ID\"|g" $config_path
+sed -i -E "s|persistent_peers = \".*\"|persistent_peers = \"$PERSISTENT_PEER_ID\"|g" $config_path
 
 fstr="$BINARY start --home $STRIDE_FOLDER"
 
