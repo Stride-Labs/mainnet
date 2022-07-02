@@ -1,4 +1,4 @@
-# Stride Testnet
+# Stride's Testnet - PoolParty
 
 ![Stride](assets/stride-banner.png)
 
@@ -18,9 +18,9 @@ sh -c "$(curl -sSL install.poolparty.stridelabs.co)"
 
 ## Running Stride Commands
 
-Please add the repo with your stride binary (defaults to `$HOME/go/bin`) to your `.bashrc` or `.zshrc` file. Then, you can run `strided` automatically.
+Please add the repo with your Stride binary (defaults to `$HOME/go/bin`) to your `.bashrc` or `.zshrc` file. Then, you can run `strided` automatically.
 
-For example, run `strided q bank balances stride159atdlc3ksl50g0659w5tq42wwer334ajl7xnq` to see the bank balance of Stride's address.
+For example, run `strided q bank balances stride159atdlc3ksl50g0659w5tq42wwer334ajl7xnq` to see the balance of Stride's address.
 
 Another, practical example, if you run 
 
@@ -43,11 +43,15 @@ If you want to convert your node into a validator, please run
 
 and follow the prompts.
 
+## Block Explorer
+
+For now, we're hosting a Ping.Pub block explorer [here](https://internal-explorer.stride.zone/). We're working on integrating a more robust block explorer, stay tuned. 
+
 ## FAQ
 
 ### Where can I get some tokens?
 
-To get tokens, message `$faucet {{ADDRESS}}` on Discord. For example, I would type `$fauct stride159atdlc3ksl50g0659w5tq42wwer334ajl7xnq`. 
+To get tokens, message `$faucet {{ADDRESS}}` on Discord. For example, I would type `$faucet stride159atdlc3ksl50g0659w5tq42wwer334ajl7xnq`. 
 
 Please don't spam this.
 
