@@ -1,7 +1,5 @@
 #!/bin/bash
 
-SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
-
 NODE_NAME=$1
 echo "\n"
 if [ -z "$NODE_NAME" ]; then
@@ -12,14 +10,18 @@ elif [ "$NODE_NAME" == "YOUR_NODE_NAME" ]; then
   exit 1
 fi
 
-cd $SCRIPT_DIR
+TESTNET="internal"
+INSTALL_FOLDER="$HOME/.stride/$TESTNET"
+STRIDE_FOLDER="$INSTALL_FOLDER/stride"
 
-STRIDE_FOLDER="$SCRIPT_DIR/stride/"
+mkdir -p $STRIDE_FOLDER
+cd $INSTALL_FOLDER
+echo $STRIDE_FOLDER
 
 if [ -d $STRIDE_FOLDER ] 
 then
     while true; do
-        read -p "Do you want to delete the folder $STRIDE_FOLDER and proceed? You CANNOT reverse this decision. [y/n]
+        read -p "Do you want to overwrite your existing $TESTNET blockchain and reinitialize? [y/n]
                 " yn
         case $yn in
             [Yy]* ) break;;
@@ -44,7 +46,7 @@ make local-build
 STRIDE_HOME=$STRIDE_FOLDER/build/stride/
 echo "Initializing chain..."
 
-$STRIDE_FOLDER/build/strided init $NODE_NAME --home $SCRIPT_DIR/stride/build/stride/ --chain-id STRIDE --overwrite > /dev/null 2>&1
+$STRIDE_FOLDER/build/strided init $NODE_NAME --home $STRIDE_HOME --chain-id STRIDE --overwrite > /dev/null 2>&1
 
 # Now pull the genesis file
 curl https://bafkreidmprsdsfu43xd52xjyavwxrb43mb5rpqjmufa2v6w5pjamdhbxcy.ipfs.dweb.link/ -o $STRIDE_FOLDER/build/stride/config/genesis.json > /dev/null 2>&1
@@ -56,7 +58,7 @@ sed -i -E "s|persistent_peers = \".*\"|persistent_peers = \"$PEER_ID\"|g" $confi
 
 fstr="$STRIDE_FOLDER/build/strided start --home $STRIDE_FOLDER/build/stride/"
 
-launch_file=$SCRIPT_DIR/launch_poolparty.sh
+launch_file=$INSTALL_FOLDER/launch_poolparty.sh
 
 echo $fstr >> $launch_file
 
