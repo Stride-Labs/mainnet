@@ -1,6 +1,9 @@
 #!/bin/bash
-# set -e
+set -e
 clear 
+
+# you can always install this script with
+# curl -L install.poolparty.stridelabs.co | sh
 
 PURPLE='\033[0;35m'
 BOLD="\033[1m"
@@ -21,8 +24,7 @@ while true; do
         break
     fi
 done
-# curl -L install.poolparty.stridelabs.co | sh
-# curl https://raw.githubusercontent.com/Stride-Labs/testnet/main/poolparty/init_poolparty.sh | sh
+
 TESTNET="internal"
 INSTALL_FOLDER="$HOME/.stride/$TESTNET"
 STRIDE_FOLDER="$HOME/.stride"
@@ -55,7 +57,7 @@ rm -f launch_testnet.sh > /dev/null 2>&1
 mkdir -p $INSTALL_FOLDER
 cd $INSTALL_FOLDER
 
-echo "\nFetching Stride's code...\n\n"
+echo "\nFetching Stride's code...\n"
 git clone https://github.com/Stride-Labs/stride.git > /dev/null 2>&1
 cd stride 
 git checkout 62e897c34f66d9cd0a7e0307517cd41c55a8f473 > /dev/null 2>&1
@@ -77,7 +79,7 @@ printf "\n"
 printf $BLINE
 
 BINARY=$BINARY_LOCATION/strided
-printf "\nLast step, now we need to setup your genesis state to match PoolParty...\n"
+printf "\nLast step, we need to setup your genesis state to match PoolParty...\n"
 
 $BINARY init $NODE_NAME --home $STRIDE_FOLDER --chain-id STRIDE --overwrite > /dev/null 2>&1
 
@@ -86,6 +88,7 @@ curl https://bafkreid3dxxitn75gwr6dllhouasrdzgwmlj6wcyvrbspzzlsi453iskye.ipfs.dw
 
 # # add persistent peer
 config_path="$STRIDE_FOLDER/config/config.toml"
+app_path="$STRIDE_FOLDER/config/app.toml"
 PEER_ID="2ccf88e4c18e072f6173f80392ed5e61fccaf719@stride-node1.internal.stridenet.co:26656"
 sed -i -E "s|persistent_peers = \".*\"|persistent_peers = \"$PEER_ID\"|g" $config_path
 
