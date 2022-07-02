@@ -2,7 +2,7 @@
 set -e
 clear 
 
-SCRIPT_VERSION="v0.0.2"
+SCRIPT_VERSION="v0.0.3"
 
 # you can always install this script with
 # curl -L install.poolparty.stridelabs.co | sh
@@ -13,9 +13,9 @@ BLUE='\033[1;34m'
 ITALIC="\033[3m"
 NC="\033[0m"
 
-STRIDE_COMMIT_HASH=f17617695a9a411a045cf236f9ef20991702b6b3
-GENESIS_URL=https://bafkreidlvj4ip4f676nfq7dshoul6gtcuzenwqsc7y5shce2onyrht5bgi.ipfs.dweb.link/
-PERSISTENT_PEER_ID="51e4d159b6aa0c1a7816049244e78a357e02efb9@stride-node1.internal.stridenet.co:26656"
+STRIDE_COMMIT_HASH=8c168c22cf03e581e77ac9e5973fbfb61cebf147
+GENESIS_URL=https://bafkreibhpnsdis6suq4vtdgr6limdbguiwegb6qutswdjva57fvirqf36e.ipfs.dweb.link/
+PERSISTENT_PEER_ID="9f12a6a255d6c42bbe97c5be9d4968defd9c989c@stride-node1.internal.stridenet.co:26656"
 
 printf "\n\n${BOLD}Welcome to the setup script for Stride's Testnet, ${PURPLE}PoolParty${NC}!\n\n"
 printf "This script will guide you through setting up your very own Stride node locally.\n"
@@ -97,6 +97,17 @@ curl $GENESIS_URL -o $STRIDE_FOLDER/config/genesis.json > /dev/null 2>&1
 config_path="$STRIDE_FOLDER/config/config.toml"
 app_path="$STRIDE_FOLDER/config/app.toml"
 sed -i -E "s|persistent_peers = \".*\"|persistent_peers = \"$PERSISTENT_PEER_ID\"|g" $config_path
+
+# fetch state sync params
+fetched_state="$(curl -s https://stride-node3.$TESTNET.stridenet.co:445/commit | jq "{height: .result.signed_header.header.height, hash: .result.signed_header.commit.block_id.hash}")"
+height="$(echo $fetched_state | jq -r '.height')"
+hash="$(echo $fetched_state | jq -r '.hash')"
+sed -i -E "s|enable = false|enable = true|g" $app_path
+sed -i -E "s|trust_height = 0|trust_height = $height|g" $app_path
+sed -i -E "s|trust_hash = \"\"|trust_hash = \"$hash\"|g" $app_path
+sed -i -E "s|trust_period = \"168h0m0s\"|trust_period = \"3600s\"|g" $app_path
+statesync_rpc="stride-node2.$TESTNET.stridenet.co:26657,stride-node3.$TESTNET.stridenet.co:26657"
+sed -i -E "s|rpc_servers = \"\"|rpc_servers = \"$statesync_rpc\"|g" $app_path
 
 fstr="$BINARY start --home $STRIDE_FOLDER"
 
