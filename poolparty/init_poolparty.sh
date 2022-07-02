@@ -18,7 +18,7 @@ STRIDE_FOLDER="$INSTALL_FOLDER/stride"
 
 mkdir -p $STRIDE_FOLDER
 cd $INSTALL_FOLDER
-echo "Installing to $STRIDE_FOLDER...\n"
+echo "Installing to $STRIDE_FOLDER\n"
 
 if [ -d $STRIDE_FOLDER ] 
 then
@@ -38,7 +38,7 @@ rm launch_testnet.sh > /dev/null 2>&1
 echo "\nPulling Stride repo..."
 git clone https://github.com/Stride-Labs/stride.git > /dev/null 2>&1
 cd stride 
-git checkout 00519c8813e1fcc967b67c17776862d25b821893 > /dev/null 2>&1
+git checkout 62e897c34f66d9cd0a7e0307517cd41c55a8f473 > /dev/null 2>&1
 
 mkdir $STRIDE_FOLDER/build/
 mkdir $STRIDE_FOLDER/build/stride/
@@ -50,11 +50,11 @@ echo "Initializing chain..."
 $STRIDE_FOLDER/build/strided init $NODE_NAME --home $STRIDE_HOME --chain-id STRIDE --overwrite > /dev/null 2>&1
 
 # Now pull the genesis file
-curl https://bafkreidmprsdsfu43xd52xjyavwxrb43mb5rpqjmufa2v6w5pjamdhbxcy.ipfs.dweb.link/ -o $STRIDE_FOLDER/build/stride/config/genesis.json > /dev/null 2>&1
+curl https://bafkreid3dxxitn75gwr6dllhouasrdzgwmlj6wcyvrbspzzlsi453iskye.ipfs.dweb.link/ -o $STRIDE_FOLDER/build/stride/config/genesis.json > /dev/null 2>&1
 
 # # add persistent peer
 config_path="$STRIDE_FOLDER/build/stride/config/config.toml"
-PEER_ID="141cdd0bbef653db81192d2e57f75c7976cc87cd@stride-node1.internal.stridenet.co:26656"
+PEER_ID="2ccf88e4c18e072f6173f80392ed5e61fccaf719@stride-node1.internal.stridenet.co:26656"
 sed -i -E "s|persistent_peers = \".*\"|persistent_peers = \"$PEER_ID\"|g" $config_path
 
 fstr="$STRIDE_FOLDER/build/strided start --home $STRIDE_FOLDER/build/stride/"
