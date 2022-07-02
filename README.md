@@ -1,5 +1,7 @@
 # Stride Testnet
 
+![Stride](https://drive.google.com/file/d/1ppZTF3VM91_EM9CTmnuREZlnRJzLEvL0/view)
+
 This contains instructions for how to connect to Stride's testnet, PoolParty!
 
 We've tried to keep the instructions as simple as possible, but if you have any questions, please don't hesitate to contact us over [email](mailto:hello@stridelabs.co), on [Twitter](https://twitter.com/stride_zone), or at our [Discord](https://stride.zone/discord).
