@@ -1,6 +1,6 @@
 # Stride Testnet
 
-![Stride](https://drive.google.com/file/d/1ppZTF3VM91_EM9CTmnuREZlnRJzLEvL0/view)
+![Stride](assets/stride-banner.png)
 
 This contains instructions for how to connect to Stride's testnet, PoolParty!
 
