@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 set -e
 clear 
 
@@ -16,10 +16,12 @@ printf "This script will guide you through setting up your very own Stride node 
 
 printf "First, we need to give your node a nickname. "
 
+node_name_prompt="What would you like to call it? "
 while true; do
-    read -p "$(echo $PURPLE"What would you like to call it? "$NC)" NODE_NAME
-    if [ -z "$NODE_NAME" ]; then
-    printf 'Please enter a node name.'
+    read -p "$(echo $PURPLE"$node_name_prompt"$NC)" NODE_NAME
+    if [ -z "$NODE_NAME" ] || ! [[ "$NODE_NAME" =~ ^[A-Za-z0-9-]*$ ]]; then
+        printf '\nNode names can only container letters, numbers, and hyphens.\n'
+        node_name_prompt="Please enter a new name. "
     else
         break
     fi
@@ -59,7 +61,7 @@ cd $INSTALL_FOLDER
 
 echo "\nFetching Stride's code...\n"
 git clone https://github.com/Stride-Labs/stride.git > /dev/null 2>&1
-cd stride 
+cd $INSTALL_FOLDER/stride 
 git checkout 62e897c34f66d9cd0a7e0307517cd41c55a8f473 > /dev/null 2>&1
 
 mkdir -p $INSTALL_FOLDER/build/
