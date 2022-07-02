@@ -1,15 +1,17 @@
 #!/bin/bash
 
-NODE_NAME=$1
-echo "\n"
-if [ -z "$NODE_NAME" ]; then
-  echo 'Please pass in your local node name, e.g. ./init_poolparty.sh YOUR_NODE_NAME'
-  exit 1
-elif [ "$NODE_NAME" == "YOUR_NODE_NAME" ]; then
-  echo 'Please name your node something other than YOUR_NODE_NAME'
-  exit 1
-fi
+clear 
 
+while true; do
+    read -p "Please type in name for your local node: " NODE_NAME
+    if [ -z "$NODE_NAME" ]; then
+    echo 'Please enter a node name.'
+    else
+        break
+    fi
+done
+
+# curl https://raw.githubusercontent.com/Stride-Labs/testnet/main/poolparty/init_poolparty.sh | sh
 TESTNET="internal"
 INSTALL_FOLDER="$HOME/.stride/$TESTNET"
 STRIDE_FOLDER="$INSTALL_FOLDER/stride"
@@ -21,8 +23,7 @@ echo $STRIDE_FOLDER
 if [ -d $STRIDE_FOLDER ] 
 then
     while true; do
-        read -p "Do you want to overwrite your existing $TESTNET blockchain and reinitialize? [y/n]
-                " yn
+        read -p "Do you want to overwrite your existing $TESTNET blockchain and reinitialize? [y/n] " yn
         case $yn in
             [Yy]* ) break;;
             [Nn]* ) exit;;
@@ -63,8 +64,7 @@ launch_file=$INSTALL_FOLDER/launch_poolparty.sh
 echo $fstr >> $launch_file
 
 while true; do
-    read -p "Do you want to launch your blockchain? [y/n]
-            " yn
+    read -p "Do you want to launch your blockchain? [y/n] " yn
     case $yn in
         [Yy]* ) break;;
         [Nn]* ) exit;;
