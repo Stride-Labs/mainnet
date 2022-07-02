@@ -2,6 +2,8 @@
 set -e
 clear 
 
+SCRIPT_VERSION="v0.0.1"
+
 # you can always install this script with
 # curl -L install.poolparty.stridelabs.co | sh
 
@@ -16,7 +18,8 @@ GENESIS_URL=https://bafkreifiq36zamwbigkfubish6czuuaacse4wtbldggxjzuzeu52emyadq.
 PERSISTENT_PEER_ID="8c40c28fbdcbf6a61b79d16ac0e2ec0543616631@stride-node1.internal.stridenet.co:26656"
 
 printf "\n\n${BOLD}Welcome to the setup script for Stride's Testnet, ${PURPLE}PoolParty${NC}!\n\n"
-printf "This script will guide you through setting up your very own Stride node locally.\n\n"
+printf "This script will guide you through setting up your very own Stride node locally.\n"
+printf "You're currently running $BOLD$SCRIPT_VERSION$NC of the setup script.\n\n"
 
 printf "First, we need to give your node a nickname. "
 
