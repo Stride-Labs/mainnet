@@ -29,7 +29,11 @@ Another, practical example, if you run
 you can see your local keys. If you wish to make a new account, please run 
 
     strided keys add <NAME>
+    
+If you already have a wallet and you want to restore it
 
+    strided keys add <NAME> --recover
+    
 If you run `strided q help`, you'll see a list of potential options. Some useful flows might be 
 
     strided tx stakeibc liquid-stake
