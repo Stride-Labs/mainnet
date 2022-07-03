@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 set -e
 clear 
 
@@ -25,7 +25,7 @@ printf "First, we need to give your node a nickname. "
 
 node_name_prompt="What would you like to call it? "
 while true; do
-    read -p "$(echo $PURPLE"$node_name_prompt"$NC)" NODE_NAME
+    read -p "$(echo -e $PURPLE"$node_name_prompt"$NC)" NODE_NAME
     if [ -z "$NODE_NAME" ] || ! [[ "$NODE_NAME" =~ ^[A-Za-z0-9-]*$ ]]; then
         printf '\nNode names can only container letters, numbers, and hyphens.\n'
         node_name_prompt="Please enter a new name. "
@@ -50,11 +50,12 @@ then
     printf "Proceed carefully, because you won't be able to recover your data if you overwrite it.\n\n"
     pstr="Do you want to overwrite your existing $TESTNET installation and proceed? [y/n] "
     while true; do
-        read -p "$(echo $PURPLE"$pstr"$NC)" yn
+        read -p "$(
+        $PURPLE"$pstr"$NC)" yn
         case $yn in
             [Yy]* ) break;;
             [Nn]* ) exit;;
-            * ) echo "Please answer yes or no.\n";;
+            * ) echo -e "Please answer yes or no.\n";;
         esac
     done
 fi
@@ -66,7 +67,7 @@ rm -f launch_testnet.sh > /dev/null 2>&1
 mkdir -p $INSTALL_FOLDER
 cd $INSTALL_FOLDER
 
-echo "\nFetching Stride's code...\n"
+echo -e "\nFetching Stride's code...\n"
 git clone https://github.com/Stride-Labs/stride.git > /dev/null 2>&1
 cd $INSTALL_FOLDER/stride 
 git checkout $STRIDE_COMMIT_HASH > /dev/null 2>&1
@@ -74,7 +75,7 @@ git checkout $STRIDE_COMMIT_HASH > /dev/null 2>&1
 # pick install location
 DEFAULT_BINARY="$HOME/go/bin"
 rstr="Where do you want to install your stride binary? [default: $DEFAULT_BINARY] "
-read -p "$(echo Almost there\! $PURPLE"$rstr"$NC)" BINARY_LOCATION
+read -p "$(echo -e Almost there\! $PURPLE"$rstr"$NC)" BINARY_LOCATION
 if [ -z "$BINARY_LOCATION" ]; then
     BINARY_LOCATION=$DEFAULT_BINARY
 fi
@@ -100,8 +101,8 @@ sed -i -E "s|persistent_peers = \".*\"|persistent_peers = \"$PERSISTENT_PEER_ID\
 
 # fetch state sync params
 fetched_state="$(curl -s https://stride-node3.$TESTNET.stridenet.co:445/commit | jq "{height: .result.signed_header.header.height, hash: .result.signed_header.commit.block_id.hash}")"
-height="$(echo $fetched_state | jq -r '.height')"
-hash="$(echo $fetched_state | jq -r '.hash')"
+height="$(echo -e $fetched_state | jq -r '.height')"
+hash="$(echo -e $fetched_state | jq -r '.hash')"
 sed -i -E "s|enable = false|enable = true|g" $app_path
 sed -i -E "s|trust_height = 0|trust_height = $height|g" $app_path
 sed -i -E "s|trust_hash = \"\"|trust_hash = \"$hash\"|g" $app_path
@@ -113,25 +114,25 @@ fstr="$BINARY start --home $STRIDE_FOLDER"
 
 launch_file=$INSTALL_FOLDER/launch_poolparty.sh
 rm -f $launch_file
-echo $fstr >> $launch_file
+echo -e $fstr >> $launch_file
 printf $BLINE
 printf "\n\n"
-echo "You're all done! You can now launch your node with the following command:\n"
-echo "     ${PURPLE}strided start${NC}\n"
-echo "Or, if you'd prefer:\n"
-echo "     ${PURPLE}sh $launch_file${NC}\n"
-echo "Just make sure $BINARY_LOCATION is in your PATH."
+echo -e "You're all done! You can now launch your node with the following command:\n"
+echo -e "     ${PURPLE}strided start${NC}\n"
+echo -e "Or, if you'd prefer:\n"
+echo -e "     ${PURPLE}sh $launch_file${NC}\n"
+echo -e "Just make sure $BINARY_LOCATION is in your PATH."
 
 sleep 2
 printf "\nNow for the fun part.\n\n"
 sleep 2
 
 while true; do
-    read -p "$(echo $PURPLE"Do you want to launch your blockchain? [y/n] "$NC)" yn
+    read -p "$(echo -e $PURPLE"Do you want to launch your blockchain? [y/n] "$NC)" yn
     case $yn in
         [Yy]* ) break;;
         [Nn]* ) exit;;
-        * ) echo "Please answer yes or no.";;
+        * ) echo -e "Please answer yes or no.";;
     esac
 done
 
