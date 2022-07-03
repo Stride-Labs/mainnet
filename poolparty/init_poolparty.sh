@@ -21,7 +21,29 @@ printf "\n\n${BOLD}Welcome to the setup script for Stride's Testnet, ${PURPLE}Po
 printf "This script will guide you through setting up your very own Stride node locally.\n"
 printf "You're currently running $BOLD$SCRIPT_VERSION$NC of the setup script.\n\n"
 
-printf "First, we need to give your node a nickname. "
+printf "Before we begin, let's make sure you have all the required dependencies installed.\n"
+DEPENDENCIES=( "git" "go" "jq" )
+missing_deps=false
+for dep in ${DEPENDENCIES[@]}; do
+    printf "\t%-7s" "$dep..."
+    if [[ $(type $dep 2> /dev/null) ]]; then
+        printf "$BLUE\xE2\x9C\x94$NC\n" # checkmark
+    else
+        missing_deps=true
+        printf "$PURPLE\xE2\x9C\x97$NC\n" # X
+    fi
+done
+if [[ $missing_deps = true ]]; then
+    printf "\nPlease install all required dependencies and rerun this script!\n"
+    exit 1
+fi
+
+printf "\nAwesome, you're all set.\n"
+
+BLINE="\n${BLUE}============================================================================================${NC}\n"
+printf $BLINE
+
+printf "\nNext, we need to give your node a nickname. "
 
 node_name_prompt="What would you like to call it? "
 while true; do
