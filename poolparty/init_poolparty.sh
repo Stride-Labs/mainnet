@@ -81,7 +81,7 @@ if [ -z "$BINARY_LOCATION" ]; then
 fi
 printf "\n"
 mkdir -p $BINARY_LOCATION
-sh $INSTALL_FOLDER/stride/scripts-local/build.sh -s $BINARY_LOCATION
+go build -mod=readonly -trimpath -o $BINARY_LOCATION ./... > /dev/null 2>&1
 printf "\n"
 
 printf $BLINE
