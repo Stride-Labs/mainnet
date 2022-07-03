@@ -26,7 +26,7 @@ printf "First, we need to give your node a nickname. "
 node_name_prompt="What would you like to call it? "
 while true; do
     read -p "$(echo $PURPLE"$node_name_prompt"$NC)" NODE_NAME
-    if [ -z "$NODE_NAME" ] || ! [[ "$NODE_NAME" =~ ^[A-Za-z0-9-]*$ ]]; then
+    if [ -z "$NODE_NAME" ] || [[ "$NODE_NAME" =~ ^[A-Za-z0-9-]*$ ]]; then
         printf '\nNode names can only container letters, numbers, and hyphens.\n'
         node_name_prompt="Please enter a new name. "
     else
