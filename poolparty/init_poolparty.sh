@@ -50,8 +50,7 @@ then
     printf "Proceed carefully, because you won't be able to recover your data if you overwrite it.\n\n"
     pstr="Do you want to overwrite your existing $TESTNET installation and proceed? [y/n] "
     while true; do
-        read -p "$(
-        $PURPLE"$pstr"$NC)" yn
+        read -p "$(echo -e $PURPLE"$pstr"$NC)" yn
         case $yn in
             [Yy]* ) break;;
             [Nn]* ) exit;;
