@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 set -e
 clear 
 
@@ -25,8 +25,8 @@ printf "First, we need to give your node a nickname. "
 
 node_name_prompt="What would you like to call it? "
 while true; do
-    read -p "$(echo $PURPLE"$node_name_prompt"$NC)" NODE_NAME
-    if [ -z "$NODE_NAME" ] || ! [[ "$NODE_NAME" =~ ^[A-Za-z0-9-]*$ ]]; then
+    read -p "$(printf $PURPLE"$node_name_prompt"$NC)" NODE_NAME
+    if [[ ! "$NODE_NAME" =~ ^[A-Za-z0-9-]+$ ]]; then
         printf '\nNode names can only container letters, numbers, and hyphens.\n'
         node_name_prompt="Please enter a new name. "
     else
@@ -50,11 +50,11 @@ then
     printf "Proceed carefully, because you won't be able to recover your data if you overwrite it.\n\n"
     pstr="Do you want to overwrite your existing $TESTNET installation and proceed? [y/n] "
     while true; do
-        read -p "$(echo $PURPLE"$pstr"$NC)" yn
+        read -p "$(printf $PURPLE"$pstr"$NC)" yn
         case $yn in
             [Yy]* ) break;;
             [Nn]* ) exit;;
-            * ) echo "Please answer yes or no.\n";;
+            * ) printf "Please answer yes or no.\n";;
         esac
     done
 fi
@@ -66,15 +66,16 @@ rm -f launch_testnet.sh > /dev/null 2>&1
 mkdir -p $INSTALL_FOLDER
 cd $INSTALL_FOLDER
 
-echo "\nFetching Stride's code...\n"
+printf "\nFetching Stride's code...\n"
 git clone https://github.com/Stride-Labs/stride.git > /dev/null 2>&1
 cd $INSTALL_FOLDER/stride 
 git checkout $STRIDE_COMMIT_HASH > /dev/null 2>&1
 
 # pick install location
 DEFAULT_BINARY="$HOME/go/bin"
+printf "\nAlmost there! "
 rstr="Where do you want to install your stride binary? [default: $DEFAULT_BINARY] "
-read -p "$(echo Almost there\! $PURPLE"$rstr"$NC)" BINARY_LOCATION
+read -p "$(printf $PURPLE"$rstr"$NC)" BINARY_LOCATION
 if [ -z "$BINARY_LOCATION" ]; then
     BINARY_LOCATION=$DEFAULT_BINARY
 fi
@@ -116,22 +117,22 @@ rm -f $launch_file
 echo $fstr >> $launch_file
 printf $BLINE
 printf "\n\n"
-echo "You're all done! You can now launch your node with the following command:\n"
-echo "     ${PURPLE}strided start${NC}\n"
-echo "Or, if you'd prefer:\n"
-echo "     ${PURPLE}sh $launch_file${NC}\n"
-echo "Just make sure $BINARY_LOCATION is in your PATH."
+printf "You're all done! You can now launch your node with the following command:\n\n"
+printf "     ${PURPLE}strided start${NC}\n\n"
+printf "Or, if you'd prefer:\n\n"
+printf "     ${PURPLE}sh $launch_file${NC}\n\n"
+printf "Just make sure $BINARY_LOCATION is in your PATH."
 
 sleep 2
-printf "\nNow for the fun part.\n\n"
+printf "\n\nNow for the fun part.\n\n"
 sleep 2
 
 while true; do
-    read -p "$(echo $PURPLE"Do you want to launch your blockchain? [y/n] "$NC)" yn
+    read -p "$(printf $PURPLE"Do you want to launch your blockchain? [y/n] "$NC)" yn
     case $yn in
         [Yy]* ) break;;
         [Nn]* ) exit;;
-        * ) echo "Please answer yes or no.";;
+        * ) printf "Please answer yes or no.\n";;
     esac
 done
 
