@@ -2,7 +2,7 @@
 set -e
 clear 
 
-SCRIPT_VERSION="v0.0.8"
+SCRIPT_VERSION="v0.0.9"
 
 # you can always install this script with
 # curl -L install.poolparty.stridelabs.co | sh
