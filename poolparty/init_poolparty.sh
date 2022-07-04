@@ -113,7 +113,7 @@ printf "\nLast step, we need to setup your genesis state to match PoolParty.\n"
 $BINARY init $NODE_NAME --home $STRIDE_FOLDER --chain-id STRIDE --overwrite > /dev/null 2>&1
 
 # Now pull the genesis file
-curl -L $GENESIS_URL -o $STRIDE_FOLDER/config/genesis.json #> /dev/null 2>&1
+curl -L $GENESIS_URL -o $STRIDE_FOLDER/config/genesis.json > /dev/null 2>&1
 
 # # add persistent peer
 config_path="$STRIDE_FOLDER/config/config.toml"
