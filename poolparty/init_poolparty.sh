@@ -2,7 +2,7 @@
 set -e
 clear 
 
-SCRIPT_VERSION="v0.0.11"
+SCRIPT_VERSION="v0.0.12"
 
 # you can always install this script with
 # curl -L install.poolparty.stridelabs.co | sh
@@ -13,9 +13,9 @@ BLUE='\033[1;34m'
 ITALIC="\033[3m"
 NC="\033[0m"
 
-STRIDE_COMMIT_HASH=f40aedc6e52db21170e29de33cf1d3b1097d5c12
-GENESIS_URL=https://bafkreia4wh5jllu3v5pvoklesjicfl2y24xty4zhdoxp6y2m3djp7ivif4.ipfs.dweb.link/
-PERSISTENT_PEER_ID="45010a9d17da1ee5b2563919d69c4ff4774c46f3@stride-node1.internal.stridenet.co:26656"
+STRIDE_COMMIT_HASH=e5c1d65d432a2e19baaeedc25ca79f386a73b141
+GENESIS_URL=https://bafkreiah5rnriylemtirlf3lvr7w5y2grepacv5gjvakg3f3abv7cnsjvy.ipfs.dweb.link/
+PERSISTENT_PEER_ID="f24bfc82e6fc1e1e5cdd93758e305550d7795a42@stride-node1.internal.stridenet.co:26656"
 
 printf "\n\n${BOLD}Welcome to the setup script for Stride's Testnet, ${PURPLE}PoolParty${NC}!\n\n"
 printf "This script will guide you through setting up your very own Stride node locally.\n"
@@ -101,7 +101,6 @@ read -p "$(printf $PURPLE"$rstr"$NC)" BINARY_LOCATION
 if [ -z "$BINARY_LOCATION" ]; then
     BINARY_LOCATION=$DEFAULT_BINARY
 fi
-printf "\n"
 mkdir -p $BINARY_LOCATION
 go build -mod=readonly -trimpath -o $BINARY_LOCATION ./... > /dev/null 2>&1
 printf "\n"
@@ -119,19 +118,22 @@ curl $GENESIS_URL -o $STRIDE_FOLDER/config/genesis.json > /dev/null 2>&1
 
 # # add persistent peer
 config_path="$STRIDE_FOLDER/config/config.toml"
-app_path="$STRIDE_FOLDER/config/app.toml"
 sed -i -E "s|persistent_peers = \".*\"|persistent_peers = \"$PERSISTENT_PEER_ID\"|g" $config_path
 
 # fetch state sync params
 fetched_state="$(curl -s https://stride-node3.$TESTNET.stridenet.co:445/commit | jq "{height: .result.signed_header.header.height, hash: .result.signed_header.commit.block_id.hash}")"
 height="$(echo $fetched_state | jq -r '.height')"
 hash="$(echo $fetched_state | jq -r '.hash')"
-sed -i -E "s|enable = false|enable = true|g" $app_path
-sed -i -E "s|trust_height = 0|trust_height = $height|g" $app_path
-sed -i -E "s|trust_hash = \"\"|trust_hash = \"$hash\"|g" $app_path
-sed -i -E "s|trust_period = \"168h0m0s\"|trust_period = \"3600s\"|g" $app_path
+echo "HASH"
+echo $hash
+echo "HEIGHT"
+echo $height
+sed -i -E "s|enable = false|enable = true|g" $config_path
+sed -i -E "s|trust_height = 0|trust_height = $height|g" $config_path
+sed -i -E "s|trust_hash = \"\"|trust_hash = \"$hash\"|g" $config_path
+sed -i -E "s|trust_period = \"168h0m0s\"|trust_period = \"3600s\"|g" $config_path
 statesync_rpc="stride-node2.$TESTNET.stridenet.co:26657,stride-node3.$TESTNET.stridenet.co:26657"
-sed -i -E "s|rpc_servers = \"\"|rpc_servers = \"$statesync_rpc\"|g" $app_path
+sed -i -E "s|rpc_servers = \"\"|rpc_servers = \"$statesync_rpc\"|g" $config_path
 
 fstr="$BINARY start --home $STRIDE_FOLDER"
 
