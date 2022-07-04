@@ -62,8 +62,6 @@ INSTALL_FOLDER="$HOME/.stride/$TESTNET"
 STRIDE_FOLDER="$HOME/.stride"
 LOG_PATH=$STRIDE_FOLDER/$LOG_FILE
 
-date > $LOG_PATH
-
 BLINE="\n${BLUE}============================================================================================${NC}\n"
 printf $BLINE
 
@@ -90,6 +88,8 @@ rm -rf $STRIDE_FOLDER
 
 mkdir -p $INSTALL_FOLDER
 cd $INSTALL_FOLDER
+
+date > $LOG_PATH
 
 printf "\nFetching Stride's code...\n"
 git clone https://github.com/Stride-Labs/stride.git >> $LOG_PATH 2>&1
