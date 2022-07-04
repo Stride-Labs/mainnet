@@ -13,7 +13,7 @@ Requirements for this testnet are quite minimal. You should have a 4 CPU 32 GB R
 Run the following command to install PoolParty
 
 ```
-sh -c "$(curl -sSL install.poolparty.stridelabs.co)"
+bash -c "$(curl -sSL install.poolparty.stridelabs.co)"
 ```
 
 ## Running Stride Commands
