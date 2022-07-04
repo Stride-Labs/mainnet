@@ -2,7 +2,7 @@
 set -e
 clear 
 
-SCRIPT_VERSION="v0.0.14"
+SCRIPT_VERSION="v0.0.15"
 
 # you can always install this script with
 # curl -L install.poolparty.stridelabs.co | sh
@@ -13,9 +13,9 @@ BLUE='\033[1;34m'
 ITALIC="\033[3m"
 NC="\033[0m"
 
-STRIDE_COMMIT_HASH=d11cbc287bf9544f63ebb7100e7f0f4c12217fe3
-GENESIS_URL=https://bafkreidtvkbqwqrmqrbsq64nnowvwebzbuhxuqwvebopewr5du43dqkzwm.ipfs.dweb.link/
-PERSISTENT_PEER_ID="dee7caf1123dc42cf8f2847135c6fc2d98e997d4@stride-node1.poolparty.stridenet.co:26656"
+STRIDE_COMMIT_HASH=74ce5d975dee6411477ce6df3666c19a703dcf9d
+GENESIS_URL=https://bafybeifio4frsb3nihcguifh3sc52ayjkbbgnk6jbhxmy644cvwbmfv54a.ipfs.dweb.link/genesis.json
+PERSISTENT_PEER_ID="66cab5bcee218e8411f4a316fc94976c7ec1300c@stride-node1.poolparty.stridenet.co:26656"
 
 printf "\n\n${BOLD}Welcome to the setup script for Stride's Testnet, ${PURPLE}PoolParty${NC}!\n\n"
 printf "This script will guide you through setting up your very own Stride node locally.\n"
