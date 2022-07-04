@@ -124,10 +124,7 @@ sed -i -E "s|persistent_peers = \".*\"|persistent_peers = \"$PERSISTENT_PEER_ID\
 fetched_state="$(curl -s https://stride-node3.$TESTNET.stridenet.co:445/commit | jq "{height: .result.signed_header.header.height, hash: .result.signed_header.commit.block_id.hash}")"
 height="$(echo $fetched_state | jq -r '.height')"
 hash="$(echo $fetched_state | jq -r '.hash')"
-echo "HASH"
-echo $hash
-echo "HEIGHT"
-echo $height
+
 sed -i -E "s|enable = false|enable = true|g" $config_path
 sed -i -E "s|trust_height = 0|trust_height = $height|g" $config_path
 sed -i -E "s|trust_hash = \"\"|trust_hash = \"$hash\"|g" $config_path
