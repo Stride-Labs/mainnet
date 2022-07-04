@@ -22,10 +22,10 @@ printf "This script will guide you through setting up your very own Stride node 
 printf "You're currently running $BOLD$SCRIPT_VERSION$NC of the setup script.\n\n"
 
 printf "Before we begin, let's make sure you have all the required dependencies installed.\n"
-DEPENDENCIES=( "git" "go" "jq" )
+DEPENDENCIES=( "git" "go" "jq" "lsof" )
 missing_deps=false
 for dep in ${DEPENDENCIES[@]}; do
-    printf "\t%-7s" "$dep..."
+    printf "\t%-8s" "$dep..."
     if [[ $(type $dep 2> /dev/null) ]]; then
         printf "$BLUE\xE2\x9C\x94$NC\n" # checkmark
     else
@@ -160,12 +160,12 @@ done
 
 # kill ports if they're already running
 PORT_NUMBER=6060
-lsof -i tcp:${PORT_NUMBER} | awk 'NR!=1 {print $2}' | xargs kill
+lsof -i tcp:${PORT_NUMBER} | awk 'NR!=1 {print $2}' | xargs -r kill
 PORT_NUMBER=26657
-lsof -i tcp:${PORT_NUMBER} | awk 'NR!=1 {print $2}' | xargs kill 
+lsof -i tcp:${PORT_NUMBER} | awk 'NR!=1 {print $2}' | xargs -r kill 
 # we likely don't need to kill this - look into why this is causing issues
 PORT_NUMBER=26557
-lsof -i tcp:${PORT_NUMBER} | awk 'NR!=1 {print $2}' | xargs kill
+lsof -i tcp:${PORT_NUMBER} | awk 'NR!=1 {print $2}' | xargs -r kill
 
 
 sh $launch_file
