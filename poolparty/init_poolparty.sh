@@ -2,7 +2,7 @@
 set -e
 clear 
 
-SCRIPT_VERSION="v0.0.15"
+SCRIPT_VERSION="v0.0.16"
 
 # you can always install this script with
 # curl -L install.poolparty.stridelabs.co | sh
@@ -14,9 +14,9 @@ ITALIC="\033[3m"
 NC="\033[0m"
 LOG_FILE="install.log"
 
-STRIDE_COMMIT_HASH=74ce5d975dee6411477ce6df3666c19a703dcf9d
-GENESIS_URL=https://bafybeifio4frsb3nihcguifh3sc52ayjkbbgnk6jbhxmy644cvwbmfv54a.ipfs.dweb.link/genesis.json
-PERSISTENT_PEER_ID="66cab5bcee218e8411f4a316fc94976c7ec1300c@stride-node1.poolparty.stridenet.co:26656"
+STRIDE_COMMIT_HASH=afabdb8e17b4a2dac6906b61b80b37c60638a7f0
+GENESIS_URL=https://raw.githubusercontent.com/Stride-Labs/testnet/main/poolparty/genesis.json
+PERSISTENT_PEER_ID="c73d5d83ae121dd9f2ebbfd381724c844a5e5106@stride-node1.poolparty.stridenet.co:26656"
 
 printf "\n\n${BOLD}Welcome to the setup script for Stride's Testnet, ${PURPLE}PoolParty${NC}!\n\n"
 printf "This script will guide you through setting up your very own Stride node locally.\n"
@@ -112,12 +112,11 @@ printf $BLINE
 
 BINARY=$BINARY_LOCATION/strided
 printf "\nLast step, we need to setup your genesis state to match PoolParty.\n"
-printf "\nDownloading data from IPFS...\n"
 
 $BINARY init $NODE_NAME --home $STRIDE_FOLDER --chain-id STRIDE --overwrite >> $LOG_PATH 2>&1
 
 # Now pull the genesis file
-curl $GENESIS_URL -o $STRIDE_FOLDER/config/genesis.json >> $LOG_PATH 2>&1
+curl -L $GENESIS_URL -o $STRIDE_FOLDER/config/genesis.json >> $LOG_PATH 2>&1
 
 # # add persistent peer
 config_path="$STRIDE_FOLDER/config/config.toml"

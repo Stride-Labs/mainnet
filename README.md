@@ -64,6 +64,7 @@ If your local `strided` is asking you for any of these, please know:
     HOST_ZONE = GAIA 
     STRIDE_CURRENCY = ustrd (1,000,000 ustrd = 1 STRD)
     GAIA_CURRENCY = uatom (1,000,000 uatom = 1 ATOM)
+    GAIA_CURRENCY_ON_STRIDE = ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2
 
 ###  How can I relaunch my Node?
 
