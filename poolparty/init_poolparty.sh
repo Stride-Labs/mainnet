@@ -13,9 +13,9 @@ BLUE='\033[1;34m'
 ITALIC="\033[3m"
 NC="\033[0m"
 
-STRIDE_COMMIT_HASH=e5c1d65d432a2e19baaeedc25ca79f386a73b141
-GENESIS_URL=https://bafkreiah5rnriylemtirlf3lvr7w5y2grepacv5gjvakg3f3abv7cnsjvy.ipfs.dweb.link/
-PERSISTENT_PEER_ID="f24bfc82e6fc1e1e5cdd93758e305550d7795a42@stride-node1.internal.stridenet.co:26656"
+STRIDE_COMMIT_HASH=2e18074d72468eccf65f34f5714fdf2b4d5f4db3
+GENESIS_URL=https://bafkreihd4q32o2vxzprjnaz5pwv2ptjtlibeektr4tnxnurjlhmtft2c5m.ipfs.dweb.link/
+PERSISTENT_PEER_ID="c79f0058eb25e9290d79e1a7c5a473ab96ef1a6f@stride-node1.internal.stridenet.co:26656"
 
 printf "\n\n${BOLD}Welcome to the setup script for Stride's Testnet, ${PURPLE}PoolParty${NC}!\n\n"
 printf "This script will guide you through setting up your very own Stride node locally.\n"
