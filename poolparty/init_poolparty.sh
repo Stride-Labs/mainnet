@@ -12,6 +12,7 @@ BOLD="\033[1m"
 BLUE='\033[1;34m'
 ITALIC="\033[3m"
 NC="\033[0m"
+LOG_FILE="install.log"
 
 STRIDE_COMMIT_HASH=74ce5d975dee6411477ce6df3666c19a703dcf9d
 GENESIS_URL=https://bafybeifio4frsb3nihcguifh3sc52ayjkbbgnk6jbhxmy644cvwbmfv54a.ipfs.dweb.link/genesis.json
@@ -59,6 +60,9 @@ done
 TESTNET="poolparty"
 INSTALL_FOLDER="$HOME/.stride/$TESTNET"
 STRIDE_FOLDER="$HOME/.stride"
+LOG_PATH=$STRIDE_FOLDER/$LOG_FILE
+
+date > $LOG_PATH
 
 BLINE="\n${BLUE}============================================================================================${NC}\n"
 printf $BLINE
@@ -82,16 +86,15 @@ then
 fi
 printf $BLINE
 
-rm -rf $STRIDE_FOLDER > /dev/null 2>&1
-rm -f launch_testnet.sh > /dev/null 2>&1
+rm -rf $STRIDE_FOLDER 
 
 mkdir -p $INSTALL_FOLDER
 cd $INSTALL_FOLDER
 
 printf "\nFetching Stride's code...\n"
-git clone https://github.com/Stride-Labs/stride.git > /dev/null 2>&1
+git clone https://github.com/Stride-Labs/stride.git >> $LOG_PATH 2>&1
 cd $INSTALL_FOLDER/stride 
-git checkout $STRIDE_COMMIT_HASH > /dev/null 2>&1
+git checkout $STRIDE_COMMIT_HASH >> $LOG_PATH 2>&1
 
 # pick install location
 DEFAULT_BINARY="$HOME/go/bin"
@@ -102,7 +105,7 @@ if [ -z "$BINARY_LOCATION" ]; then
     BINARY_LOCATION=$DEFAULT_BINARY
 fi
 mkdir -p $BINARY_LOCATION
-go build -mod=readonly -trimpath -o $BINARY_LOCATION ./... > /dev/null 2>&1
+go build -mod=readonly -trimpath -o $BINARY_LOCATION ./... >> $LOG_PATH 2>&1
 printf "\n"
 
 printf $BLINE
@@ -111,10 +114,10 @@ BINARY=$BINARY_LOCATION/strided
 printf "\nLast step, we need to setup your genesis state to match PoolParty.\n"
 printf "\nDownloading data from IPFS...\n"
 
-$BINARY init $NODE_NAME --home $STRIDE_FOLDER --chain-id STRIDE --overwrite > /dev/null 2>&1
+$BINARY init $NODE_NAME --home $STRIDE_FOLDER --chain-id STRIDE --overwrite >> $LOG_PATH 2>&1
 
 # Now pull the genesis file
-curl $GENESIS_URL -o $STRIDE_FOLDER/config/genesis.json > /dev/null 2>&1
+curl $GENESIS_URL -o $STRIDE_FOLDER/config/genesis.json >> $LOG_PATH 2>&1
 
 # # add persistent peer
 config_path="$STRIDE_FOLDER/config/config.toml"
