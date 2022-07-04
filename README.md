@@ -45,7 +45,7 @@ and follow the prompts.
 
 ## Block Explorer
 
-For now, we're hosting a Ping.Pub block explorer [here](https://internal-explorer.stride.zone/). We're working on integrating a more robust block explorer, stay tuned. 
+For now, we're hosting a Ping.Pub block explorer [here](https://poolparty.stride.zone/). We're working on integrating a more robust block explorer, stay tuned. 
 
 ## FAQ
 
@@ -60,7 +60,7 @@ Please don't spam this.
 If your local `strided` is asking you for any of these, please know:
 
     CHAIN_ID = STRIDE
-    KEYRING_BACKEND = os
+    KEYRING_BACKEND = test
     HOST_ZONE = GAIA 
     STRIDE_CURRENCY = ustrd (1,000,000 ustrd = 1 STRD)
     GAIA_CURRENCY = uatom (1,000,000 uatom = 1 ATOM)
@@ -85,7 +85,7 @@ If you're running into a permission error of the flavor
 
     mkdir: {{path}}: Permission Denied
 
-If so, you should run `chmod 777 {{path}}` to fix the permissions.
+If so, you should run `chmod +rw {{path}}` to fix the permissions.
 
 ## Contributing
 
