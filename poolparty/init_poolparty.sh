@@ -22,10 +22,10 @@ printf "This script will guide you through setting up your very own Stride node 
 printf "You're currently running $BOLD$SCRIPT_VERSION$NC of the setup script.\n\n"
 
 printf "Before we begin, let's make sure you have all the required dependencies installed.\n"
-DEPENDENCIES=( "git" "go" "jq" )
+DEPENDENCIES=( "git" "go" "jq" "lsof" )
 missing_deps=false
 for dep in ${DEPENDENCIES[@]}; do
-    printf "\t%-7s" "$dep..."
+    printf "\t%-8s" "$dep..."
     if [[ $(type $dep 2> /dev/null) ]]; then
         printf "$BLUE\xE2\x9C\x94$NC\n" # checkmark
     else
