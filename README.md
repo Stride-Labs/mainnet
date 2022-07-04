@@ -88,6 +88,12 @@ If you're running into a permission error of the flavor
 
 If so, you should run `chmod +rw {{path}}` to fix the permissions.
 
+### I'm running into an error building, what could it be?
+
+Please DM us your logfile, located at `$HOME/.stride/install.log`, and we can help you debug.
+
+One thing to check, Stride requires `go` version 1.18. Please install this [here](https://go.dev/dl/).
+
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change. We also welcome all discussion in #engineering or #questions in our [Discord](https://stride.zone/discord). 
