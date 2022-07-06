@@ -23,7 +23,7 @@ printf "This script will guide you through setting up your very own Stride node 
 printf "You're currently running $BOLD$SCRIPT_VERSION$NC of the setup script.\n\n"
 
 printf "Before we begin, let's make sure you have all the required dependencies installed.\n"
-DEPENDENCIES=( "git" "go" "jq" "lsof" "gcc" )
+DEPENDENCIES=( "git" "go" "jq" "lsof" "gcc" "libc6" "libc6-dev" )
 missing_deps=false
 for dep in ${DEPENDENCIES[@]}; do
     printf "\t%-8s" "$dep..."
