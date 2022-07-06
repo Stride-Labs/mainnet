@@ -170,7 +170,7 @@ lsof -i tcp:${PORT_NUMBER} | awk 'NR!=1 {print $2}' | xargs kill
 PORT_NUMBER=26557
 lsof -i tcp:${PORT_NUMBER} | awk 'NR!=1 {print $2}' | xargs kill
 
-read -p "Create a systemd service file to run the node? [y/n] " is_create_systemd_file
+read -p "$(printf $PURPLE"\nCreate a systemd service file to run the node? [y/n] "$NC)" is_create_systemd_file
 if [[ "$is_create_systemd_file" =~ ^([Yy])$ ]]
 then
     tee /etc/systemd/system/strided.service > /dev/null <<EOF
