@@ -32,7 +32,7 @@ for dep in ${DEPENDENCIES[@]}; do
     fi
 done
 if [[ $missing_deps = true ]]; then
-    printf "\nPlease install all required dependencies and rerun this script!\n"
+    printf "\nPlease install al required dependencies and rerun this script!\n"
     exit 1
 fi
 
@@ -120,15 +120,16 @@ config_path="$GAIA_FOLDER/config/config.toml"
 sed -i -E "s|persistent_peers = \".*\"|persistent_peers = \"$PERSISTENT_PEER_ID\"|g" $config_path
 
 # fetch state sync params
+# fetched_state="$(curl -s https://gaia.poolparty.stridenet.co:445/commit | jq "{height: .result.signed_header.header.height, hash: .result.signed_header.commit.block_id.hash}")"
 fetched_state="$(curl -s https://gaia.$TESTNET.stridenet.co:445/commit | jq "{height: .result.signed_header.header.height, hash: .result.signed_header.commit.block_id.hash}")"
 height="$(echo $fetched_state | jq -r '.height')"
 hash="$(echo $fetched_state | jq -r '.hash')"
-
+echo "HEIGHT " $height
 sed -i -E "s|enable = false|enable = true|g" $config_path
 sed -i -E "s|trust_height = 0|trust_height = $height|g" $config_path
 sed -i -E "s|trust_hash = \"\"|trust_hash = \"$hash\"|g" $config_path
 sed -i -E "s|trust_period = \"168h0m0s\"|trust_period = \"3600s\"|g" $config_path
-statesync_rpc="gaia.$TESTNET.stridenet.co:26657"
+statesync_rpc="gaia.$TESTNET.stridenet.co:26657,gaia.$TESTNET.stridenet.co:26657"
 sed -i -E "s|rpc_servers = \"\"|rpc_servers = \"$statesync_rpc\"|g" $config_path
 
 fstr="$BINARY start --home $GAIA_FOLDER"
