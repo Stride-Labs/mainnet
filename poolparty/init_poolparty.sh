@@ -181,7 +181,7 @@ After=network.target
 [Service]
 User=$USER
 Type=simple
-ExecStart=$(which strided) start
+ExecStart=$BINARY start
 Restart=on-failure
 LimitNOFILE=65535
 
