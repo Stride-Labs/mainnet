@@ -1,3 +1,4 @@
 poolparty/stride/*
 poolparty/launch_poolparty.sh
+poolparty/gaia/join_gaia_as_validator.sh
 **.DS_STORE
