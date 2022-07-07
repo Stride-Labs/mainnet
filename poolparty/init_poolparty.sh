@@ -169,5 +169,28 @@ lsof -i tcp:${PORT_NUMBER} | awk 'NR!=1 {print $2}' | xargs -r kill
 PORT_NUMBER=26557
 lsof -i tcp:${PORT_NUMBER} | awk 'NR!=1 {print $2}' | xargs -r kill
 
+read -p "$(printf $PURPLE"\nCreate a systemd service file to run the node? [y/n] "$NC)" is_create_systemd_file
+if [[ "$is_create_systemd_file" =~ ^([Yy])$ ]]
+then
+    tee /etc/systemd/system/strided.service > /dev/null <<EOF
+[Unit]
+Description=Strided Node
+After=network.target
 
-sh $launch_file
+[Service]
+User=$USER
+Type=simple
+ExecStart=$BINARY start
+Restart=on-failure
+LimitNOFILE=65535
+
+[Install]
+WantedBy=multi-user.target
+EOF
+    systemctl daemon-reload && \
+    systemctl enable strided.service && \
+    systemctl restart strided.service && \
+    journalctl -u strided.service -f -o cat
+else
+    sh $launch_file
+fi
