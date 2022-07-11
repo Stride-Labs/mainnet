@@ -2,7 +2,7 @@
 set -e
 clear 
 
-SCRIPT_VERSION="v0.0.16"
+SCRIPT_VERSION="v0.0.17"
 
 # you can always install this script with
 # curl -L install.poolparty.stridelabs.co | sh
@@ -16,7 +16,9 @@ LOG_FILE="install.log"
 
 STRIDE_COMMIT_HASH=afabdb8e17b4a2dac6906b61b80b37c60638a7f0
 GENESIS_URL=https://raw.githubusercontent.com/Stride-Labs/testnet/main/poolparty/genesis.json
-PERSISTENT_PEER_ID="c73d5d83ae121dd9f2ebbfd381724c844a5e5106@stride-node1.poolparty.stridenet.co:26656"
+# PERSISTENT_PEER_ID="c73d5d83ae121dd9f2ebbfd381724c844a5e5106@stride-node1.poolparty.stridenet.co:26656"
+PERSISTENT_PEER_ID=""
+SEED_ID="07961607c2802d7df20f60ed109142ab1d0228ac@stride-seed.poolparty.stridenet.co:26656"
 
 printf "\n\n${BOLD}Welcome to the setup script for Stride's Testnet, ${PURPLE}PoolParty${NC}!\n\n"
 printf "This script will guide you through setting up your very own Stride node locally.\n"
@@ -121,6 +123,7 @@ curl -L $GENESIS_URL -o $STRIDE_FOLDER/config/genesis.json >> $LOG_PATH 2>&1
 # # add persistent peer
 config_path="$STRIDE_FOLDER/config/config.toml"
 sed -i -E "s|persistent_peers = \".*\"|persistent_peers = \"$PERSISTENT_PEER_ID\"|g" $config_path
+sed -i -E "s|seeds = \".*\"|seeds = \"$SEED_ID\"|g" $config_path
 
 # fetch state sync params
 fetched_state="$(curl -s https://stride-node3.$TESTNET.stridenet.co:445/commit | jq "{height: .result.signed_header.header.height, hash: .result.signed_header.commit.block_id.hash}")"
@@ -169,10 +172,15 @@ lsof -i tcp:${PORT_NUMBER} | awk 'NR!=1 {print $2}' | xargs -r kill
 PORT_NUMBER=26557
 lsof -i tcp:${PORT_NUMBER} | awk 'NR!=1 {print $2}' | xargs -r kill
 
-read -p "$(printf $PURPLE"\nCreate a systemd service file to run the node? [y/n] "$NC)" is_create_systemd_file
+printf "\nYou can use systemd to run the node in the background of your computer, and ensure that the service 
+restarts automatically. Alternatively, you can run the node manually, and shut it down when you're done.
+Please note, this will only work on linux machines. \n"
+read -p "$(printf $PURPLE"\nDo you want to create a systemd service file to run the node? [y/n] "$NC)" is_create_systemd_file
 if [[ "$is_create_systemd_file" =~ ^([Yy])$ ]]
 then
-    tee /etc/systemd/system/strided.service > /dev/null <<EOF
+    SERVICE_FOLDER="/etc/systemd/system/strided.service"
+    touch $SERVICE_FILE
+    tee $SERVICE_FILE > /dev/null <<EOF
 [Unit]
 Description=Strided Node
 After=network.target
