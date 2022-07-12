@@ -25,7 +25,7 @@ printf "This script will guide you through setting up your very own Stride node 
 printf "You're currently running $BOLD$SCRIPT_VERSION$NC of the setup script.\n\n"
 
 printf "Before we begin, let's make sure you have all the required dependencies installed.\n"
-DEPENDENCIES=( "git" "go" "jq" "lsof" "gcc" )
+DEPENDENCIES=( "git" "go" "jq" "lsof" "gcc" "make" )
 missing_deps=false
 for dep in ${DEPENDENCIES[@]}; do
     printf "\t%-8s" "$dep..."
@@ -93,30 +93,32 @@ cd $INSTALL_FOLDER
 
 date > $LOG_PATH
 
-printf "\nFetching Stride's code...\n"
+printf "\nFetching Stride's code..."
 git clone https://github.com/Stride-Labs/stride.git >> $LOG_PATH 2>&1
 cd $INSTALL_FOLDER/stride 
 git checkout $STRIDE_COMMIT_HASH >> $LOG_PATH 2>&1
+printf "Done \n"
 
 # pick install location
 DEFAULT_BINARY="$HOME/go/bin"
-printf "\nAlmost there! "
-rstr="Where do you want to install your stride and cosmovisor binaries? [default: $DEFAULT_BINARY] "
+rstr="\nWhere do you want to install your stride and cosmovisor binaries? [default: $DEFAULT_BINARY] "
 read -p "$(printf $PURPLE"$rstr"$NC)" BINARY_LOCATION
 if [ -z "$BINARY_LOCATION" ]; then
     BINARY_LOCATION=$DEFAULT_BINARY
 fi
 mkdir -p $BINARY_LOCATION
+printf "\nBuilding Stride..."
 go build -mod=readonly -trimpath -o $BINARY_LOCATION ./... >> $LOG_PATH 2>&1
+printf "Done \n"
 
 printf $BLINE
 
 install_cosmovisor() {
     suffix=$1 # optional
-    printf "This one might take a few minutes...\n"
+    printf "This one might take a few minutes..."
 
     cd $INSTALL_FOLDER
-    git clone git@github.com:cosmos/cosmos-sdk >> $LOG_PATH 2>&1
+    git clone https://github.com/cosmos/cosmos-sdk >> $LOG_PATH 2>&1
     cd cosmos-sdk 
     git checkout cosmovisor/v1.1.0 >> $LOG_PATH 2>&1
     make cosmovisor >> $LOG_PATH 2>&1
@@ -126,7 +128,7 @@ install_cosmovisor() {
     rm -rf cosmos-sdk
 }
 
-printf "\nYou'll also need cosmosvisor which will enable automatic upgrades.\n"
+printf "\nAlmost there! You'll also need cosmosvisor which will enable automatic upgrades.\n"
 COSMOVISOR_BINARY=$BINARY_LOCATION/cosmovisor
 if [[ -f $COSMOVISOR_BINARY ]]; then
     printf "\nIt looks like you already have it installed! (in $COSMOVISOR_BINARY)\n"
