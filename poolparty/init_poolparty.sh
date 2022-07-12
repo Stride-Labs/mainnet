@@ -178,7 +178,7 @@ Please note, this will only work on linux machines. \n"
 read -p "$(printf $PURPLE"\nDo you want to create a systemd service file to run the node? [y/n] "$NC)" is_create_systemd_file
 if [[ "$is_create_systemd_file" =~ ^([Yy])$ ]]
 then
-    SERVICE_FOLDER="/etc/systemd/system/strided.service"
+    SERVICE_FILE="/etc/systemd/system/strided.service"
     touch $SERVICE_FILE
     tee $SERVICE_FILE > /dev/null <<EOF
 [Unit]
