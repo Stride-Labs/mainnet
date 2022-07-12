@@ -101,21 +101,70 @@ git checkout $STRIDE_COMMIT_HASH >> $LOG_PATH 2>&1
 # pick install location
 DEFAULT_BINARY="$HOME/go/bin"
 printf "\nAlmost there! "
-rstr="Where do you want to install your stride binary? [default: $DEFAULT_BINARY] "
+rstr="Where do you want to install your stride and cosmovisor binaries? [default: $DEFAULT_BINARY] "
 read -p "$(printf $PURPLE"$rstr"$NC)" BINARY_LOCATION
 if [ -z "$BINARY_LOCATION" ]; then
     BINARY_LOCATION=$DEFAULT_BINARY
 fi
 mkdir -p $BINARY_LOCATION
 go build -mod=readonly -trimpath -o $BINARY_LOCATION ./... >> $LOG_PATH 2>&1
-printf "\n"
 
 printf $BLINE
 
-BINARY=$BINARY_LOCATION/strided
+install_cosmovisor() {
+    suffix=$1 # optional
+    printf "This one might take a few minutes...\n"
+
+    cd $INSTALL_FOLDER
+    git clone git@github.com:cosmos/cosmos-sdk >> $LOG_PATH 2>&1
+    cd cosmos-sdk 
+    git checkout cosmovisor/v1.1.0 >> $LOG_PATH 2>&1
+    make cosmovisor >> $LOG_PATH 2>&1
+    mv cosmovisor/cosmovisor "$BINARY_LOCATION/cosmovisor${suffix}"
+
+    cd ..
+    rm -rf cosmos-sdk
+}
+
+printf "\nYou'll also need cosmosvisor which will enable automatic upgrades.\n"
+COSMOVISOR_BINARY=$BINARY_LOCATION/cosmovisor
+if [[ -f $COSMOVISOR_BINARY ]]; then
+    printf "\nIt looks like you already have it installed! (in $COSMOVISOR_BINARY)\n"
+
+    cosmovisor_version=$($COSMOVISOR_BINARY version | grep Version | awk '{print $3}')
+    if [[ "$cosmovisor_version" != "v1.1.0" ]]; then
+        printf "\nHowever, you'll need to run version v1.1.0 for Stride.\n"
+        pstr="\nDo you want to overwrite your current version? [y/n] "
+        while true; do
+            read -p "$(printf $PURPLE"$pstr"$NC)" yn
+            case $yn in
+                [Yy]* ) overwrite=true; break ;;
+                [Nn]* ) overwrite=false; break ;;
+                * ) printf "Please answer yes or no.\n";;
+            esac
+        done
+
+        if [ $overwrite = true ]; then 
+            printf "\nInstalling now!\n"
+            rm $COSMOVISOR_BINARY
+            install_cosmovisor 
+        else 
+            COSMOVISOR_BINARY="${COSMOVISOR_BINARY}-v1.1.0"
+            printf "\nNo problem! We'll download to ${COSMOVISOR_BINARY} instead.\n"
+            install_cosmovisor -v1.1.0
+        fi
+    fi
+else 
+    printf "\nInstalling now!\n"
+    install_cosmovisor
+fi
+
+printf $BLINE
+
+STRIDE_BINARY=$BINARY_LOCATION/strided
 printf "\nLast step, we need to setup your genesis state to match PoolParty.\n"
 
-$BINARY init $NODE_NAME --home $STRIDE_FOLDER --chain-id STRIDE --overwrite >> $LOG_PATH 2>&1
+$STRIDE_BINARY init $NODE_NAME --home $STRIDE_FOLDER --chain-id STRIDE --overwrite >> $LOG_PATH 2>&1
 
 # Now pull the genesis file
 curl -L $GENESIS_URL -o $STRIDE_FOLDER/config/genesis.json >> $LOG_PATH 2>&1
@@ -137,21 +186,27 @@ sed -i -E "s|trust_period = \"168h0m0s\"|trust_period = \"3600s\"|g" $config_pat
 statesync_rpc="stride-node2.$TESTNET.stridenet.co:26657,stride-node3.$TESTNET.stridenet.co:26657"
 sed -i -E "s|rpc_servers = \"\"|rpc_servers = \"$statesync_rpc\"|g" $config_path
 
-fstr="$BINARY start --home $STRIDE_FOLDER"
+# Setup cosmovisor
+cosmovisor_home=$STRIDE_FOLDER/cosmovisor
+mkdir -p $cosmovisor_home
+mkdir -p $cosmovisor_home/genesis/bin
+mkdir -p $cosmovisor_home/upgrades
+cp $STRIDE_BINARY $cosmovisor_home/genesis/bin/
 
+# Create launch script
 launch_file=$INSTALL_FOLDER/launch_poolparty.sh
 rm -f $launch_file
-echo $fstr >> $launch_file
+echo "export DAEMON_NAME=strided" >> $launch_file
+echo "export DAEMON_HOME=$STRIDE_FOLDER" >> $launch_file
+echo "export DAEMON_RESTART_AFTER_UPGRADE=true" >> $launch_file
+echo "$COSMOVISOR_BINARY run start --home $STRIDE_FOLDER" >> $launch_file
 printf $BLINE
-printf "\n\n"
+printf "\n"
 printf "You're all done! You can now launch your node with the following command:\n\n"
-printf "     ${PURPLE}strided start${NC}\n\n"
-printf "Or, if you'd prefer:\n\n"
 printf "     ${PURPLE}sh $launch_file${NC}\n\n"
-printf "Just make sure $BINARY_LOCATION is in your PATH."
 
 sleep 2
-printf "\n\nNow for the fun part.\n\n"
+printf "\nNow for the fun part.\n\n"
 sleep 2
 
 while true; do
@@ -188,7 +243,10 @@ After=network.target
 [Service]
 User=$USER
 Type=simple
-ExecStart=$BINARY start
+Environment=DAEMON_NAME=strided
+Environment=DAEMON_HOME=$STRIDE_FOLDER
+Environment=DAEMON_RESTART_AFTER_UPGRADE=true
+ExecStart=$COSMOVISOR_BINARY run start
 Restart=on-failure
 LimitNOFILE=65535
 
