@@ -115,7 +115,7 @@ printf $BLINE
 
 install_cosmovisor() {
     suffix=$1 # optional
-    printf "This one might take a few minutes..."
+    printf "This one might take a few minutes...\n"
 
     cd $INSTALL_FOLDER
     git clone https://github.com/cosmos/cosmos-sdk >> $LOG_PATH 2>&1
