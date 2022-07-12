@@ -190,7 +190,6 @@ sed -i -E "s|rpc_servers = \"\"|rpc_servers = \"$statesync_rpc\"|g" $config_path
 
 # Setup cosmovisor
 cosmovisor_home=$STRIDE_FOLDER/cosmovisor
-mkdir -p $cosmovisor_home
 mkdir -p $cosmovisor_home/genesis/bin
 mkdir -p $cosmovisor_home/upgrades
 cp $STRIDE_BINARY $cosmovisor_home/genesis/bin/
