@@ -2,7 +2,7 @@
 set -e
 clear 
 
-SCRIPT_VERSION="v0.1.0"
+SCRIPT_VERSION="v0.1.1"
 
 # you can always install this script with
 # curl -L install.poolparty.stridelabs.co | sh
@@ -19,7 +19,7 @@ GENESIS_URL=https://raw.githubusercontent.com/Stride-Labs/testnet/main/poolparty
 # PERSISTENT_PEER_ID="fd50f5b6ab443c61299ca82320ac073f9119ca42@stride-node1.poolparty.stridenet.co:26656"
 # SEED_ID=""
 PERSISTENT_PEER_ID=""
-SEED_ID="07961607c2802d7df20f60ed109142ab1d0228ac@stride-seed.poolparty.stridenet.co:26656"
+SEED_ID="209c8fc143ddb7424307ea250d6a3538384eb032@seedv1.poolparty.stridenet.co:26656"
 
 printf "\n\n${BOLD}Welcome to the setup script for Stride's Testnet, ${PURPLE}PoolParty${NC}!\n\n"
 printf "This script will guide you through setting up your very own Stride node locally.\n"
