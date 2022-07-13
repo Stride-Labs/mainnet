@@ -2,7 +2,7 @@
 set -e
 clear 
 
-SCRIPT_VERSION="v0.1.2"
+SCRIPT_VERSION="v0.1.3"
 
 # you can always install this script with
 # curl -L install.poolparty.stridelabs.co | sh
@@ -14,12 +14,14 @@ ITALIC="\033[3m"
 NC="\033[0m"
 LOG_FILE="install.log"
 
-STRIDE_COMMIT_HASH=bbd47cf5dc52f75e3689663dc12a406d8ef718a2
-GENESIS_URL=https://raw.githubusercontent.com/Stride-Labs/testnet/main/poolparty/genesis.json
-# PERSISTENT_PEER_ID="fd50f5b6ab443c61299ca82320ac073f9119ca42@stride-node1.poolparty.stridenet.co:26656"
+STRIDE_COMMIT_HASH=c53f6c562d9d3e098aab5c27303f41ee055572cb
+# GENESIS_URL=https://raw.githubusercontent.com/Stride-Labs/testnet/main/poolparty/genesis.json
+GENESIS_URL=https://bafkreifxuutjawabhqrsw42yxgjhbrkf2abn2pioh2z73gb3jfcnwuhque.ipfs.dweb.link/
+CHAIN_NAME=STRIDE-1
+# PERSISTENT_PEER_ID="b11187784240586475422b132a3dcbc970a996dd@stride-node1.poolparty.stridenet.co:26656"
 # SEED_ID=""
 PERSISTENT_PEER_ID=""
-SEED_ID="209c8fc143ddb7424307ea250d6a3538384eb032@seedv1.poolparty.stridenet.co:26656"
+SEED_ID="baee9ccc2496c2e3bebd54d369c3b788f9473be9@seedv1.poolparty.stridenet.co:26656"
 
 printf "\n\n${BOLD}Welcome to the setup script for Stride's Testnet, ${PURPLE}PoolParty${NC}!\n\n"
 printf "This script will guide you through setting up your very own Stride node locally.\n"
@@ -196,7 +198,7 @@ sed -i -E "s|trust_hash = \"\"|trust_hash = \"$hash\"|g" $config_path
 sed -i -E "s|trust_period = \"168h0m0s\"|trust_period = \"3600s\"|g" $config_path
 statesync_rpc="stride-node2.$TESTNET.stridenet.co:26657,stride-node3.$TESTNET.stridenet.co:26657"
 sed -i -E "s|rpc_servers = \"\"|rpc_servers = \"$statesync_rpc\"|g" $config_path
-sed -i -E "s|chain-id = \"\"|chain-id = \"STRIDE\"|g" $client_path
+sed -i -E "s|chain-id = \"\"|chain-id = \"$CHAIN_NAME\"|g" $client_path
 
 # Setup cosmovisor
 cosmovisor_home=$STRIDE_FOLDER/cosmovisor
