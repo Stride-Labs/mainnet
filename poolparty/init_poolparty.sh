@@ -2,7 +2,7 @@
 set -e
 clear 
 
-SCRIPT_VERSION="v0.1.1"
+SCRIPT_VERSION="v0.1.2"
 
 # you can always install this script with
 # curl -L install.poolparty.stridelabs.co | sh
@@ -123,13 +123,22 @@ curl -L $GENESIS_URL -o $STRIDE_FOLDER/config/genesis.json >> $LOG_PATH 2>&1
 
 # # add persistent peer
 config_path="$STRIDE_FOLDER/config/config.toml"
+client_path="$STRIDE_FOLDER/config/client.toml"
 sed -i -E "s|persistent_peers = \".*\"|persistent_peers = \"$PERSISTENT_PEER_ID\"|g" $config_path
 sed -i -E "s|seeds = \".*\"|seeds = \"$SEED_ID\"|g" $config_path
 
 # fetch state sync params
-fetched_state="$(curl -s https://stride-node3.$TESTNET.stridenet.co:445/commit | jq "{height: .result.signed_header.header.height, hash: .result.signed_header.commit.block_id.hash}")"
-height="$(echo $fetched_state | jq -r '.height')"
-hash="$(echo $fetched_state | jq -r '.hash')"
+while true; do
+    fetched_state="$(curl -s https://stride-node3.$TESTNET.stridenet.co:445/commit | jq "{height: .result.signed_header.header.height, hash: .result.signed_header.commit.block_id.hash}")"
+    height="$(echo $fetched_state | jq -r '.height')"
+    hash="$(echo $fetched_state | jq -r '.hash')"
+    if [[ ("$height" != "") && ("$hash" != "") ]]; then
+        break
+    fi
+    echo "\nHmm, failed to fetch state sync params. Trying again..." >> $LOG_PATH 2>&1
+    sleep 5
+done
+
 
 sed -i -E "s|enable = false|enable = true|g" $config_path
 sed -i -E "s|trust_height = 0|trust_height = $height|g" $config_path
@@ -137,6 +146,8 @@ sed -i -E "s|trust_hash = \"\"|trust_hash = \"$hash\"|g" $config_path
 sed -i -E "s|trust_period = \"168h0m0s\"|trust_period = \"3600s\"|g" $config_path
 statesync_rpc="stride-node2.$TESTNET.stridenet.co:26657,stride-node3.$TESTNET.stridenet.co:26657"
 sed -i -E "s|rpc_servers = \"\"|rpc_servers = \"$statesync_rpc\"|g" $config_path
+
+sed -i -E "s|chain-id = \".*\"|chain-id = \"STRIDE\"|g" $client_path
 
 fstr="$BINARY start --home $STRIDE_FOLDER"
 
