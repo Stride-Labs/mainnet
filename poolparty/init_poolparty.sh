@@ -199,6 +199,7 @@ sed -i -E "s|trust_period = \"168h0m0s\"|trust_period = \"3600s\"|g" $config_pat
 statesync_rpc="stride-node2.$TESTNET.stridenet.co:26657,stride-node3.$TESTNET.stridenet.co:26657"
 sed -i -E "s|rpc_servers = \"\"|rpc_servers = \"$statesync_rpc\"|g" $config_path
 sed -i -E "s|chain-id = \"\"|chain-id = \"$CHAIN_NAME\"|g" $client_path
+sed -i -E "s|keyring-backend = \"os\"|keyring-backend = \"test\"|g" $client_path
 
 # Setup cosmovisor
 cosmovisor_home=$STRIDE_FOLDER/cosmovisor
