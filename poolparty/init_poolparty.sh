@@ -15,8 +15,8 @@ NC="\033[0m"
 LOG_FILE="install.log"
 
 STRIDE_COMMIT_HASH=c53f6c562d9d3e098aab5c27303f41ee055572cb
-# GENESIS_URL=https://raw.githubusercontent.com/Stride-Labs/testnet/main/poolparty/genesis.json
-GENESIS_URL=https://bafkreifxuutjawabhqrsw42yxgjhbrkf2abn2pioh2z73gb3jfcnwuhque.ipfs.dweb.link/
+GENESIS_URL=https://raw.githubusercontent.com/Stride-Labs/testnet/main/poolparty/genesis.json
+# GENESIS_URL=https://bafkreifxuutjawabhqrsw42yxgjhbrkf2abn2pioh2z73gb3jfcnwuhque.ipfs.dweb.link/
 CHAIN_NAME=STRIDE-1
 # PERSISTENT_PEER_ID="b11187784240586475422b132a3dcbc970a996dd@stride-node1.poolparty.stridenet.co:26656"
 # SEED_ID=""
