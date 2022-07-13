@@ -2,7 +2,7 @@
 set -e
 clear 
 
-SCRIPT_VERSION="v0.0.17"
+SCRIPT_VERSION="v0.1.0"
 
 # you can always install this script with
 # curl -L install.poolparty.stridelabs.co | sh
@@ -14,9 +14,10 @@ ITALIC="\033[3m"
 NC="\033[0m"
 LOG_FILE="install.log"
 
-STRIDE_COMMIT_HASH=afabdb8e17b4a2dac6906b61b80b37c60638a7f0
+STRIDE_COMMIT_HASH=bbd47cf5dc52f75e3689663dc12a406d8ef718a2
 GENESIS_URL=https://raw.githubusercontent.com/Stride-Labs/testnet/main/poolparty/genesis.json
-# PERSISTENT_PEER_ID="c73d5d83ae121dd9f2ebbfd381724c844a5e5106@stride-node1.poolparty.stridenet.co:26656"
+# PERSISTENT_PEER_ID="fd50f5b6ab443c61299ca82320ac073f9119ca42@stride-node1.poolparty.stridenet.co:26656"
+# SEED_ID=""
 PERSISTENT_PEER_ID=""
 SEED_ID="07961607c2802d7df20f60ed109142ab1d0228ac@stride-seed.poolparty.stridenet.co:26656"
 
