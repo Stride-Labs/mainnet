@@ -3,5 +3,6 @@ poolparty/launch_poolparty.sh
 poolparty/seed/*
 poolparty/gaia/join_gaia_as_validator.sh
 poolparty/gaia/gaiad.service
+**nginx.conf
 poolparty/gaia/redelegate.sh
 **.DS_STORE

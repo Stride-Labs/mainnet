@@ -4,7 +4,7 @@ clear
 
 # bash -c "$(curl -sSL https://raw.githubusercontent.com/Stride-Labs/testnet/main/poolparty/gaia/join_gaia.sh)"
 
-SCRIPT_VERSION="v0.0.1"
+SCRIPT_VERSION="v0.0.2"
 
 PURPLE='\033[0;35m'
 BOLD="\033[1m"
@@ -15,7 +15,7 @@ LOG_FILE="install.log"
 
 GAIA_COMMIT_HASH=5b47714dd5607993a1a91f2b06a6d92cbb504721
 GENESIS_URL=https://raw.githubusercontent.com/Stride-Labs/testnet/main/poolparty/gaia/gaia_genesis.json
-PERSISTENT_PEER_ID="4e54e1e874eac80016379ece366ede966d4433dd@gaia.poolparty.stridenet.co:26656"
+PERSISTENT_PEER_ID="98ed4fbbaf04cb21076dcac959d91b2efa75d02c@gaia.poolparty.stridenet.co:26656"
 
 printf "\n\n${BOLD}Welcome to the setup script to join Stride's testnet ${PURPLE}PoolParty${NC}${ITALIC}${BLUE} as a Gaia node! ${NC}\n\n"
 printf "This script will guide you through setting up your very own Poolparty Gaia node locally.\n"
@@ -119,6 +119,7 @@ curl -L $GENESIS_URL -o $GAIA_FOLDER/config/genesis.json >> $LOG_PATH 2>&1
 
 # # add persistent peer
 config_path="$GAIA_FOLDER/config/config.toml"
+app_path="$GAIA_FOLDER/config/app.toml"
 sed -i -E "s|persistent_peers = \".*\"|persistent_peers = \"$PERSISTENT_PEER_ID\"|g" $config_path
 
 # fetch state sync params
@@ -132,6 +133,7 @@ sed -i -E "s|trust_hash = \"\"|trust_hash = \"$hash\"|g" $config_path
 sed -i -E "s|trust_period = \"168h0m0s\"|trust_period = \"3600s\"|g" $config_path
 statesync_rpc="gaia.$TESTNET.stridenet.co:26657,gaia.$TESTNET.stridenet.co:26657"
 sed -i -E "s|rpc_servers = \"\"|rpc_servers = \"$statesync_rpc\"|g" $config_path
+sed -i -E 's|unsafe-cors = false|unsafe-cors = true|g' $app_path
 
 fstr="$BINARY start --home $GAIA_FOLDER"
 
