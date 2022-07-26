@@ -2,7 +2,7 @@
 set -e
 clear 
 
-SCRIPT_VERSION="v0.2.0"
+SCRIPT_VERSION="v0.2.1"
 
 # you can always install this script with
 # curl -L install.poolparty.stridelabs.co | sh
@@ -14,12 +14,12 @@ ITALIC="\033[3m"
 NC="\033[0m"
 LOG_FILE="install.log"
 
-STRIDE_COMMIT_HASH=74ed6930a24d014cccd40aa880fc2f00b77f1f2f
+STRIDE_COMMIT_HASH=644c7574ee79128970a81cf8b9f23351dcdeec62
 GENESIS_URL=https://raw.githubusercontent.com/Stride-Labs/testnet/main/poolparty/genesis.json
 CHAIN_NAME=STRIDE-TESTNET-2
 # PERSISTENT_PEER_ID="b11187784240586475422b132a3dcbc970a996dd@stride-node1.poolparty.stridenet.co:26656"
 # SEED_ID=""
-PERSISTENT_PEER_ID="21f8d9c493f5de8f61f56dd315ef91009a3e8913@stride-node1.poolparty.stridenet.co:26656"
+PERSISTENT_PEER_ID="b61ea4c2c549e24c1a4d2d539b4d569d2ff7dd7b@stride-node1.poolparty.stridenet.co:26656"
 SEED_ID=""  # baee9ccc2496c2e3bebd54d369c3b788f9473be9@seedv1.poolparty.stridenet.co:26656"
 
 printf "\n\n${BOLD}Welcome to the setup script for Stride's Testnet, ${PURPLE}PoolParty${NC}!\n\n"
@@ -191,7 +191,7 @@ while true; do
     sleep 5
 done
 
-# sed -i -E "s|enable = false|enable = true|g" $config_path
+sed -i -E "s|enable = false|enable = true|g" $config_path
 sed -i -E "s|trust_height = 0|trust_height = $height|g" $config_path
 sed -i -E "s|trust_hash = \"\"|trust_hash = \"$hash\"|g" $config_path
 sed -i -E "s|trust_period = \"168h0m0s\"|trust_period = \"3600s\"|g" $config_path
