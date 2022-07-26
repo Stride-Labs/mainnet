@@ -5,7 +5,7 @@ clear
 SCRIPT_VERSION="v0.2.1"
 
 # you can always install this script with
-# curl -L install.poolparty.stridelabs.co | sh
+# bash -c "$(curl -sSL install.poolparty.stridelabs.co)"
 
 PURPLE='\033[0;35m'
 BOLD="\033[1m"
@@ -19,7 +19,7 @@ GENESIS_URL=https://raw.githubusercontent.com/Stride-Labs/testnet/main/poolparty
 CHAIN_NAME=STRIDE-TESTNET-2
 # PERSISTENT_PEER_ID="b11187784240586475422b132a3dcbc970a996dd@stride-node1.poolparty.stridenet.co:26656"
 # SEED_ID=""
-PERSISTENT_PEER_ID="b61ea4c2c549e24c1a4d2d539b4d569d2ff7dd7b@stride-node1.poolparty.stridenet.co:26656"
+PERSISTENT_PEER_ID="b61ea4c2c549e24c1a4d2d539b4d569d2ff7dd7bsdf@stride-node1.poolparty.stridenet.co:26656"
 SEED_ID=""  # baee9ccc2496c2e3bebd54d369c3b788f9473be9@seedv1.poolparty.stridenet.co:26656"
 
 printf "\n\n${BOLD}Welcome to the setup script for Stride's Testnet, ${PURPLE}PoolParty${NC}!\n\n"
