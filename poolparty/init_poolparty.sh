@@ -199,8 +199,8 @@ sed -i -E "s|trust_hash = \"\"|trust_hash = \"$hash\"|g" $config_path
 sed -i -E "s|trust_period = \"168h0m0s\"|trust_period = \"3600s\"|g" $config_path
 statesync_rpc="stride-library-direct.$TESTNET.stridenet.co:26657,stride-library-direct.$TESTNET.stridenet.co:26657"
 sed -i -E "s|rpc_servers = \"\"|rpc_servers = \"$statesync_rpc\"|g" $config_path
-sed -i -E "s|max_num_inbound_peers = 40|max_num_inbound_peers = 40|g" $config_path
-sed -i -E "s|max_num_outbound_peers = 10|max_num_outbound_peers = 25|g" $config_path
+sed -i -E "s|max_num_inbound_peers = 40|max_num_inbound_peers = 100|g" $config_path
+sed -i -E "s|max_num_outbound_peers = 10|max_num_outbound_peers = 100|g" $config_path
 
 sed -i -E "s|chain-id = \"\"|chain-id = \"$CHAIN_NAME\"|g" $client_path
 sed -i -E "s|keyring-backend = \"os\"|keyring-backend = \"test\"|g" $client_path
