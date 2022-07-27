@@ -176,6 +176,7 @@ curl -L $GENESIS_URL -o $STRIDE_FOLDER/config/genesis.json >> $LOG_PATH 2>&1
 # # add persistent peer
 config_path="$STRIDE_FOLDER/config/config.toml"
 client_path="$STRIDE_FOLDER/config/client.toml"
+app_path="$STRIDE_FOLDER/config/app.toml"
 sed -i -E "s|persistent_peers = \".*\"|persistent_peers = \"$PERSISTENT_PEER_ID\"|g" $config_path
 sed -i -E "s|seeds = \".*\"|seeds = \"$SEED_ID\"|g" $config_path
 
@@ -191,6 +192,7 @@ while true; do
     sleep 5
 done
 
+sed -i -E "s|snapshot-interval = .*|snapshot-interval = 200|g" $app_path
 sed -i -E "s|enable = false|enable = true|g" $config_path
 sed -i -E "s|trust_height = 0|trust_height = $height|g" $config_path
 sed -i -E "s|trust_hash = \"\"|trust_hash = \"$hash\"|g" $config_path
