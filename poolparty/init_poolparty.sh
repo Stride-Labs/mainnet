@@ -17,10 +17,10 @@ LOG_FILE="install.log"
 STRIDE_COMMIT_HASH=3cb77a79f74e0b797df5611674c3fbd000dfeaa1
 GENESIS_URL=https://raw.githubusercontent.com/Stride-Labs/testnet/main/poolparty/genesis.json
 CHAIN_NAME=STRIDE-TESTNET-2
-# PERSISTENT_PEER_ID=""
-# SEED_ID="c0b278cbfb15674e1949e7e5ae51627cb2a2d0a9@seedv2.poolparty.stridenet.co:26656"
-PERSISTENT_PEER_ID="48b1310bc81deea3eb44173c5c26873c23565d33@stride-testnet-2-node1.poolparty.stridenet.co:26656"
-SEED_ID=""
+PERSISTENT_PEER_ID=""
+SEED_ID="c0b278cbfb15674e1949e7e5ae51627cb2a2d0a9@seedv2.poolparty.stridenet.co:26656"
+# PERSISTENT_PEER_ID="48b1310bc81deea3eb44173c5c26873c23565d33@stride-testnet-2-node1.poolparty.stridenet.co:26656"
+# SEED_ID=""
 
 printf "\n\n${BOLD}Welcome to the setup script for Stride's Testnet, ${PURPLE}PoolParty${NC}!\n\n"
 printf "This script will guide you through setting up your very own Stride node locally.\n"
