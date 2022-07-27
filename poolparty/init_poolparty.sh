@@ -2,7 +2,7 @@
 set -e
 clear 
 
-SCRIPT_VERSION="v0.2.1"
+SCRIPT_VERSION="v0.2.2"
 
 # you can always install this script with
 # bash -c "$(curl -sSL install.poolparty.stridelabs.co)"
@@ -14,13 +14,13 @@ ITALIC="\033[3m"
 NC="\033[0m"
 LOG_FILE="install.log"
 
-STRIDE_COMMIT_HASH=644c7574ee79128970a81cf8b9f23351dcdeec62
+STRIDE_COMMIT_HASH=3cb77a79f74e0b797df5611674c3fbd000dfeaa1
 GENESIS_URL=https://raw.githubusercontent.com/Stride-Labs/testnet/main/poolparty/genesis.json
 CHAIN_NAME=STRIDE-TESTNET-2
-# PERSISTENT_PEER_ID="b11187784240586475422b132a3dcbc970a996dd@stride-node1.poolparty.stridenet.co:26656"
+PERSISTENT_PEER_ID=""
+SEED_ID="c0b278cbfb15674e1949e7e5ae51627cb2a2d0a9@seedv2.poolparty.stridenet.co:26656"
+# PERSISTENT_PEER_ID="48b1310bc81deea3eb44173c5c26873c23565d33@stride-testnet-2-node1.poolparty.stridenet.co:26656"
 # SEED_ID=""
-PERSISTENT_PEER_ID="b61ea4c2c549e24c1a4d2d539b4d569d2ff7dd7bsdf@stride-node1.poolparty.stridenet.co:26656"
-SEED_ID=""  # baee9ccc2496c2e3bebd54d369c3b788f9473be9@seedv1.poolparty.stridenet.co:26656"
 
 printf "\n\n${BOLD}Welcome to the setup script for Stride's Testnet, ${PURPLE}PoolParty${NC}!\n\n"
 printf "This script will guide you through setting up your very own Stride node locally.\n"
@@ -176,12 +176,13 @@ curl -L $GENESIS_URL -o $STRIDE_FOLDER/config/genesis.json >> $LOG_PATH 2>&1
 # # add persistent peer
 config_path="$STRIDE_FOLDER/config/config.toml"
 client_path="$STRIDE_FOLDER/config/client.toml"
+app_path="$STRIDE_FOLDER/config/app.toml"
 sed -i -E "s|persistent_peers = \".*\"|persistent_peers = \"$PERSISTENT_PEER_ID\"|g" $config_path
 sed -i -E "s|seeds = \".*\"|seeds = \"$SEED_ID\"|g" $config_path
 
 # fetch state sync params
 while true; do
-    fetched_state="$(curl -s https://stride-node3.$TESTNET.stridenet.co:445/commit | jq "{height: .result.signed_header.header.height, hash: .result.signed_header.commit.block_id.hash}")"
+    fetched_state="$(curl -s https://stride-library.$TESTNET.stridenet.co/commit | jq "{height: .result.signed_header.header.height, hash: .result.signed_header.commit.block_id.hash}")"
     height="$(echo $fetched_state | jq -r '.height')"
     hash="$(echo $fetched_state | jq -r '.hash')"
     if [[ ("$height" != "") && ("$hash" != "") ]]; then
@@ -191,11 +192,12 @@ while true; do
     sleep 5
 done
 
+sed -i -E "s|snapshot-interval = .*|snapshot-interval = 200|g" $app_path
 sed -i -E "s|enable = false|enable = true|g" $config_path
 sed -i -E "s|trust_height = 0|trust_height = $height|g" $config_path
 sed -i -E "s|trust_hash = \"\"|trust_hash = \"$hash\"|g" $config_path
 sed -i -E "s|trust_period = \"168h0m0s\"|trust_period = \"3600s\"|g" $config_path
-statesync_rpc="stride-node1.$TESTNET.stridenet.co:26657,stride-node1.$TESTNET.stridenet.co:26657"
+statesync_rpc="stride-library-direct.$TESTNET.stridenet.co:26657,stride-library-direct.$TESTNET.stridenet.co:26657"
 sed -i -E "s|rpc_servers = \"\"|rpc_servers = \"$statesync_rpc\"|g" $config_path
 sed -i -E "s|max_num_inbound_peers = 40|max_num_inbound_peers = 40|g" $config_path
 sed -i -E "s|max_num_outbound_peers = 10|max_num_outbound_peers = 25|g" $config_path
