@@ -63,7 +63,7 @@ Please don't spam this.
 
 If your local `strided` is asking you for any of these, please know:
 
-    CHAIN_ID = STRIDE-1
+    CHAIN_ID = STRIDE-TESTNET-2
     KEYRING_BACKEND = test
     HOST_ZONE = GAIA 
     STRIDE_CURRENCY = ustrd (1,000,000 ustrd = 1 STRD)
