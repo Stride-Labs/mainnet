@@ -134,7 +134,7 @@ sed -i -E "s|trust_period = \"168h0m0s\"|trust_period = \"3600s\"|g" $config_pat
 statesync_rpc="gaia.$TESTNET.stridenet.co:26657,gaia.$TESTNET.stridenet.co:26657"
 sed -i -E "s|rpc_servers = \"\"|rpc_servers = \"$statesync_rpc\"|g" $config_path
 # sed -i -E 's|unsafe-cors = false|unsafe-cors = true|g' $app_path
-sed -i -E 's|cors_allowed_origins = []|cors_allowed_origins = ["*"]|g' $app_path
+sed -i -E 's|cors_allowed_origins = \[\]|cors_allowed_origins = ["*"]|g' $config_path
 sed -i -E 's|enable = false|enable = true|g' $app_path
 sed -i -E 's|127.0.0.1|0.0.0.0|g' $app_path
 
