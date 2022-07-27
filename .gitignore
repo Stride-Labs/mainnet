@@ -6,3 +6,4 @@ poolparty/gaia/gaiad.service
 poolparty/nginx.conf
 poolparty/gaia/redelegate.sh
 **.DS_STORE
+**nginx.conf
