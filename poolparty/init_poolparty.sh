@@ -195,7 +195,6 @@ sed -i -E "s|trust_height = 0|trust_height = $height|g" $config_path
 sed -i -E "s|trust_hash = \"\"|trust_hash = \"$hash\"|g" $config_path
 sed -i -E "s|trust_period = \"168h0m0s\"|trust_period = \"3600s\"|g" $config_path
 statesync_rpc="stride-testnet-2-node2.$TESTNET.stridenet.co:26657,stride-testnet-2-node3.$TESTNET.stridenet.co:26657"
-statesync_rpc="127.0.0.1:10000,127.0.0.1:10000"
 sed -i -E "s|rpc_servers = \"\"|rpc_servers = \"$statesync_rpc\"|g" $config_path
 sed -i -E "s|max_num_inbound_peers = 40|max_num_inbound_peers = 50|g" $config_path
 sed -i -E "s|max_num_outbound_peers = 10|max_num_outbound_peers = 50|g" $config_path
