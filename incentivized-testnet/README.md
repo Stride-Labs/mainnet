@@ -52,4 +52,4 @@ Questions about incentivized testnet are ONLY allowed in the #incentive-tasks ch
 | # | Pts |  Task  | Evidence |
 | -- | -- | ------------- |:-------------:|
 | **10** | 100 | run validator for at least 7 days (being inactive is OK, it still qualifies) | link to your validator address |
-| **10** | 10 | delegate to another validator  | link to the delegation transaction |
+| **11** | 10 | delegate to another validator  | link to the delegation transaction |
