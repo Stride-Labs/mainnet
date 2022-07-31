@@ -17,7 +17,7 @@ Please submit evidence you've completed a task using this [SUBMISSION FORM](http
 Use your best judgement to determine what constitutes proof you've completed the task (links to transactions/accounts and writeups are best; screenshots are acceptable but not ideal, other forms of evidence are unlikely to earn you rewards).  
 
 ### Questions?
-Questions about incentivized testnet are ONLY allowed in the #incentive-tasks channel. **If you ask questions in other channels, you risk losing your incentives.**
+Questions about incentivized testnet are ONLY allowed in the **#testnet-tasks** channel. **If you ask questions in other channels, you risk losing your incentives.**
 
 
 ## 🗡️ Adversarial Tasks
