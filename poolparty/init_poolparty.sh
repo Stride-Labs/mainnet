@@ -252,8 +252,8 @@ read -p "$(printf $PURPLE"\nDo you want to create a systemd service file to run 
 if [[ "$is_create_systemd_file" =~ ^([Yy])$ ]]
 then
     SERVICE_FILE="/etc/systemd/system/strided.service"
-    touch $SERVICE_FILE
-    tee $SERVICE_FILE > /dev/null <<EOF
+    sudo touch $SERVICE_FILE
+    sudo tee $SERVICE_FILE > /dev/null <<EOF
 [Unit]
 Description=Strided Node
 After=network.target
@@ -271,10 +271,10 @@ LimitNOFILE=65535
 [Install]
 WantedBy=multi-user.target
 EOF
-    systemctl daemon-reload && \
-    systemctl enable strided.service && \
-    systemctl restart strided.service && \
-    journalctl -u strided.service -f -o cat
+    sudo systemctl daemon-reload && \
+    sudo systemctl enable strided.service && \
+    sudo systemctl restart strided.service && \
+    sudo journalctl -u strided.service -f -o cat
 else
     sh $launch_file
 fi
