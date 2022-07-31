@@ -4,6 +4,9 @@ To earn rewards on the PoolParty testnet, submit evidence of having completed th
 
 **Thoughtful, clear submissions will be rewarded ***far*** more than low-effort submissions, which will receive minimal rewards.**  
 
+**You do NOT need to make a submission to earn rewards for running validators and relayers. We will detect your validators and relayers using onchain data.**
+
+
 ### Disclaimers
 1. We will NOT verify your submission is valid until the incentivized testnet has finished.
 2. The points listed in the task are the max you can earn for completing the task with high quality. Most submissions will earn fewer points for low quality, or no points if they violate the rules.
@@ -14,9 +17,6 @@ To earn rewards on the PoolParty testnet, submit evidence of having completed th
 Please submit evidence you've completed a task using this [SUBMISSION FORM](https://forms.gle/urhJDEkqfMM9h1367).
 
 Use your best judgement to determine what constitutes proof you've completed the task (links to transactions/accounts and writeups are best; screenshots are acceptable but not ideal, other forms of evidence are unlikely to earn you rewards).  
-
-Note: You do **NOT** need to make a submission to earn rewards for running validators and relayers. We'll 
-
 
 ### Questions?
 Questions about incentivized testnet are ONLY allowed in the #incentive-tasks channel. **If you ask questions in other channels, you risk losing your incentives.**
