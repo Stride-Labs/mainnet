@@ -8,9 +8,9 @@ To earn rewards on the PoolParty testnet, submit evidence of having completed th
 ### Disclaimers
 1. We will NOT verify your submission is valid until the incentivized testnet has finished.
 2. The points listed in the task are the max you can earn for completing the task with high quality. Most submissions will earn fewer points for low quality, or no points if they violate the rules.
-2. You will be asked to prove you own the address associated with the account that completed the task
-3. You will be asked for several other verifications to prevent sybil attacks. 
-
+3. You will be asked to prove you own the address associated with the account that completed the task
+4. You will be asked for several other verifications to prevent sybil attacks. 
+5. Most tasks can only be completed once. Use your judgement (e.g. we will NOT reward you for delegating twice)
 ## How To Submit A Task
 Please submit evidence you've completed a task using this [SUBMISSION FORM](https://forms.gle/urhJDEkqfMM9h1367).
 
@@ -43,7 +43,7 @@ Questions about incentivized testnet are ONLY allowed in the #incentive-tasks ch
 
 | # | Pts |  Task  | Evidence |
 | -- | -- | ------------- |:-------------:|
-| **7** | ? | run a relayer on ICA channels specified in #validator-announcements | link to the stride relayer account and to one relayed tx |
+| **7** | 100 | run a relayer on ICA channels specified in #validator-announcements | link to the stride relayer account and to one relayed tx |
 | **8** | 250 | relay using the new [v2 go relayer](https://github.com/cosmos/relayer/releases/tag/v2.0.0-rc4)      | link to packets relayed and link to the configured relayer fork on your github |
 | **9** | 750 | relay interchain queries using the new [v2 go relayer](https://github.com/cosmos/relayer/releases/tag/v2.0.0-rc4) | link to ICQ packets relayed and link to the configured relayer fork on your github |
 
@@ -51,5 +51,5 @@ Questions about incentivized testnet are ONLY allowed in the #incentive-tasks ch
 
 | # | Pts |  Task  | Evidence |
 | -- | -- | ------------- |:-------------:|
-| **10** | ? | run validator for at least 7 days (being inactive is OK, it still qualifies) | link to your validator address |
-
+| **10** | 100 | run validator for at least 7 days (being inactive is OK, it still qualifies) | link to your validator address |
+| **10** | 10 | delegate to another validator  | link to the delegation transaction |
