@@ -12,7 +12,7 @@ ITALIC="\033[3m"
 NC="\033[0m"
 LOG_FILE="install.log"
 
-STRIDE_COMMIT_HASH=cfdff4f2a0e4cbaedf831b5430ee706a238f104e
+STRIDE_COMMIT_HASH=4184e0c3852695895781a22c8723270bcc5b7f4e
 STRIDE_FOLDER="$HOME/.stride"
 LOG_PATH=$STRIDE_FOLDER/$LOG_FILE
 TESTNET="poolparty"
@@ -22,7 +22,7 @@ OLD_BINARY_VERSION=v1
 printf "\n\n${BOLD}Welcome to the upgrade script for Stride's Testnet, ${PURPLE}PoolParty${NC}!\n\n"
 printf "This script assumes you've been running Stride using the original setup script.\n"
 printf "If you'd prefer to handle the upgrade manually, build from commit hash: $STRIDE_COMMIT_HASH\n\n"
-pstr="Continue with the automated upgrade? "
+pstr="Continue with the automated upgrade? [y/n] "
 while true; do
     read -p "$(printf $PURPLE"$pstr"$NC)" yn
     case $yn in
