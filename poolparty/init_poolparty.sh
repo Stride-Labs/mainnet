@@ -14,7 +14,7 @@ ITALIC="\033[3m"
 NC="\033[0m"
 LOG_FILE="install.log"
 
-STRIDE_COMMIT_HASH=3cb77a79f74e0b797df5611674c3fbd000dfeaa1
+STRIDE_COMMIT_HASH=15e65e9a364804671425051606fe0be6536452fe
 GENESIS_URL=https://raw.githubusercontent.com/Stride-Labs/testnet/main/poolparty/genesis.json
 CHAIN_NAME=STRIDE-TESTNET-2
 PERSISTENT_PEER_ID=""
