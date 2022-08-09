@@ -16,6 +16,18 @@ Run the following command to install PoolParty
 bash -c "$(curl -sSL install.poolparty.stridelabs.co)"
 ```
 
+## Upgrade 
+
+If you've installed Poolparty with the standard install script, please run 
+
+```
+bash -c "$(curl -sSL https://raw.githubusercontent.com/stride-labs/testnet/main/poolparty/upgrade.sh)"
+```
+
+The upgrade script uses the file structure and naming defined by the default install script. If you installed Poolparty in a different way, please do NOT use the upgrade script, it may not function properly.
+
+If you want to upgrade manually (or did not do the standard installation), please use this commit hash to upgrade your binary: `4184e0c3852695895781a22c8723270bcc5b7f4e`. We strongly recommend using Cosmovisor to handle your upgrade, so that you will automatically upgrade after the gov proposal passes. 
+
 ## Running Stride Commands
 
 Please add the repo with your Stride binary (defaults to `$HOME/go/bin`) to your `.bashrc` or `.zshrc` file. Then, you can run `strided` automatically.

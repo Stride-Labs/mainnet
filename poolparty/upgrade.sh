@@ -3,7 +3,7 @@ set -e
 clear 
 
 # you can always install this script with
-# curl -L install.poolparty.stridelabs.co | sh
+# curl -L upgrade.poolparty.stridelabs.co | sh
 
 PURPLE='\033[0;35m'
 BOLD="\033[1m"
