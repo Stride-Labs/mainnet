@@ -114,4 +114,4 @@ printf $BLINE
 printf "\nAnd that's it! Cosmovisor will now automatically switch to the new binary once an upgrade passes.\n"
 printf "\nIn the meantime, make sure to issue any ${BOLD}strided${NC} commands with the old binary (${BOLD}strided-v1${NC}).\n"
 printf "Once the upgrade has passed, you can go back to using ${BOLD}strided${NC} for all commands.\n"
-printf "Or if you'd prefer, you can run commands with ${BOLD}$STRIDE_FOLDER/cosmosvisor/current/bin/strided${NC} which will always point to the current binary!\n\n"
+printf "Or if you'd prefer, you can run commands with ${BOLD}$STRIDE_FOLDER/cosmovisor/current/bin/strided${NC} which will always point to the current binary!\n\n"
