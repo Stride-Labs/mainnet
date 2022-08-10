@@ -26,7 +26,7 @@ bash -c "$(curl -sSL https://raw.githubusercontent.com/stride-labs/testnet/main/
 
 The upgrade script uses the file structure and naming defined by the default install script. If you installed Poolparty in a different way, please do NOT use the upgrade script, it may not function properly.
 
-If you want to upgrade manually (or did not do the standard installation), please use this commit hash to upgrade your binary: `15e65e9a364804671425051606fe0be6536452fe`. We strongly recommend using Cosmovisor to handle your upgrade, so that you will automatically upgrade after the gov proposal passes. 
+If you want to upgrade manually (or did not do the standard installation), please use this commit hash to upgrade your binary: `4ec1b0ca818561cef04f8e6df84069b14399590e`. The upgrade folder for Cosmovisor is `Upgrade%20to%20Resolve%20Consensus%20Bug`. We strongly recommend using Cosmovisor to handle your upgrade, so that you will automatically upgrade after the gov proposal passes. 
 
 ## Running Stride Commands
 
