@@ -16,18 +16,6 @@ Run the following command to install PoolParty
 bash -c "$(curl -sSL install.poolparty.stridelabs.co)"
 ```
 
-## Upgrade t
-
-If you've installed Poolparty with the standard install script, please run 
-
-```
-bash -c "$(curl -sSL https://raw.githubusercontent.com/stride-labs/testnet/main/poolparty/upgrade.sh)"
-```
-
-The upgrade script uses the file structure and naming defined by the default install script. If you installed Poolparty in a different way, please do NOT use the upgrade script, it may not function properly.
-
-If you want to upgrade manually (or did not do the standard installation), please use this commit hash to upgrade your binary: `4ec1b0ca818561cef04f8e6df84069b14399590e`. The upgrade folder for Cosmovisor is `Upgrade%20to%20Resolve%20Consensus%20Bug`. We strongly recommend using Cosmovisor to handle your upgrade, so that you will automatically upgrade after the gov proposal passes. 
-
 ## Running Stride Commands
 
 Please add the repo with your Stride binary (defaults to `$HOME/go/bin`) to your `.bashrc` or `.zshrc` file. Then, you can run `strided` automatically.
@@ -63,6 +51,19 @@ and follow the prompts.
 
 For now, we're hosting a Ping.Pub block explorer [here](https://poolparty.stride.zone/). We're working on integrating a more robust block explorer, stay tuned. 
 
+## Upgrade [DEPRECATED - OLDER TESTNET]
+
+If you've installed Poolparty with the standard install script, please run 
+
+```
+bash -c "$(curl -sSL https://raw.githubusercontent.com/stride-labs/testnet/main/poolparty/upgrade.sh)"
+```
+
+The upgrade script uses the file structure and naming defined by the default install script. If you installed Poolparty in a different way, please do NOT use the upgrade script, it may not function properly.
+
+If you want to upgrade manually (or did not do the standard installation), please use this commit hash to upgrade your binary: `cf4e7f2d4ffe2002997428dbb1c530614b85df1b`. The upgrade folder for Cosmovisor is `Upgrade%20to%20Resolve%20Consensus%20Bug`. We strongly recommend using Cosmovisor to handle your upgrade, so that you will automatically upgrade after the gov proposal passes. 
+
+
 ## FAQ
 
 ### Where can I get some tokens?
@@ -75,12 +76,15 @@ Please don't spam this.
 
 If your local `strided` is asking you for any of these, please know:
 
-    CHAIN_ID = STRIDE-TESTNET-2
+    CHAIN_ID = STRIDE-TESTNET-4
     KEYRING_BACKEND = test
     HOST_ZONE = GAIA 
     STRIDE_CURRENCY = ustrd (1,000,000 ustrd = 1 STRD)
     GAIA_CURRENCY = uatom (1,000,000 uatom = 1 ATOM)
     GAIA_CURRENCY_ON_STRIDE = ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2
+    HOST_ZONE_2 = OSMO
+    OSMO_CURRENCY = uosmo (1,000,000 uosmo = 1 OSMO)
+    OSMO_CURRENCY_ON_STRIDE = ibc/D24B4564BCD51D3D02D9987D92571EAC5915676A9BD6D9B0C1D0254CB8A5EA34
 
 ###  How can I relaunch my Node?
 
