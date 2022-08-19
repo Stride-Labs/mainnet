@@ -4,7 +4,7 @@ clear
 
 # bash -c "$(curl -sSL https://raw.githubusercontent.com/Stride-Labs/testnet/main/poolparty/gaia/join_gaia.sh)"
 
-SCRIPT_VERSION="v0.0.2"
+SCRIPT_VERSION="v0.0.3"
 
 PURPLE='\033[0;35m'
 BOLD="\033[1m"
@@ -15,7 +15,7 @@ LOG_FILE="install.log"
 
 GAIA_COMMIT_HASH=5b47714dd5607993a1a91f2b06a6d92cbb504721
 GENESIS_URL=https://raw.githubusercontent.com/Stride-Labs/testnet/main/poolparty/gaia/gaia_genesis.json
-PERSISTENT_PEER_ID="98ed4fbbaf04cb21076dcac959d91b2efa75d02c@gaia.poolparty.stridenet.co:26656"
+PERSISTENT_PEER_ID="4091e937ef577bea13dc704bdb8c8b59eaa44635@gaia.poolparty.stridenet.co:26656"
 
 printf "\n\n${BOLD}Welcome to the setup script to join Stride's testnet ${PURPLE}PoolParty${NC}${ITALIC}${BLUE} as a Gaia node! ${NC}\n\n"
 printf "This script will guide you through setting up your very own Poolparty Gaia node locally.\n"

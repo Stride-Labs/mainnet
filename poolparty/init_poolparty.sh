@@ -2,7 +2,7 @@
 set -e
 clear 
 
-SCRIPT_VERSION="v0.2.2"
+SCRIPT_VERSION="v0.3.0"
 
 # you can always install this script with
 # bash -c "$(curl -sSL install.poolparty.stridelabs.co)"
@@ -14,12 +14,12 @@ ITALIC="\033[3m"
 NC="\033[0m"
 LOG_FILE="install.log"
 
-STRIDE_COMMIT_HASH=4ec1b0ca818561cef04f8e6df84069b14399590e
+STRIDE_COMMIT_HASH=cf4e7f2d4ffe2002997428dbb1c530614b85df1b
 GENESIS_URL=https://raw.githubusercontent.com/Stride-Labs/testnet/main/poolparty/genesis.json
-CHAIN_NAME=STRIDE-TESTNET-2
+CHAIN_NAME=STRIDE-TESTNET-4
 PERSISTENT_PEER_ID=""
-SEED_ID="c0b278cbfb15674e1949e7e5ae51627cb2a2d0a9@seedv2.poolparty.stridenet.co:26656"
-# PERSISTENT_PEER_ID="48b1310bc81deea3eb44173c5c26873c23565d33@stride-testnet-2-node1.poolparty.stridenet.co:26656"
+SEED_ID="d2ec8f968e7977311965c1dbef21647369327a29@seedv2.poolparty.stridenet.co:26656"
+# PERSISTENT_PEER_ID="bf1414a4cbcfcc6c6fc11d1229f5cefcce1faef5@stride-node1.poolparty.stridenet.co:26656"
 # SEED_ID=""
 
 printf "\n\n${BOLD}Welcome to the setup script for Stride's Testnet, ${PURPLE}PoolParty${NC}!\n\n"
@@ -75,7 +75,20 @@ printf "Stride will keep track of blockchain state in ${BOLD}$STRIDE_FOLDER${NC}
 if [ -d $STRIDE_FOLDER ] 
 then
     printf "${BOLD}Looks like you already have Stride installed.${NC}\n"
-    printf "Proceed carefully, because you won't be able to recover your data if you overwrite it.\n\n"
+    printf "Proceed carefully, because you won't be able to recover your data if you overwrite it.\n\n\n"
+    printf "${BOLD}${BLUE}Make sure you have you've backed up your mnemonics or private keys!\nIf you lose your private key, you will not be able to claim your rewards!${NC}\n\n"
+    printf "${BOLD}Run \"strided keys export {NAME_OF_YOUR_KEY}\" to export your key, and save the info down.${NC}\n\n"
+    sleep 3
+    pstr="Please confirm that you have backed up your private keys. [y/n] "
+    while true; do
+        read -p "$(printf $PURPLE"$pstr"$NC)" yn
+        case $yn in
+            [Yy]* ) break;;
+            [Nn]* ) exit;;
+            * ) printf "Please answer yes or no.\n";;
+        esac
+    done
+
     pstr="Do you want to overwrite your existing $TESTNET installation and proceed? [y/n] "
     while true; do
         read -p "$(printf $PURPLE"$pstr"$NC)" yn
@@ -88,7 +101,11 @@ then
 fi
 printf $BLINE
 
-rm -rf $STRIDE_FOLDER 
+rm -rf $STRIDE_FOLDER/config
+rm -rf $STRIDE_FOLDER/data
+rm -rf $STRIDE_FOLDER/cosmovisor
+rm -rf $STRIDE_FOLDER/poolparty
+rm -f $STRIDE_FOLDER/install.log
 
 mkdir -p $INSTALL_FOLDER
 cd $INSTALL_FOLDER
@@ -124,7 +141,7 @@ install_cosmovisor() {
     cd cosmos-sdk 
     git checkout cosmovisor/v1.1.0 >> $LOG_PATH 2>&1
     make cosmovisor >> $LOG_PATH 2>&1
-    mv cosmovisor/cosmovisor "$BINARY_LOCATION/cosmovisor${suffix}"
+    mv $STRIDE_FOLDER/cosmovisor/cosmovisor "$BINARY_LOCATION/cosmovisor${suffix}"
 
     cd ..
     rm -rf cosmos-sdk
@@ -168,7 +185,7 @@ printf $BLINE
 STRIDE_BINARY=$BINARY_LOCATION/strided
 printf "\nLast step, we need to setup your genesis state to match PoolParty.\n"
 
-$STRIDE_BINARY init $NODE_NAME --home $STRIDE_FOLDER --chain-id STRIDE --overwrite >> $LOG_PATH 2>&1
+$STRIDE_BINARY init $NODE_NAME --home $STRIDE_FOLDER --chain-id $CHAIN_NAME --overwrite >> $LOG_PATH 2>&1
 
 # Now pull the genesis file
 curl -L $GENESIS_URL -o $STRIDE_FOLDER/config/genesis.json >> $LOG_PATH 2>&1
