@@ -14,7 +14,7 @@ ITALIC="\033[3m"
 NC="\033[0m"
 LOG_FILE="install.log"
 
-STRIDE_COMMIT_HASH=cf4e7f2d4ffe2002997428dbb1c530614b85df1b
+STRIDE_COMMIT_HASH=90859d68d39b53333c303809ee0765add2e59dab
 GENESIS_URL=https://raw.githubusercontent.com/Stride-Labs/testnet/main/poolparty/genesis.json
 CHAIN_NAME=STRIDE-TESTNET-4
 PERSISTENT_PEER_ID=""
@@ -77,8 +77,8 @@ then
     printf "${BOLD}Looks like you already have Stride installed.${NC}\n"
     printf "Proceed carefully, because you won't be able to recover your data if you overwrite it.\n\n\n"
     printf "${BOLD}${BLUE}Make sure you have you've backed up your mnemonics or private keys!\nIf you lose your private key, you will not be able to claim your rewards!${NC}\n\n"
-    printf "If you're a validator, please back up your `priv_validator_key` so you can use the same validator when you restart!"
-    printf "${BOLD}Run \"strided keys export {NAME_OF_YOUR_KEY}\" to export your key, and save the info down.${NC}\n\n"
+    printf "If you're a validator, please back up your priv_validator_key so you can use the same validator when you restart!"
+    printf "${BOLD} Run \"strided keys export {NAME_OF_YOUR_KEY}\" to export your key, and save the info down.${NC}\n\n"
     sleep 3
     pstr="Please confirm that you have backed up your private keys. [y/n] "
     while true; do
@@ -117,7 +117,7 @@ printf "\nFetching Stride's code..."
 git clone https://github.com/Stride-Labs/stride.git >> $LOG_PATH 2>&1
 cd $INSTALL_FOLDER/stride 
 git checkout $STRIDE_COMMIT_HASH >> $LOG_PATH 2>&1
-printf "Done \n"
+printf " Done \n"
 
 # pick install location
 DEFAULT_BINARY="$HOME/go/bin"
@@ -129,7 +129,7 @@ fi
 mkdir -p $BINARY_LOCATION
 printf "\nBuilding Stride..."
 go build -mod=readonly -trimpath -o $BINARY_LOCATION ./... >> $LOG_PATH 2>&1
-printf "Done \n"
+printf " Done \n"
 
 printf $BLINE
 
