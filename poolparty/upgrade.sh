@@ -12,13 +12,13 @@ ITALIC="\033[3m"
 NC="\033[0m"
 LOG_FILE="install.log"
 
-STRIDE_COMMIT_HASH=4ec1b0ca818561cef04f8e6df84069b14399590e
+STRIDE_COMMIT_HASH=39e9366487c7262fafc2f0bcbceaa9aa99aa85dc
 STRIDE_FOLDER="$HOME/.stride"
 LOG_PATH=$STRIDE_FOLDER/$LOG_FILE
 TESTNET="poolparty"
 INSTALL_FOLDER="$STRIDE_FOLDER/$TESTNET"
 OLD_BINARY_VERSION=v1
-NEW_BINARY_VERSION="Upgrade%20to%20Resolve%20Consensus%20Bug"
+NEW_BINARY_VERSION="v2"
 
 printf "\n\n${BOLD}Welcome to the upgrade script for Stride's Testnet, ${PURPLE}PoolParty${NC}!\n\n"
 printf "This script assumes you've been running Stride using the original setup script.\n"
@@ -92,7 +92,7 @@ date > $LOG_PATH
 
 # Rename old binary with v1 suffix
 BINARY_LOCATION="$(dirname "$STRIDE_BINARY")"
-mv $STRIDE_BINARY $STRIDE_BINARY-$OLD_BINARY_VERSION
+sudo mv $STRIDE_BINARY $STRIDE_BINARY-$OLD_BINARY_VERSION
 
 # Build new binary
 printf "\nBuilding Stride..."
@@ -101,14 +101,14 @@ cd $INSTALL_FOLDER/stride
 git checkout main >> $LOG_PATH 2>&1
 git pull >> $LOG_PATH 2>&1
 git checkout $STRIDE_COMMIT_HASH >> $LOG_PATH 2>&1
-go build -mod=readonly -trimpath -o $BINARY_LOCATION ./... >> $LOG_PATH 2>&1
+sudo go build -buildvcs=false -mod=readonly -trimpath -o $BINARY_LOCATION ./... >> $LOG_PATH 2>&1
 cd $working_dir
 printf "Done \n"
 
 # Copy binary to cosmovisor
 cosmovisor_home=$STRIDE_FOLDER/cosmovisor
 mkdir -p $cosmovisor_home/upgrades/$NEW_BINARY_VERSION/bin
-cp $STRIDE_BINARY $cosmovisor_home/upgrades/$NEW_BINARY_VERSION/bin/
+sudo cp $STRIDE_BINARY $cosmovisor_home/upgrades/$NEW_BINARY_VERSION/bin/
 
 BLINE="\n${BLUE}============================================================================================${NC}\n"
 printf $BLINE

@@ -77,6 +77,7 @@ then
     printf "${BOLD}Looks like you already have Stride installed.${NC}\n"
     printf "Proceed carefully, because you won't be able to recover your data if you overwrite it.\n\n\n"
     printf "${BOLD}${BLUE}Make sure you have you've backed up your mnemonics or private keys!\nIf you lose your private key, you will not be able to claim your rewards!${NC}\n\n"
+    printf "If you're a validator, please back up your `priv_validator_key` so you can use the same validator when you restart!"
     printf "${BOLD}Run \"strided keys export {NAME_OF_YOUR_KEY}\" to export your key, and save the info down.${NC}\n\n"
     sleep 3
     pstr="Please confirm that you have backed up your private keys. [y/n] "
