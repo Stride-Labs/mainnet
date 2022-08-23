@@ -16,6 +16,18 @@ Run the following command to install PoolParty
 bash -c "$(curl -sSL install.poolparty.stridelabs.co)"
 ```
 
+## Upgrade
+
+If you've installed Poolparty with the standard install script, please run 
+
+```
+bash -c "$(curl -sSL https://raw.githubusercontent.com/stride-labs/testnet/main/poolparty/upgrade.sh)"
+```
+
+The upgrade script uses the file structure and naming defined by the default install script. If you installed Poolparty in a different way, please do NOT use the upgrade script, it may not function properly.
+
+If you want to upgrade manually (or did not do the standard installation), please use this commit hash to upgrade your binary: `90859d68d39b53333c303809ee0765add2e59dab`. The upgrade folder for Cosmovisor is `v2`. We strongly recommend using Cosmovisor to handle your upgrade, so that you will automatically upgrade after the gov proposal passes. 
+
 ## Running Stride Commands
 
 Please add the repo with your Stride binary (defaults to `$HOME/go/bin`) to your `.bashrc` or `.zshrc` file. Then, you can run `strided` automatically.
@@ -50,19 +62,6 @@ and follow the prompts.
 ## Block Explorer
 
 For now, we're hosting a Ping.Pub block explorer [here](https://poolparty.stride.zone/). We're working on integrating a more robust block explorer, stay tuned. 
-
-## Upgrade [DEPRECATED - OLDER TESTNET]
-
-If you've installed Poolparty with the standard install script, please run 
-
-```
-bash -c "$(curl -sSL https://raw.githubusercontent.com/stride-labs/testnet/main/poolparty/upgrade.sh)"
-```
-
-The upgrade script uses the file structure and naming defined by the default install script. If you installed Poolparty in a different way, please do NOT use the upgrade script, it may not function properly.
-
-If you want to upgrade manually (or did not do the standard installation), please use this commit hash to upgrade your binary: `cf4e7f2d4ffe2002997428dbb1c530614b85df1b`. The upgrade folder for Cosmovisor is `Upgrade%20to%20Resolve%20Consensus%20Bug`. We strongly recommend using Cosmovisor to handle your upgrade, so that you will automatically upgrade after the gov proposal passes. 
-
 
 ## FAQ
 
