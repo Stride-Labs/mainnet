@@ -7,3 +7,7 @@ poolparty/nginx.conf
 poolparty/gaia/redelegate.sh
 **.DS_STORE
 **nginx.conf
+poolparty/node4/*
+poolparty/osmo/*.yaml
+poolparty/osmo/*.sh
+poolparty/osmo/*.service
