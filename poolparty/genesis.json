@@ -258,6 +258,24 @@
           ]
         },
         {
+          "address": "stride1dae4zycvmyd2qt5td9zzgdjdnwyawp79mp0q4a",
+          "coins": [
+            {
+              "denom": "ustrd",
+              "amount": "10000000"
+            }
+          ]
+        },
+        {
+          "address": "stride1md2j38ls8hg94vjfafu0a2p9htwlkjmhlnp9ef",
+          "coins": [
+            {
+              "denom": "ustrd",
+              "amount": "10000000"
+            }
+          ]
+        },
+        {
           "address": "YOUR_ADDRESS_HERE",
           "coins": [
             {
