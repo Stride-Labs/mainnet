@@ -1,4 +1,6 @@
-# PoolParty Bounty Tasks
+# PoolParty Bounty Tasks [Deprecated]
+
+NOTE: PoolParty has ended, so you can no longer earn incentivized testnet rewards. This page is kept for historical purposes.
 
 To earn rewards on the PoolParty testnet, submit evidence of having completed the following tasks. The goal is stress test the Stride core appchain and module logic. 
 
