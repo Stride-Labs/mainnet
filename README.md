@@ -15,7 +15,7 @@ We'll release a more detailed connection script soon, but for now, look at the [
 
     chain-id = stride-1
     stride hash = bba22626728961a5a2329031aa34c0140ed76b54
-    genesis file = ttps://raw.githubusercontent.com/Stride-Labs/testnet/main/mainnet/genesis.json
+    genesis file = https://raw.githubusercontent.com/Stride-Labs/testnet/main/mainnet/genesis.json
 
 ## Being a Validator
 
