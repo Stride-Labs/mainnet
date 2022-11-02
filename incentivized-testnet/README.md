@@ -14,7 +14,7 @@ To earn rewards on the PoolParty testnet, submit evidence of having completed th
 4. You will be asked for several other verifications to prevent sybil attacks. 
 5. Most tasks can only be completed once. Use your judgement (e.g. we will NOT reward you for delegating twice)
 ## How To Submit A Task
-Please submit evidence you've completed a task using this [SUBMISSION FORM](https://forms.gle/urhJDEkqfMM9h1367).
+Please submit evidence you've completed a task using this [Mission/Appeals Submission](https://forms.gle/KG9vKb5fknqGYQRu9).
 
 Use your best judgement to determine what constitutes proof you've completed the task (links to transactions/accounts and writeups are best; screenshots are acceptable but not ideal, other forms of evidence are unlikely to earn you rewards).  
 
