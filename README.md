@@ -23,3 +23,5 @@ We are hoping to release a more detailed validator guide later. For now, we stro
 
 We recommend validators have a minimum 8 CPU 64 GB RAM machines.
 
+## Setting up a Node
+- [Instructions on Linux](https://github.com/Stride-Labs/mainnet/tree/main/mainnet)
