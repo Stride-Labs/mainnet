@@ -142,7 +142,7 @@ install_cosmovisor() {
     cd cosmos-sdk 
     git checkout cosmovisor/v1.1.0 >> $LOG_PATH 2>&1
     make cosmovisor >> $LOG_PATH 2>&1
-    mv $STRIDE_FOLDER/cosmovisor/cosmovisor "$BINARY_LOCATION/cosmovisor${suffix}"
+    mv $INSTALL_FOLDER/cosmos-sdk/cosmovisor/cosmovisor "$BINARY_LOCATION/cosmovisor${suffix}"
 
     cd ..
     rm -rf cosmos-sdk
