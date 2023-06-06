@@ -9,6 +9,6 @@ This contains instructions for how to connect to Stride!
     genesis file = https://raw.githubusercontent.com/Stride-Labs/mainnet/ics-testnet/ics-testnet/genesis.json
     peer = cd34b9f506a4840d5ea69095403029056862a2e1@stride-direct.testnet-2.stridenet.co:26656
 
-[This docker image](https://hub.docker.com/layers/stridelabs/ics-testnet/stride/images/sha256-66951c86333ee592eef3d6fe275c5c1fc34f2e91f092a9f89d605e3a4497f1c7?context=repo) docker image will also contain the latest binary, if you'd prefer to compare against an officially built version. To pull it locally, please run `docker pull stridelabs/ics-testnet:stride`.
+If you'd prefer to pull an officially built binary, [this docker image](https://hub.docker.com/layers/stridelabs/ics-testnet/stride/images/sha256-66951c86333ee592eef3d6fe275c5c1fc34f2e91f092a9f89d605e3a4497f1c7?context=repo) will also contain the latest (3aeb0). To pull it locally, please run `docker pull stridelabs/ics-testnet:stride`.
 
 The file `join_ics_testnet.sh` should run through a standard installation with Cosmovisor. This has only been tested on OSX, but the commands should be quite similar on Linux as well.
