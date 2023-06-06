@@ -138,7 +138,7 @@ install_cosmovisor() {
     cd cosmos-sdk 
     git checkout cosmovisor/v1.1.0 >> $LOG_PATH 2>&1
     make cosmovisor >> $LOG_PATH 2>&1
-    mv $STRIDE_FOLDER/cosmovisor/cosmovisor "$BINARY_LOCATION/cosmovisor${suffix}"
+    mv $STRIDE_FOLDER/$NETWORK/cosmos-sdk/cosmovisor/cosmovisor "$BINARY_LOCATION/cosmovisor${suffix}"
 
     cd ..
     rm -rf cosmos-sdk
@@ -259,4 +259,4 @@ lsof -i tcp:${PORT_NUMBER} | awk 'NR!=1 {print $2}' | xargs -r kill
 PORT_NUMBER=26557
 lsof -i tcp:${PORT_NUMBER} | awk 'NR!=1 {print $2}' | xargs -r kill
 
-strided start
+$STRIDE_BINARY start
