@@ -1,6 +1,6 @@
 # Stride's Network
 
-![Stride](assets/stride-banner.png)
+![Stride](../assets/stride-banner.png)
 
 This contains instructions for how to connect to Stride!
 
