@@ -1,12 +1,11 @@
 {
-  "genesis_time": "2023-06-05T22:04:59.41341451Z",
+  "genesis_time": "2023-06-06T18:22:08.875280301Z",
   "chain_id": "stride-ics-testnet-1",
   "initial_height": "1",
   "consensus_params": {
     "block": {
       "max_bytes": "22020096",
-      "max_gas": "-1",
-      "time_iota_ms": "1000"
+      "max_gas": "-1"
     },
     "evidence": {
       "max_age_num_blocks": "100000",
@@ -18,10 +17,13 @@
         "ed25519"
       ]
     },
-    "version": {}
+    "version": {
+      "app": "0"
+    }
   },
   "app_hash": "",
   "app_state": {
+    "07-tendermint": null,
     "auth": {
       "params": {
         "max_memo_characters": "256",
@@ -42,10 +44,16 @@
           "@type": "/cosmos.auth.v1beta1.BaseAccount",
           "address": "stride1gmqp293g968dyemvk9j640e0xqeghravjjwpms",
           "pub_key": null,
-          "account_number": "0",
+          "account_number": "1",
           "sequence": "0"
         }
       ]
+    },
+    "autopilot": {
+      "params": {
+        "stakeibc_active": false,
+        "claim_active": true
+      }
     },
     "bank": {
       "params": {
@@ -73,7 +81,8 @@
         }
       ],
       "supply": [],
-      "denom_metadata": []
+      "denom_metadata": [],
+      "send_enabled": []
     },
     "capability": {
       "index": "1",
@@ -94,8 +103,8 @@
     "distribution": {
       "params": {
         "community_tax": "0.020000000000000000",
-        "base_proposer_reward": "0.010000000000000000",
-        "bonus_proposer_reward": "0.040000000000000000",
+        "base_proposer_reward": "0.000000000000000000",
+        "bonus_proposer_reward": "0.000000000000000000",
         "withdraw_addr_enabled": true
       },
       "fee_pool": {
@@ -124,7 +133,7 @@
         {
           "identifier": "day",
           "start_time": "0001-01-01T00:00:00Z",
-          "duration": "86400s",
+          "duration": "172800s",
           "current_epoch": "0",
           "current_epoch_start_time": "0001-01-01T00:00:00Z",
           "epoch_counting_started": false,
@@ -133,7 +142,7 @@
         {
           "identifier": "stride_epoch",
           "start_time": "0001-01-01T00:00:00Z",
-          "duration": "3600s",
+          "duration": "86400s",
           "current_epoch": "0",
           "current_epoch_start_time": "0001-01-01T00:00:00Z",
           "epoch_counting_started": false,
@@ -141,6 +150,15 @@
         },
         {
           "identifier": "mint",
+          "start_time": "0001-01-01T00:00:00Z",
+          "duration": "3600s",
+          "current_epoch": "0",
+          "current_epoch_start_time": "0001-01-01T00:00:00Z",
+          "epoch_counting_started": false,
+          "current_epoch_start_height": "0"
+        },
+        {
+          "identifier": "hour",
           "start_time": "0001-01-01T00:00:00Z",
           "duration": "3600s",
           "current_epoch": "0",
@@ -180,7 +198,7 @@
                 "validator_address": "stridevaloper169j7dl42up0x6akamjvwtrd3khczthvaejjg4j",
                 "pubkey": {
                   "@type": "/cosmos.crypto.ed25519.PubKey",
-                  "key": "+fiYSRZgbeqoGeShR4adbM9VfrsDqYaWdGTnTSp5Tjc="
+                  "key": "tT9d8997jmTa0EdqJY2Gq3Vf1RVyN5JBA14zAlM75t4="
                 },
                 "value": {
                   "denom": "ustrd",
@@ -188,7 +206,7 @@
                 }
               }
             ],
-            "memo": "42340aa645a1d71470b48336e8c306b9de77879d@10.68.0.27:26656",
+            "memo": "2d11a11e0907ac063ce2f3f0b740d253e32e63e3@10.72.0.225:26656",
             "timeout_height": "0",
             "extension_options": [],
             "non_critical_extension_options": []
@@ -217,7 +235,7 @@
             "tip": null
           },
           "signatures": [
-            "xIsN8MxkaNq8LAgxjgmndo9lT61LK1pR3ExjjKE01f1CCFdXYJAbwpJl1bhO/zv6Zu+404Xw/CR/09l45mgujw=="
+            "qQ9nMl4fJ83lGydHKxGKWRRKusTSs7CvJ+TbnSVsyZ0QqE0IBw+vdAf+qB/vk4I7HTp1vG8W3tlnBVwJcIDjtQ=="
           ]
         }
       ]
@@ -228,21 +246,28 @@
       "votes": [],
       "proposals": [],
       "deposit_params": {
+        "max_deposit_period": "3600s"
+      },
+      "voting_params": {
+        "voting_period": "600s"
+      },
+      "tally_params": null,
+      "params": {
         "min_deposit": [
           {
             "denom": "ustrd",
             "amount": "10000000"
           }
         ],
-        "max_deposit_period": "3600s"
-      },
-      "voting_params": {
-        "voting_period": "300s"
-      },
-      "tally_params": {
+        "max_deposit_period": "172800s",
+        "voting_period": "172800s",
         "quorum": "0.334000000000000000",
         "threshold": "0.500000000000000000",
-        "veto_threshold": "0.334000000000000000"
+        "veto_threshold": "0.334000000000000000",
+        "min_initial_deposit_ratio": "0.000000000000000000",
+        "burn_vote_quorum": false,
+        "burn_proposal_deposit_prevote": false,
+        "burn_vote_veto": true
       }
     },
     "ibc": {
@@ -298,7 +323,9 @@
         "port": "icahost",
         "params": {
           "host_enabled": true,
-          "allow_messages": []
+          "allow_messages": [
+            "*"
+          ]
         }
       }
     },
@@ -324,6 +351,10 @@
       "reduction_started_epoch": "0"
     },
     "params": null,
+    "ratelimit": {
+      "params": {},
+      "rate_limits": []
+    },
     "records": {
       "params": {},
       "port_id": "records",
@@ -351,16 +382,14 @@
         "deposit_interval": "1",
         "redemption_rate_interval": "1",
         "stride_commission": "10",
-        "zone_com_address": {},
         "reinvest_interval": "1",
-        "validator_rebalancing_threshold": "1",
         "ica_timeout_nanos": "600000000000",
         "buffer_size": "5",
         "ibc_timeout_blocks": "300",
         "fee_transfer_timeout_nanos": "1800000000000",
         "max_stake_ica_calls_per_epoch": "100",
-        "safety_min_redemption_rate_threshold": "90",
-        "safety_max_redemption_rate_threshold": "150",
+        "default_min_redemption_rate_threshold": "90",
+        "default_max_redemption_rate_threshold": "150",
         "ibc_transfer_timeout_nanos": "1800000000000",
         "safety_num_validators": "35",
         "safety_max_slash_percent": "10"
