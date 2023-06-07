@@ -1,0 +1,11 @@
+[Unit]
+Description=Stride
+
+[Service]
+ExecStart=/home/vishal/go/bin/strided start
+Restart=on-failure
+RestartSec=3s
+User=vishal
+
+[Install]
+WantedBy=multi-user.target

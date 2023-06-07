@@ -1,0 +1,11 @@
+[Unit]
+Description=Osmosis
+
+[Service]
+ExecStart=/usr/local/bin/osmosisd start
+Restart=on-failure
+RestartSec=3s
+User=vishal
+
+[Install]
+WantedBy=multi-user.target
