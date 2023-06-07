@@ -2,7 +2,7 @@
 set -e
 clear 
 
-SCRIPT_VERSION="v1.0.0"
+SCRIPT_VERSION="v1.0.1"
 
 PURPLE='\033[0;35m'
 BOLD="\033[1m"
@@ -14,7 +14,7 @@ LOG_FILE="install.log"
 STRIDE_COMMIT_HASH=3aeb075f36cb12711201a7f17e8b8d856bd99a01
 GENESIS_URL=https://raw.githubusercontent.com/Stride-Labs/mainnet/ics-testnet/ics-testnet/genesis.json
 CHAIN_NAME=stride-ics-testnet-1
-PERSISTENT_PEER_ID="cd34b9f506a4840d5ea69095403029056862a2e1@stride-direct.testnet-2.stridenet.co:26656"
+PERSISTENT_PEER_ID="a539ae9240e254db892d902fc73f935b2de25f75@stride-direct.testnet-2.stridenet.co:26656"
 SEED_ID=""
 
 printf "\n\n${BOLD}Welcome to the setup script for ${PURPLE}Stride's ICS Testnet${NC}!\n\n"
