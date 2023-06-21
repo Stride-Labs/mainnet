@@ -14,7 +14,7 @@ LOG_FILE="install.log"
 STRIDE_COMMIT_HASH=1fbd939c3c2440e76a89d99740b804baaba65657
 GENESIS_URL=https://raw.githubusercontent.com/Stride-Labs/mainnet/ics-testnet/ics-testnet/genesis.json
 CHAIN_NAME=stride-ics-testnet-2
-PERSISTENT_PEER_ID="bec4b054f75d45ac5206ce3f8b943d0f9d9b5099@stride-validator.testnet-2.stridenet.co:26656"
+PERSISTENT_PEER_ID="bec4b054f75d45ac5206ce3f8b943d0f9d9b5099@34.173.196.100:26656"
 SEED_ID=""
 
 printf "\n\n${BOLD}Welcome to the setup script for ${PURPLE}Stride's ICS Testnet${NC}!\n\n"
