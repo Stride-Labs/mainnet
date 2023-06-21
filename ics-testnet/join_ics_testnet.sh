@@ -2,7 +2,7 @@
 set -e
 clear 
 
-SCRIPT_VERSION="v1.0.1"
+SCRIPT_VERSION="v2.0.0"
 
 PURPLE='\033[0;35m'
 BOLD="\033[1m"
@@ -11,11 +11,11 @@ ITALIC="\033[3m"
 NC="\033[0m"
 LOG_FILE="install.log"
 
-STRIDE_COMMIT_HASH=3aeb075f36cb12711201a7f17e8b8d856bd99a01
+STRIDE_COMMIT_HASH=1fbd939c3c2440e76a89d99740b804baaba65657
 GENESIS_URL=https://raw.githubusercontent.com/Stride-Labs/mainnet/ics-testnet/ics-testnet/genesis.json
-CHAIN_NAME=stride-ics-testnet-1
-PERSISTENT_PEER_ID="a539ae9240e254db892d902fc73f935b2de25f75@stride-direct.testnet-2.stridenet.co:26656"
-SEED_ID="0b3e01c43f733e85b3d3f1a012256c5e19be796c@seed.testnet-2.stridenet.co:26656"
+CHAIN_NAME=stride-ics-testnet-2
+PERSISTENT_PEER_ID="bec4b054f75d45ac5206ce3f8b943d0f9d9b5099@stride-validator.testnet-2.stridenet.co:26656"
+SEED_ID=""
 
 printf "\n\n${BOLD}Welcome to the setup script for ${PURPLE}Stride's ICS Testnet${NC}!\n\n"
 printf "This script will guide you through setting up your very own Stride node locally.\n"
