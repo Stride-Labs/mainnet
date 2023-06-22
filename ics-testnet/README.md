@@ -13,4 +13,6 @@ If you'd prefer to pull an officially built binary, [this docker image](https://
 
 The file `join_ics_testnet.sh` should run through a standard installation with Cosmovisor. This has only been tested on OSX, but the commands should be quite similar on Linux as well.
 
-If you're a validator for the Cosmos Hub and want to join as a Stride testnet validator prior to the Stride ICS Testnet Dry Run 2, please fill out [this Google Form](https://forms.gle/S4W55Xrybv1K73cSA) to receive testnet tokens and delegations. 
+If you're a validator for the Cosmos Hub and want to join as a Stride testnet validator prior to the Stride ICS Testnet Dry Run 2, please fill out [this Google Form](https://forms.gle/S4W55Xrybv1K73cSA) to receive testnet delegations. 
+
+If you want Stride ICS Testnet tokens, please use [this faucet](http://faucet.testnet-2.stridenet.co/). Please note, this faucet will return an error regardless of the success of the transaction. Please check in the block explorer if your tokens were successfully transferred! 
