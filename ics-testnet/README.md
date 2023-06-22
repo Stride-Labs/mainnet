@@ -12,3 +12,5 @@ This contains instructions for how to connect to Stride!
 If you'd prefer to pull an officially built binary, [this docker image](https://hub.docker.com/layers/stridelabs/ics-testnet/stride/images/sha256-3268198b39fa9e3b6107f352f49d28c5c78939e1147370b166f848dbd112186e?context=repo) will also contain the latest (v10.0.0). To pull it locally, please run `docker pull stridelabs/ics-testnet:stride`.
 
 The file `join_ics_testnet.sh` should run through a standard installation with Cosmovisor. This has only been tested on OSX, but the commands should be quite similar on Linux as well.
+
+If you're a validator for the Cosmos Hub and want to join as a Stride testnet validator prior to the Stride ICS Testnet Dry Run 2, please fill out [this Google Form](https://forms.gle/S4W55Xrybv1K73cSA) to receive testnet tokens and delegations. 
