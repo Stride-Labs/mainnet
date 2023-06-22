@@ -4,7 +4,7 @@
 
 This contains instructions for how to connect to Stride!
 
-    chain-id = stride-ics-testnet-2
+    chain-id = stride-ics-testnet-two-1
     stride hash = a3eff2dc5a33a64bd86341b40f980ce58a736b11
     genesis file = https://raw.githubusercontent.com/Stride-Labs/mainnet/ics-testnet/ics-testnet/genesis.json
     peer = d747545dbab1eb86caff7ec64fca3b7f2ace07fd@stride-direct.testnet-2.stridenet.co:26656
