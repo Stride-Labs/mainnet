@@ -11,7 +11,7 @@ Requirements for running a node are fairly minimal. You should have a 4 CPU 32 G
 
 ## Installation
 
-We'll release a more detailed connection script soon, but for now, look at the [chain registry](https://github.com/cosmos/chain-registry/tree/master/stride) for connection info for Stride. A quick summary:
+Please look at the [chain registry](https://github.com/cosmos/chain-registry/tree/master/stride) for connection info for Stride. A quick summary:
 
     chain-id = stride-1
     stride hash = 4b5d80ac5cafb418debc8a860959d4a6c6797cfb
@@ -20,15 +20,11 @@ We'll release a more detailed connection script soon, but for now, look at the [
 
 We would recommend using a snapshot as opposed to connecting through state sync. We've found snapshots can fully catch up to mainnet slightly more consistently than state sync. Many members of the Stride community consistently upload high-quality snapshots. A couple to highlight are [Polkachu](https://polkachu.com/tendermint_snapshots/stride) and [BccNodes](https://bccnodes.com/m/stride/#snapshot).
 
+[This script](https://github.com/Stride-Labs/mainnet/blob/main/mainnet/join_stride.sh) will also help you connect your node to Stride's mainnet. Please note that this script is intended as an aid, and might not suit all purposes. 
+
 ## Getting Ready for the Stride-ICS Migration
 
 If you are a current Stride or Cosmos Hub validator and are preparing for the July 19th ICS Migration, please check the `ics-instructions` folder in this repo for more instructions. If you have any further questions, please reach out on Discord or Telegram!
-
-## Being a Validator
-
-We are hoping to release a more detailed validator guide later. For now, we strongly recommend running a setup with a Sentry node and signed using [Horcrux](https://github.com/strangelove-ventures/horcrux).
-
-We recommend validators have a minimum 8 CPU 64 GB RAM machines.
 
 ## Setting up a Node
 - [Instructions on Linux](https://github.com/Stride-Labs/mainnet/tree/main/mainnet)
