@@ -17,6 +17,7 @@ Please look at the [chain registry](https://github.com/cosmos/chain-registry/tre
     stride hash = 4b5d80ac5cafb418debc8a860959d4a6c6797cfb
     stride version = v11.0.0
     genesis file = https://raw.githubusercontent.com/Stride-Labs/mainnet/main/mainnet/genesis.json
+    seeds = ade4d8bc8cbe014af6ebdf3cb7b1e9ad36f412c0@seeds.polkachu.com:12256, babc3f3f7804933265ec9c40ad94f4da8e9e0017@seed.rhinostake.com:12256, 20e1000e88125698264454a884812746c2eb4807@seeds.lavenderfive.com:12256
 
 We would recommend using a snapshot as opposed to connecting through state sync. We've found snapshots can fully catch up to mainnet slightly more consistently than state sync. Many members of the Stride community consistently upload high-quality snapshots. A couple to highlight are [Polkachu](https://polkachu.com/tendermint_snapshots/stride) and [BccNodes](https://bccnodes.com/m/stride/#snapshot).
 
