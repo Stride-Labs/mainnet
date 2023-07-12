@@ -117,3 +117,5 @@ jq -s '.[0].app_state.ccvconsumer = .[1] | .[0]' genesis.json ccv-state.json > c
 
 # FAQ
 
+# Excalidraw
+You can view a diagram of how the changeover works here: https://link.excalidraw.com/l/9UFOCMAZLAI/5EVLj0WJcwt
