@@ -14,7 +14,7 @@ ITALIC="\033[3m"
 NC="\033[0m"
 LOG_FILE="install.log"
 
-STRIDE_COMMIT_HASH=v10.0.0
+STRIDE_COMMIT_HASH=v11.0.0
 GENESIS_URL=https://raw.githubusercontent.com/Stride-Labs/mainnet/main/mainnet/genesis.json
 CHAIN_NAME=stride-1
 PERSISTENT_PEER_ID=""
@@ -202,9 +202,12 @@ sed -i -E "s|persistent_peers = \".*\"|persistent_peers = \"$PERSISTENT_PEER_ID\
 sed -i -E "s|seeds = \".*\"|seeds = \"$SEED_ID\"|g" $config_path
 
 # Fetch snapshot
-curl -L -f $SNAPSHOT_URL -o ${STRIDE_FOLDER}/pruned_state.tar.lz4
+printf "\nTo expedite connecting, we'll fetch a recent Stride mainnet snapshot...\n"
+
+curl -L -f $SNAPSHOT_URL -o ${STRIDE_FOLDER}/pruned_state.tar.lz4 --progress-bar
 lz4 -c -d ${STRIDE_FOLDER}/pruned_state.tar.lz4 | tar -x -C $STRIDE_FOLDER
 rm -f ${STRIDE_HOME}/pruned_state.tar.lz4
+printf "\nDone! Now we'll setup your local config...\n" 
 
 sed -i -E "s|snapshot-interval = .*|snapshot-interval = 200|g" $app_path
 sed -i -E "s|trust_period = \"168h0m0s\"|trust_period = \"3600s\"|g" $config_path
