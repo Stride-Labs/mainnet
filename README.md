@@ -14,8 +14,11 @@ Requirements for running a node are fairly minimal. You should have a 4 CPU 32 G
 We'll release a more detailed connection script soon, but for now, look at the [chain registry](https://github.com/cosmos/chain-registry/tree/master/stride) for connection info for Stride. A quick summary:
 
     chain-id = stride-1
-    stride hash = bba22626728961a5a2329031aa34c0140ed76b54
-    genesis file = https://raw.githubusercontent.com/Stride-Labs/testnet/main/mainnet/genesis.json
+    stride hash = a3eff2dc5a33a64bd86341b40f980ce58a736b11
+    stride version = v10.0.0
+    genesis file = https://raw.githubusercontent.com/Stride-Labs/mainnet/main/mainnet/genesis.json
+
+We would recommend using a snapshot as opposed to connecting through state sync. We've found snapshots can fully catch up to mainnet slightly more consistently than state sync. Many members of the Stride community consistently upload high-quality snapshots. A couple to highlight are [Polkachu](https://polkachu.com/tendermint_snapshots/stride) and [BccNodes](https://bccnodes.com/m/stride/#snapshot).
 
 ## Being a Validator
 
