@@ -1,4 +1,16 @@
-## Setting up a node
+## Easy Setup
+
+For most casual use cases, we'd recommended setting up your node with the `join_stride.sh` file in this repo. You can do this by running this command in your local shell.
+
+```
+bash -c "$(curl -sSL install.main.stridelabs.co)"
+```
+
+More connection info (e.g. genesis, seeds, etc) can be found [here](https://github.com/Stride-Labs/mainnet/tree/main).
+
+Please read on for more detailed setup instructions.
+
+## Setting up a Node
 
 ### Linux
 
@@ -46,7 +58,7 @@ Install the Stride binary
 sudo apt-get install git
 git clone https://github.com/Stride-Labs/stride
 cd stride
-git checkout v2.0.3
+git checkout v11.0.0
 make install
 strided version
 ```
@@ -56,7 +68,7 @@ strided version
 strided keys add <key-name> 
 strided config chain-id stride-1
 strided init <your_custom_moniker> --chain-id stride-1
-curl https://raw.githubusercontent.com/Stride-Labs/testnet/main/mainnet/genesis.json > ~/.stride/config/genesis.json
+curl https://raw.githubusercontent.com/Stride-Labs/mainnet/main/mainnet/genesis.json > ~/.stride/config/genesis.json
 sudo ufw allow 26656
 ```
 
