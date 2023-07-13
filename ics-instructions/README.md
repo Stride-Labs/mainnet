@@ -117,5 +117,32 @@ jq -s '.[0].app_state.ccvconsumer = .[1] | .[0]' genesis.json ccv-state.json > c
 
 # FAQ
 
-# Excalidraw
+**What are the latest instructions to join Stride mainnet as a node operator?**
+
+Please see [here](https://github.com/Stride-Labs/mainnet/tree/main/mainnet).
+
+**If I’m currently a validator on Stride’s mainnet, can I reuse the same validator key for the consumer chain? Will I need to perform a AssignConsumerKey tx with this key before spawn time?**
+
+Validators must either assign a key or use the same key as on the Cosmos Hub. If you are both a Stride and a Hub validator, you can use your current Stride key (you can do so by submitting a key assignment transaction with your current Stride validator keys).
+
+**What will happen to the validator set on Stride’s original (sovereign) mainnet chain? Will the sovereign chain continue to operate?**
+
+The sovereign chain will not operate (all blocks will be produced by Hub validators). Stride validators will become “governors” and still can receive delegations. The expectation on governors is that they do NOT validate blocks, but they do the other functions of validators, including governance, running infrastructure, public education, business development, etc.
+
+**Can I sync Stride mainnet without a snapshot?**
+
+Yes, state sync is supported, but we’ve found snapshots as the most reliable method. Many members of the Stride community consistently upload high-quality snapshots. A couple to highlight are [Polkachu](https://polkachu.com/tendermint_snapshots/stride) and [BccNodes](https://bccnodes.com/m/stride/#snapshot).
+
+[This connection script](https://github.com/Stride-Labs/mainnet/blob/main/mainnet/join_stride.sh) will automatically pull a recent snapshot and setup your node. 
+
+**What should I set as the minimum commission rate?**
+
+This is completely up to you, we’ve found most validators set 5%.
+
+**What channel will launch communications be in?**
+
+Discord channel dedicated to Stride’s launch (in the #cosmos-hub Discord).
+
+
+# System diagram
 You can view a diagram of how the changeover works here: https://link.excalidraw.com/l/9UFOCMAZLAI/5EVLj0WJcwt
