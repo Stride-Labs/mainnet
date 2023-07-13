@@ -17,7 +17,7 @@ Again, you must do these three tasks or the launch will fail!!!
 ### How will the sovereign -> consumer chain transition work on the Cosmos Hub?
 
 * Stride side: Stride mainnet is currently live (chain-id: `stride-1`). Stride mainnet will perform a software upgrade and at the upgrade height (4616678) it will transition to the Cosmos Hub's validator set.
-* Cosmos Hub side: A consumer-addition proposal to add Stride (has passed)[https://www.mintscan.io/cosmos/proposals/799]. Shortly after the spawn time (2023-07-19T05:00:00Z), validators will receive the CCV state. This CCV state will be used to patch the original stride chain’s genesis file, creating a new file: ccv.json. That will be pushed to this repo, after spawn time, but before the upgrade occurs. ccv.json must be placed in the node's home directory, in order to start a stride node after the upgrade to a consumer chain.
+* Cosmos Hub side: A consumer-addition proposal to add Stride [has passed](https://www.mintscan.io/cosmos/proposals/799). Shortly after the spawn time (2023-07-19T05:00:00Z), validators will receive the CCV state. This CCV state will be used to patch the original stride chain’s genesis file, creating a new file: ccv.json. That will be pushed to this repo, after spawn time, but before the upgrade occurs. ccv.json must be placed in the node's home directory, in order to start a stride node after the upgrade to a consumer chain.
 
 ### What do you need to do to participate in the mainnet launch on 2023-07-19, around 5pm UTC?
 See the table below for a breakdown of steps you'll need to follow throughout the process. 
@@ -34,10 +34,10 @@ Otherwise you may manually join `stride-1` using these notes:
 * Stride’s GitHub repository: https://github.com/stride-Labs/stride
 * Building instructions for stride’s binary: `make install`
 * Go version: 1.19
-* Seed id: ade4d8bc8cbe014af6ebdf3cb7b1e9ad36f412c0@seeds.polkachu.com:12256 
+* Seed id: `ade4d8bc8cbe014af6ebdf3cb7b1e9ad36f412c0@seeds.polkachu.com:12256`
 * Chain ID: `stride-1`
 * Post-upgrade stride binary commit (run with this binary after the upgrade): [`POST_TRANSITION_HASH`](https://github.com/Stride-Labs/stride/commit/POST_TRANSITION_HASH)
-  * You can use [this](https://storage.googleapis.com/strided-binaries/strided) pre-build linux binary. E.g. `wget -O strided 'https://storage.googleapis.com/strided-binaries/strided'`
+  * You can use [this](https://storage.googleapis.com/strided-binaries/strided) pre-built linux binary. E.g. `wget -O strided 'https://storage.googleapis.com/strided-binaries/strided'`
  
 <details><summary>Detailed steps for manually joining Stride</summary>
 <br>
@@ -55,6 +55,7 @@ strided init stride-node --chain-id stride-1
 curl -L https://raw.githubusercontent.com/Stride-Labs/mainnet/main/mainnet/genesis.json -o $HOME/.stride/config/genesis.json
 ```
 
+* Download a snapshot from [here](https://polkachu.com/tendermint_snapshots/stride).
 * Start stride node, node should start catching up
 * Node will panic on 2023-07-19 around 5pm UTC at the upgrade height: 4616678
 * Stop the node
@@ -73,7 +74,7 @@ git pull
 git checkout POST_TRANSITION_HASH
 make install
 
-#Should be v12
+# Please verify the version is v12
 strided version
 ```
 

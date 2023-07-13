@@ -3,7 +3,7 @@
 For most casual use cases, we'd recommended setting up your node with the `join_stride.sh` file in this repo. You can do this by running this command in your local shell.
 
 ```
-bash -c "$(curl -sSL install.main.stridelabs.co)"
+bash -c "$(curl -sSL node.stride.zone/install)"
 ```
 
 More connection info (e.g. genesis, seeds, etc) can be found [here](https://github.com/Stride-Labs/mainnet/tree/main).
