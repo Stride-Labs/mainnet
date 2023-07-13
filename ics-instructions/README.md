@@ -178,4 +178,4 @@ If you do not wish to reuse the private validator key from your provider chain, 
 	consumer_address: "<your_address>"
 
 
-Read more on (Key Assignment)[https://github.com/cosmos/interchain-security/blob/main/docs/docs/features/key-assignment.md].
+Read more on [Key Assignment](https://github.com/cosmos/interchain-security/blob/main/docs/docs/features/key-assignment.md). 
