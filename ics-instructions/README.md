@@ -25,7 +25,9 @@ See the table below for a breakdown of steps you'll need to follow throughout th
 ## ⚠️  Complete STEP 1 (join Stride testnet with a full node) ASAP ⚠️
 Follow along with Stride's block explorer here: https://www.mintscan.io/stride
 
-For step 1, you can try using Stride’s joining script here: https://github.com/Stride-Labs/mainnet/blob/main/mainnet/join_stride.sh 
+For step 1, you can try using Stride’s joining script here: https://github.com/Stride-Labs/mainnet/blob/main/mainnet/join_stride.sh.
+
+Full details here: https://github.com/Stride-Labs/mainnet/tree/ics-mainnet/mainnet
 
 Otherwise you may manually join `stride-1` using these notes:
 * Joining instructions: https://github.com/Stride-Labs/mainnet/tree/main/ics-instructions
