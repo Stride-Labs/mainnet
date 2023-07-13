@@ -147,3 +147,33 @@ Discord channel dedicated to Stride’s launch (in the #cosmos-hub Discord).
 
 # System diagram
 You can view a diagram of how the changeover works here: https://link.excalidraw.com/l/9UFOCMAZLAI/5EVLj0WJcwt
+
+# Key assignment 
+**This is only relevant if you want to use a key that is different from your Cosmos Hub key.**
+
+
+⚠️ **If you did not use the key delegation feature before spawn time, do not use it until the chain is live, stable and receiving VSCPackets from the provider! **⚠️
+
+If you do not wish to reuse the private validator key from your provider chain, an alternative method is to use multiple keys managed by the Key Assignment feature.
+
+⚠️ Ensure that the `priv_validator_key.json` on the consumer node is different from the key that exists on the provider node.
+
+⚠️ The `AssignConsumerKey` transaction must be sent to the provider chain before the consumer chain's spawn time.
+
+	# run this on the machine that you will use to run stride
+	# the command gets the public key to use for stride
+	$ strided tendermint show-validator
+	{"@type":"/cosmos.crypto.ed25519.PubKey","key":"qVifseOYMsfeKnzSHlkEb+0ZZeuZrVPJ7sqMZJHAbBc="}
+	
+	# do this step on the provider machine
+	# you should have a key available on the provider that you can use to sign the key assignment transaction
+	$ STRIDE_KEY='{"@type":"/cosmos.crypto.ed25519.PubKey","key":"qVifseOYMsfeKnzSHlkEb+0ZZeuZrVPJ7sqMZJHAbBc="}'
+	$ gaiad tx provider assign-consensus-key stride-1 $STRIDE_KEY --from <tx-signer> --home <home_dir> --gas 900000 -y -o json
+	
+	# confirm your key has been assigned
+	$ GAIA_VALCONSADDR=$(gaiad tendermint show-address --home ~/.gaia)
+	$ gaiad query provider validator-consumer-key stride-1 $GAIA_VALCONSADDR
+	consumer_address: "<your_address>"
+
+
+Read more on [Key Assignment][https://github.com/cosmos/interchain-security/blob/main/docs/docs/features/key-assignment.md].
