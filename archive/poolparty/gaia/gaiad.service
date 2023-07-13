@@ -1,0 +1,11 @@
+[Unit]
+Description=Gaia
+
+[Service]
+ExecStart=/home/vishal/go/bin/gaiad start --home /home/vishal/.gaia --moniker VISH
+Restart=on-failure
+RestartSec=3s
+User=vishal
+
+[Install]
+WantedBy=multi-user.target

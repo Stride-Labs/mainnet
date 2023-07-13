@@ -1,0 +1,11 @@
+[Unit]
+Description=Tenderseed
+
+[Service]
+ExecStart=/home/vishal/tenderseed/build/tenderseed --seeds=48b1310bc81deea3eb44173c5c26873c23565d33@stride-testnet-2-node1.poolparty.stridenet.co:26656,8e301628c3f86ba6f875e4978d73bf532198151b@stride-testnet-2-node2.poolparty.stridenet.co:26656,3766ebe762f6825b3498e97a3b93f0ee1e8e0faa@stride-testnet-2-node3.poolparty.stridenet.co:26656 -chain-id STRIDE-TESTNET-2 start
+Restart=on-failure
+RestartSec=3s
+User=vishal
+
+[Install]
+WantedBy=multi-user.target
