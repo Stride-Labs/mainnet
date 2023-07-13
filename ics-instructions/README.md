@@ -1,18 +1,18 @@
 # `stride-1`
 
+# Section 1: Overview
+
 Stride's launch on the Replicated Security will be different from other consumer chain launches. Other chain launches spawned a new chain from a fresh genesis state, but Stride already exists as a sovereign chain.
 
 ### Required tasks
 At a high-level, as a validator, you have the following tasks. You *must* complete all 3 tasks.
 
 
-If you don't complete all of the tasks, the launch will fail!!!
-
 1. Sync a stride-1 node ASAP (see step 1 below)
-2. Complete key assignment ASAP (or commit now to using your Cosmos Hub validator key)
+2. Complete key assignment ASAP and **before** the spawn time (or commit now to using your Cosmos Hub validator key). For emphasis, you must do key assignment or commit to using your Hub validator key **before** spawn time or there will be liveness issues with Stride.
 3. Execute the Stride v12 upgrade on 2023-07-19, around 5pm UTC
 
-Again, you must do these three tasks or the launch will fail!!!
+Do these three tasks or the launch will fail!!!
 
 ### How will the sovereign -> consumer chain transition work on the Cosmos Hub?
 
@@ -22,7 +22,10 @@ Again, you must do these three tasks or the launch will fail!!!
 ### What do you need to do to participate in the mainnet launch on 2023-07-19, around 5pm UTC?
 See the table below for a breakdown of steps you'll need to follow throughout the process. 
 
-## ⚠️  Complete STEP 1 (join Stride testnet with a full node) ASAP ⚠️
+# Section 2: Launch sequence
+## ⚠️  Complete STEPS 1-3 (join Stride testnet with a full node and do key assignment) ASAP ⚠️
+
+### Joining instructions
 Follow along with Stride's block explorer here: https://www.mintscan.io/stride
 
 For step 1, you can try using Stride’s joining script here: https://github.com/Stride-Labs/mainnet/blob/main/mainnet/join_stride.sh.
@@ -99,13 +102,13 @@ sudo service stride restart && journalctl -u stride -f -o cat
 
 </details>
 
-# Launch Sequence
+## Launch Sequence
 |Step|When?                                             |What do you need to do?                                                                       |What is happening?                                                                                                                              |
 |----|--------------------------------------------------|----------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
 |0   |Voting period for consumer-addition proposal. (DONE)     |[PROVIDER] Optional: Vote for the consumer-addition proposal.                                 |Passing the consumer-addition proposal on the provider side.                                                                                    |
 |1   |ASAP                                              |Join the Stride mainnet `stride-1` with the pre-transition binary as a full node (not validator) and sync to the tip of the chain.|Validator machines getting caught up on existing Stride chain's history                                                                         |
 |2   |Before software upgrade proposal passes on Stride |Build (or download) the target (post-transition) Stride binary. If you are using Cosmovisor, place place it in Cosmovisor `/upgrades/v12/bin` directory. If you are not using Cosmovisor, be ready to manually switch your binary at the upgrade halt height.|Setup for machines to switch from being a full node to a validator when the chain transitions.                                                  |
-|3   |Before spawn time                                 |[PROVIDER] If using key assignment, submit assign-consensus-key for `stride-1` with the keys on your full node. You can also just run with the same consensus key as your provider node.|Key assignment (optional) to link provider and consumer validators.                                                                             |
+|3   |Before spawn time                                 |[PROVIDER] If using key assignment, submit assign-consensus-key for `stride-1` with the keys on your full node. You can also just run with the same consensus key as your provider node. You absolutely **can not** do key assignment after spawn time, but before Stride is live. This will create liveness problems for Stride.|Key assignment (optional) to link provider and consumer validators.                                                                             |
 |4   |Voting period for software upgrade                |Nothing                                                                                       |Passing the software upgrade proposal on the Stride side.                                                                                       |
 |5   |Spawn time                                        |Nothing                                                                                       |ccv state becomes available                                                                                                                     |
 |6   |After spawn time                                  |The `ccv.json` file will be provided in this repo. Alternatively, you can generate it yourself by exporting the ccv state and updating Stride's genesis file (instructions below). Place the newly generated `ccv.json` in the `$NODE_HOME/config` directory.   Do NOT replace the existing genesis file.|Adding the ccv state to the genesis file for the new consumer chain.                                                                            |
@@ -118,7 +121,39 @@ gaiad q provider consumer-genesis stride-1 -o json > ccv-state.json
 jq -s '.[0].app_state.ccvconsumer = .[1] | .[0]' genesis.json ccv-state.json > ccv.json
 ```
 
-# FAQ
+# Section 3: Key assignment 
+**This is only relevant if you want to use a key that is different from your Cosmos Hub key.**
+
+
+## IMPORTANT: ⚠️ **If you did not use the key assignment feature before spawn time, do not use it until the chain is live, stable and receiving VSCPackets from the provider! **⚠️
+
+This cannot be emphasized enough. Do _not_ try to do key assignment after the spawn time, but before Stride is ICS secured. You can do key assignment before spawn time, or 1 week after spawn time. This problem created liveness problems for Neutron.
+
+If you do not wish to reuse the private validator key from your provider chain, an alternative method is to use multiple keys managed by the Key Assignment feature.
+
+⚠️ Ensure that the `priv_validator_key.json` on the consumer node is different from the key that exists on the provider node.
+
+⚠️ The `AssignConsumerKey` transaction must be sent to the provider chain before the consumer chain's spawn time.
+
+	# run this on the machine that you will use to run stride
+	# the command gets the public key to use for stride
+	$ strided tendermint show-validator
+	{"@type":"/cosmos.crypto.ed25519.PubKey","key":"qVifseOYMsfeKnzSHlkEb+0ZZeuZrVPJ7sqMZJHAbBc="}
+	
+	# do this step on the provider machine
+	# you should have a key available on the provider that you can use to sign the key assignment transaction
+	$ STRIDE_KEY='{"@type":"/cosmos.crypto.ed25519.PubKey","key":"qVifseOYMsfeKnzSHlkEb+0ZZeuZrVPJ7sqMZJHAbBc="}'
+	$ gaiad tx provider assign-consensus-key stride-1 $STRIDE_KEY --from <tx-signer> --home <home_dir> --gas 900000 -y -o json
+	
+	# confirm your key has been assigned
+	$ GAIA_VALCONSADDR=$(gaiad tendermint show-address --home ~/.gaia)
+	$ gaiad query provider validator-consumer-key stride-1 $GAIA_VALCONSADDR
+	consumer_address: "<your_address>"
+
+
+Read more on [Key Assignment](https://github.com/cosmos/interchain-security/blob/main/docs/docs/features/key-assignment.md). 
+
+# Section 4: FAQ
 
 **What are the latest instructions to join Stride mainnet as a node operator?**
 
@@ -147,35 +182,5 @@ This is completely up to you, we’ve found most validators set 5%.
 Discord channel dedicated to Stride’s launch (in the #cosmos-hub Discord).
 
 
-# System diagram
+# Section 5: System diagram
 You can view a diagram of how the changeover works here: https://link.excalidraw.com/l/9UFOCMAZLAI/5EVLj0WJcwt
-
-# Key assignment 
-**This is only relevant if you want to use a key that is different from your Cosmos Hub key.**
-
-
-⚠️ **If you did not use the key delegation feature before spawn time, do not use it until the chain is live, stable and receiving VSCPackets from the provider! **⚠️
-
-If you do not wish to reuse the private validator key from your provider chain, an alternative method is to use multiple keys managed by the Key Assignment feature.
-
-⚠️ Ensure that the `priv_validator_key.json` on the consumer node is different from the key that exists on the provider node.
-
-⚠️ The `AssignConsumerKey` transaction must be sent to the provider chain before the consumer chain's spawn time.
-
-	# run this on the machine that you will use to run stride
-	# the command gets the public key to use for stride
-	$ strided tendermint show-validator
-	{"@type":"/cosmos.crypto.ed25519.PubKey","key":"qVifseOYMsfeKnzSHlkEb+0ZZeuZrVPJ7sqMZJHAbBc="}
-	
-	# do this step on the provider machine
-	# you should have a key available on the provider that you can use to sign the key assignment transaction
-	$ STRIDE_KEY='{"@type":"/cosmos.crypto.ed25519.PubKey","key":"qVifseOYMsfeKnzSHlkEb+0ZZeuZrVPJ7sqMZJHAbBc="}'
-	$ gaiad tx provider assign-consensus-key stride-1 $STRIDE_KEY --from <tx-signer> --home <home_dir> --gas 900000 -y -o json
-	
-	# confirm your key has been assigned
-	$ GAIA_VALCONSADDR=$(gaiad tendermint show-address --home ~/.gaia)
-	$ gaiad query provider validator-consumer-key stride-1 $GAIA_VALCONSADDR
-	consumer_address: "<your_address>"
-
-
-Read more on [Key Assignment](https://github.com/cosmos/interchain-security/blob/main/docs/docs/features/key-assignment.md). 
