@@ -5,7 +5,7 @@ clear
 SCRIPT_VERSION="v2.0.0"
 
 # you can always install this script with
-# bash -c "$(curl -sSL install.main.stridelabs.co)"
+# bash -c "$(curl -sSL node.stride.zone/install)"
 
 PURPLE='\033[0;35m'
 BOLD="\033[1m"
