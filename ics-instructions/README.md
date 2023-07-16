@@ -41,8 +41,8 @@ Otherwise you may manually join `stride-1` using these notes:
 * Go version: 1.19
 * Seed id: `ade4d8bc8cbe014af6ebdf3cb7b1e9ad36f412c0@seeds.polkachu.com:12256`
 * Chain ID: `stride-1`
-* Post-upgrade stride binary commit (run with this binary after the upgrade): [`POST_TRANSITION_HASH_COMING_SOON`](https://github.com/Stride-Labs/stride/commit/POST_TRANSITION_HASH_COMING_SOON)
-  * You can use [link soon]() pre-built linux binary. E.g. `wget -O strided 'DOWNLOAD_URL'`
+* Post-upgrade stride binary commit (run with this binary after the upgrade): [`bbf0bb7f52878f3205c76bb1e96662fe7bd7af8d`](https://github.com/Stride-Labs/stride/commit/bbf0bb7f52878f3205c76bb1e96662fe7bd7af8d)
+  * You can use [link soon]() pre-built linux binary. E.g. `wget -O strided 'https://storage.googleapis.com/strided-binaries/strided'`
  
 <details><summary>Detailed steps for manually joining Stride</summary>
 <br>
@@ -72,11 +72,11 @@ curl -L https://raw.githubusercontent.com/Stride-Labs/mainnet/main/mainnet/genes
 
 _Thanks to Bosco from Silk Nodes_
 
-Download v12 Binary
+Download v12 Binary (v12.0.0 tag)
 ```sh
 cd stride
 git pull
-git checkout POST_TRANSITION_HASH_COMING_SOON
+git checkout bbf0bb7f52878f3205c76bb1e96662fe7bd7af8d
 make install
 
 # Please verify the version is v12
