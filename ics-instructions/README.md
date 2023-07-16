@@ -42,7 +42,7 @@ Otherwise you may manually join `stride-1` using these notes:
 * Seed id: `ade4d8bc8cbe014af6ebdf3cb7b1e9ad36f412c0@seeds.polkachu.com:12256`
 * Chain ID: `stride-1`
 * Post-upgrade stride binary commit (run with this binary after the upgrade): [`bbf0bb7f52878f3205c76bb1e96662fe7bd7af8d`](https://github.com/Stride-Labs/stride/commit/bbf0bb7f52878f3205c76bb1e96662fe7bd7af8d)
-  * You can use [link soon]() pre-built linux binary. E.g. `wget -O strided 'https://storage.googleapis.com/strided-binaries/strided'`
+  * You can use [this]() pre-built linux amd64 binary. E.g. `wget -O strided 'https://storage.googleapis.com/strided-binaries/strided'`
  
 <details><summary>Detailed steps for manually joining Stride</summary>
 <br>
