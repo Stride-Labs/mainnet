@@ -17,11 +17,11 @@ function process_page() {
     # For each address, collect the consumer chain address.
     for i in "${provider_addresses[@]}"
     do
-        local provider_address=$(gaiad keys parse $i --output json | jq -r '.formats[-2]')
-        local consumer_address=$(gaiad q provider validator-consumer-key $consumer_chain $provider_address --node $node -o json | jq -r '.consumer_address')
+        local provider_address=$(../../stride/build/gaiad keys parse $i --output json | jq -r '.formats[-2]')
+        local consumer_address=$(../../stride/build/gaiad q provider validator-consumer-key $consumer_chain $provider_address --node $node -o json | jq -r '.consumer_address')
         # Get moniker
         local public_key=$(curl -s $node/validators\?page=$page\&per_page=$page_limit | jq --arg ADDRESS "$i" -r '.result.validators[] | select(.address==$ADDRESS).pub_key.value')
-        local moniker=$(gaiad q staking validators --node $node --limit $page_limit -o json | jq --arg PUBKEY "$public_key" -r  '.validators[] | select(.consensus_pubkey.key==$PUBKEY).description.moniker')
+        local moniker=$(../../stride/build/gaiad q staking validators --node $node --limit $page_limit -o json | jq --arg PUBKEY "$public_key" -r  '.validators[] | select(.consensus_pubkey.key==$PUBKEY).description.moniker')
         # Get voting power
         local voting_power=$(curl -s $node/validators\?page=$page\&per_page=$page_limit | jq --arg ADDRESS "$i" -r '.result.validators[] | select(.address==$ADDRESS).voting_power')
         if [ -z "$consumer_address" ]; then

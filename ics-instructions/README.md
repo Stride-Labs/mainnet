@@ -163,6 +163,10 @@ Please see [here](https://github.com/Stride-Labs/mainnet/tree/main/mainnet).
 
 Validators must either assign a key or use the same key as on the Cosmos Hub. If you are both a Stride and a Hub validator, you can use your current Stride key (you can do so by submitting a key assignment transaction with your current Stride validator keys).
 
+**Do I need to catch up a Stride node if I'm a current Stride validator?**
+
+If you will re-use your Stride validator key, you do not need to catch up a Stride node. You only have to do key assignment (outlined above), and you must assign the key that your current Stride validator is using.
+
 **What will happen to the validator set on Stride’s original (sovereign) mainnet chain? Will the sovereign chain continue to operate?**
 
 The sovereign chain will not operate (all blocks will be produced by Hub validators). Stride validators will become “governors” and still can receive delegations. The expectation on governors is that they do NOT validate blocks, but they do the other functions of validators, including governance, running infrastructure, public education, business development, etc.
