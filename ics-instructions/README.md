@@ -72,7 +72,7 @@ curl -L https://raw.githubusercontent.com/Stride-Labs/mainnet/main/mainnet/genes
 
 _Thanks to Bosco from Silk Nodes_
 
-Download v12 Binary (v12.0.0 tag)
+Download v12 Binary (v12.1.0 tag)
 ```sh
 cd stride
 git pull
