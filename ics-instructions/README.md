@@ -16,8 +16,9 @@ Do these three tasks or the launch will fail!!!
 
 ### How will the sovereign -> consumer chain transition work on the Cosmos Hub?
 
-* Stride side: Stride mainnet is currently live (chain-id: `stride-1`). Stride mainnet will perform a software upgrade and at the upgrade height (4616678) it will transition to the Cosmos Hub's validator set.
-* Cosmos Hub side: A consumer-addition proposal to add Stride [has passed](https://www.mintscan.io/cosmos/proposals/799). Shortly after the spawn time (2023-07-19T05:00:00Z), validators will receive the CCV state. This CCV state will be used to patch the original stride chain’s genesis file, creating a new file: ccv.json. That will be pushed to this repo, after spawn time, but before the upgrade occurs. ccv.json must be placed in the node's home directory, in order to start a stride node after the upgrade to a consumer chain.
+* Current Stride valset: Stride mainnet is currently live (chain-id: `stride-1`). Stride mainnet will perform a software upgrade and at the upgrade height (4616678) it will transition to the Cosmos Hub's validator set.
+* New (ICS) Stride valset: A consumer-addition proposal to add Stride [has passed](https://www.mintscan.io/cosmos/proposals/799). Shortly after the spawn time (2023-07-19T05:00:00Z), validators will receive the CCV state. This CCV state will be used to patch the original stride chain’s genesis file, creating a new file: ccv.json. That will be pushed to this repo, after spawn time, but before the upgrade occurs. ccv.json must be placed in the node's home directory, in order to start a stride node after the upgrade to a consumer chain.
+* NOTE: Any Stride node (validator or otherwise), whether you're a current Stride validator or a Hub validator that will now run a Stride validator, must put the ccv.json file in the node home.
 
 ### What do you need to do to participate in the mainnet launch on 2023-07-19, around 5pm UTC?
 See the table below for a breakdown of steps you'll need to follow throughout the process. 
