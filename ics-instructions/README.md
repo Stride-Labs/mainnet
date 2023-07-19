@@ -23,7 +23,7 @@ Do these three tasks or the launch will fail!!!
 See the table below for a breakdown of steps you'll need to follow throughout the process. 
 
 # Section 2: Launch sequence
-## ⚠️  Complete STEPS 1-3 (join Stride testnet with a full node and do key assignment) ASAP ⚠️
+## ⚠️  Complete STEPS 1-3 (join Stride mainnet with a full node and do key assignment) ASAP ⚠️
 
 ### Joining instructions
 Follow along with Stride's block explorer here: https://www.mintscan.io/stride
@@ -67,7 +67,7 @@ curl -L https://raw.githubusercontent.com/Stride-Labs/mainnet/main/mainnet/genes
 
 </details>
 
-<details><summary>Detailed steps for transitioning Stride node from Stride testnet to validator on consumer chain</summary>
+<details><summary>Detailed steps for transitioning Stride node from Stride mainnet to validator on consumer chain</summary>
 <br>
 
 _Thanks to Bosco from Silk Nodes_
