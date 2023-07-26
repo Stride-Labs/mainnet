@@ -128,6 +128,8 @@ rstr="\nWhere do you want to install your stride and cosmovisor binaries? [defau
 read -p "$(printf $PURPLE"$rstr"$NC)" BINARY_LOCATION
 if [ -z "$BINARY_LOCATION" ]; then
     BINARY_LOCATION=$DEFAULT_BINARY
+elif [ "$BINARY_LOCATION" == "y" ]; then
+    BINARY_LOCATION=$DEFAULT_BINARY
 fi
 mkdir -p $BINARY_LOCATION
 printf "\nBuilding Stride..."
