@@ -14,7 +14,7 @@ ITALIC="\033[3m"
 NC="\033[0m"
 LOG_FILE="install.log"
 
-STRIDE_COMMIT_HASH=v12.1.0
+STRIDE_COMMIT_HASH=v13.1.0
 GENESIS_URL=https://raw.githubusercontent.com/Stride-Labs/mainnet/main/mainnet/genesis.json
 CHAIN_NAME=stride-1
 PERSISTENT_PEER_ID=""
