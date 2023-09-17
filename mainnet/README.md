@@ -58,7 +58,7 @@ Install the Stride binary
 sudo apt-get install git
 git clone https://github.com/Stride-Labs/stride
 cd stride
-git checkout v12.1.0
+git checkout v14.0.0
 make install
 strided version
 ```
