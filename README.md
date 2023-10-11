@@ -15,7 +15,7 @@ Please look at the [chain registry](https://github.com/cosmos/chain-registry/tre
 
     chain-id = stride-1
     stride hash = 52581d22459e29b340605edaaada2aaf87d081cc
-    stride version = v14.0.0
+    stride version = v15.0.0
     genesis file = https://raw.githubusercontent.com/Stride-Labs/mainnet/main/mainnet/genesis.json
     seeds = ade4d8bc8cbe014af6ebdf3cb7b1e9ad36f412c0@seeds.polkachu.com:12256, babc3f3f7804933265ec9c40ad94f4da8e9e0017@seed.rhinostake.com:12256, 20e1000e88125698264454a884812746c2eb4807@seeds.lavenderfive.com:12256
 
