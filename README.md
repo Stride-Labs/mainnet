@@ -14,8 +14,8 @@ Requirements for running a node are fairly minimal. You should have a 4 CPU 32 G
 Please look at the [chain registry](https://github.com/cosmos/chain-registry/tree/master/stride) for connection info for Stride. A quick summary:
 
     chain-id = stride-1
-    stride hash = e0c02910e036f4f2894a96c5222aebacc3ce0a4a
-    stride version = v16.0.0
+    stride hash = 4913e1dd1a9b0e6e55678d3eede25f7c8a5b43a2
+    stride version = v18.0.0
     genesis file = https://raw.githubusercontent.com/Stride-Labs/mainnet/main/mainnet/genesis.json
     seeds = ade4d8bc8cbe014af6ebdf3cb7b1e9ad36f412c0@seeds.polkachu.com:12256, babc3f3f7804933265ec9c40ad94f4da8e9e0017@seed.rhinostake.com:12256, 20e1000e88125698264454a884812746c2eb4807@seeds.lavenderfive.com:12256
 
