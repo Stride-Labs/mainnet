@@ -148,7 +148,7 @@ AWS_SECRET_ACCESS_KEY=
 ```
 
 * Necessary configurations as `json` format (in `agent-config.json`)
-```json
+```js
 {
   "validator": {
     "type": "aws",
