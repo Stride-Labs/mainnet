@@ -51,8 +51,8 @@ Config files can be specified through an env var `CONFIG_FILES` as a comma separ
 Examples of tranforming configurations between the different input methods:
 
 Config File (JSON)
-```json5
-# /path/to/config.json
+```js
+// /path/to/config.json
 {
   "db": "/path/to/dir",
   "chains": {
@@ -64,7 +64,7 @@ Config File (JSON)
   }
 }
 
-# Run with
+// Run with
 CONFIG_FILES=/path/to/config.json ./validator
 ```
 Command line arguments
