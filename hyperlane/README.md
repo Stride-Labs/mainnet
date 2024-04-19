@@ -14,7 +14,7 @@ A hyperlane validator watches a chain's mailbox contract for message event emiss
     * https://docs.hyperlane.xyz/docs/operate/validators/validator-signatures-aws#3-configure-s3-bucket-permissions
 * Use cast to determine your validator address
 ```bash
-AWS_ACCESS_KEY_ID={access-key} AWS_SECRET_ACCESS_KEY={secret-access-key} AWS_KMS_KEY_ID=alias/hyperlane-validator-{moniker}-stride-signer cast wallet address --aws
+AWS_ACCESS_KEY_ID={access-key} AWS_SECRET_ACCESS_KEY={secret-access-key} AWS_DEFAULT_REGION={aws-region} AWS_KMS_KEY_ID=alias/hyperlane-validator-{moniker}-stride-signer cast wallet address --aws
 ```
 
 
