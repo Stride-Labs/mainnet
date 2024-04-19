@@ -12,9 +12,18 @@ A hyperlane validator watches a chain's mailbox contract for message event emiss
     * https://docs.hyperlane.xyz/docs/operate/validators/validator-signatures-aws#2-create-an-s3-bucket
 * Configure permissions
     * https://docs.hyperlane.xyz/docs/operate/validators/validator-signatures-aws#3-configure-s3-bucket-permissions
+* Use cast to determine your validator address
+```bash
+AWS_ACCESS_KEY_ID={access-key} AWS_SECRET_ACCESS_KEY={secret-access-key} AWS_KMS_KEY_ID=alias/hyperlane-validator-{moniker}-stride-signer cast wallet address --aws
+```
+
 
 ### Running the Validator
-The validator can be run through a provided docker file (see the [basic guide](https://docs.hyperlane.xyz/docs/guides/deploy-hyperlane-local-agents) above). Instructions are copied here for building the binary from source code
+The validator can be run through a provided docker file (see the [basic guide](https://docs.hyperlane.xyz/docs/guides/deploy-hyperlane-local-agents) above). 
+
+The docker image is: `gcr.io/abacus-labs-dev/hyperlane-agent:3bb4d87-20240129-164519`
+
+Instructions are copied here for building the binary from source code
 
 #### Source code
 ```bash
