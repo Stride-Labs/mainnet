@@ -115,7 +115,7 @@ AWS_DEFAULT_REGION=
 AWS_ACCESS_KEY_ID=
 AWS_SECRET_ACCESS_KEY=
 
-# Path to validator database - this can be any folder, but the only requirement is that the directory must exsit
+# Path to validator database - this can be any folder, but the only requirement is that the directory must exist
 # If using the dockerfile, this should be `/etc/data/db`
 HYP_DB=
 
