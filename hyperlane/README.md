@@ -115,8 +115,9 @@ AWS_DEFAULT_REGION=
 AWS_ACCESS_KEY_ID=
 AWS_SECRET_ACCESS_KEY=
 
-# Path to validator database - this can be any folder, but the only requirement is that the directory must exist
-# If using the dockerfile, this should be `/etc/data/db`
+# Path to validator database - this can be any folder, but the only requirement is 
+# that the parent directory of the specified path must exist
+# If using the dockerfile, this should be `/app/db` 
 HYP_DB=
 
 # This is the private key of a stride account (not to be confused with the AWS validator key that signs hyperlane messages)
@@ -124,6 +125,7 @@ HYP_DB=
 # 1 STRD in this account should be sufficient
 # To generate the private key from a cosmos address, run:
 # >>> strided keys export {key-name} --unarmored-hex --unsafe
+# The key should be in hex form: e.g. 0x1234...
 HYP_CHAINS_STRIDE_SIGNER_KEY=
 
 # AWS Region that's used for the AWS validator key
@@ -135,10 +137,15 @@ HYP_VALIDATOR_ID=
 # AWS Region that's used for the s3 bucket
 HYP_CHECKPOINTSYNCER_REGION=
 # This is the name of the AWS s3 bucket that stores signatures
-# (e.g. "hyperlane-valdiator-{name}-signatures-stride)
+# (e.g. "hyperlane-valdiator-{name}-signatures-stride")
 HYP_CHECKPOINTSYNCER_BUCKET=
 ```
 
+### Running
+Finally, run the binary with:
+```bash
+./validator
+```
 
 ### Monitoring
 * Built-in grafana integration
