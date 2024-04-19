@@ -34,6 +34,10 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 # (apple silicon only) install rosetta 2
 softwareupdate --install-rosetta --agree-to-license
+
+# Build the binary (it will be placed in `target/release/validator`)
+cd rust 
+cargo build --release bin validator
 ```
 
 
