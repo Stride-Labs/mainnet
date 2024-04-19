@@ -25,7 +25,7 @@ AWS_ACCESS_KEY_ID={access-key} AWS_SECRET_ACCESS_KEY={secret-access-key} AWS_DEF
 The preferred method is to run the validator through docker using the file: `gcr.io/abacus-labs-dev/hyperlane-agent:3bb4d87-20240129-164519`
 
 #### From Source
-Alternatively, you could build the binary from surce: 
+Alternatively, you could build the binary from source: 
 ```bash
 # Clone the repo
 git clone git@github.com:hyperlane-xyz/hyperlane-monorepo.git
