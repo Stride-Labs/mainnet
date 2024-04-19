@@ -104,7 +104,7 @@ HYP_DB="{path-to-db}"
 HYP_INTERVAL=5
 
 HYP_CHAINS_STRIDE_CHAINID="stride-1"
-HYP_CHAINS_STRIDE_DOMAIN=745
+HYP_CHAINS_STRIDE_DOMAINID=745
 HYP_CHAINS_STRIDE_PROTOCOL="cosmos"
 HYP_CHAINS_STRIDE_BECH32PREFIX="stride"
 
@@ -172,23 +172,23 @@ AWS_SECRET_ACCESS_KEY=
   },
   "chains": {
     "stride": {
+      "name": "stride",
       "chainId": "stride-1",
+      "domainId": 745,
+      "protocol": "cosmos",
+      "canonicalAsset": "ustrd",
+      "bech32Prefix": "stride",
       "signer": {
         "type": "comsosKey",
         "prefix": "stride",
         "key": "" // recommended to provide this as an env var due to its sensitivity (see above)
       },
-      "name": "stride",
-      "domainId": 745,
-      "protocol": "cosmos",
       "rpcUrls": [
         {
           "http": "{stride-rpc-endpoint}"
         }
       ],
       "grpcUrl": "{stride-grpc-endpoint}",
-      "canonicalAsset": "ustrd",
-      "bech32Prefix": "stride",
       "gasPrice": {
         "amount": "0.025",
         "denom": "ustrd"
