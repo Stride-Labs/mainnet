@@ -95,7 +95,7 @@ Create an `agent-config.json` file and store it in a `config` directory at the s
       },
       "signer": {
         "type": "cosmosKey",
-        "prefix": "stride",
+        "prefix": "stride"
       },
       "mailbox": "0xc9c2f63f96400eb1c83b9ad774cb1b06ab7f17af2d72fcdd6be8d4910f193749",
       "validatorAnnounce": "0x83a96514493213f8c553639353da5a8738729b9c546f324c3b5a2b1d59474b0a",
