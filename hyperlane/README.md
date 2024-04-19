@@ -125,8 +125,8 @@ HYP_DB=
 # 1 STRD in this account should be sufficient
 # To generate the private key from a cosmos address, run:
 # >>> strided keys export {key-name} --unarmored-hex --unsafe
-# The key should be in hex form: e.g. 0x1234...
-HYP_CHAINS_STRIDE_SIGNER_KEY=
+# Add an 0x prefix to the key generated from the command 
+HYP_CHAINS_STRIDE_SIGNER_KEY=0x
 
 # AWS Region that's used for the AWS validator key
 HYP_VALIDATOR_REGION=
