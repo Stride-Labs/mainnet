@@ -1,9 +1,9 @@
 # Stride Hyperlane Validator Deployment Guide
-### Validator Description
+## Validator Description
 A hyperlane validator watches a chain's mailbox contract for message event emissions, then signs it for a relayer to pick up and forward it to the destination chain's mailbox.
 
 
-### AWS Setup
+## AWS Setup
 * Basic Guide
     * https://docs.hyperlane.xyz/docs/guides/deploy-hyperlane-local-agents
 * Create aws key (key name format should be `hyperlane-validator-{moniker}-stride-signer`)
@@ -18,14 +18,14 @@ AWS_ACCESS_KEY_ID={access-key} AWS_SECRET_ACCESS_KEY={secret-access-key} AWS_DEF
 ```
 
 
-### Running the Validator
-The validator can be run through a provided docker file (see the [basic guide](https://docs.hyperlane.xyz/docs/guides/deploy-hyperlane-local-agents) above). 
+## Running the Validator
+### Binary Installation
 
-The docker image is: `gcr.io/abacus-labs-dev/hyperlane-agent:3bb4d87-20240129-164519`
+#### From Docker
+The preferred method is to run the validator through docker using the file: `gcr.io/abacus-labs-dev/hyperlane-agent:3bb4d87-20240129-164519`
 
-Instructions are copied here for building the binary from source code
-
-#### Source code
+#### From Source
+Alternatively, you could build the binary from surce: 
 ```bash
 # Clone the repo
 git clone git@github.com:hyperlane-xyz/hyperlane-monorepo.git
@@ -35,176 +35,66 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 # (apple silicon only) install rosetta 2
 softwareupdate --install-rosetta --agree-to-license
 ```
-To run the validator, configurations need to be provided as arguments when running the binary, through environment variables, and/or through an `agent-config.json` file.
-
-Example of running the binary with some configs as arguments. It's recommended to use managed environment variables or configuration file(s) instead.
-```bash
-cargo run --release --bin validator -- \
-    --db ./hyperlane_db_validator_<your_chain_name> \
-    --originChainName <your_chain_name> \
-    --checkpointSyncer.type localStorage \
-    --checkpointSyncer.path $VALIDATOR_SIGNATURES_DIR \
-    --validator.key <your_validator_key>
-```
 
 
-#### Configurations
-* Docs
-    * https://docs.hyperlane.xyz/docs/operate/agent-config
-    * https://docs.hyperlane.xyz/docs/operate/config-reference
+### Configurations
+There are many ways to optionally configure the validator using combinations of environment variables, CLI args, JSON files, etc. Below we recommend a setup that consists of an a JSON file and environment variables; however, if you prefer a different setup, I'd encourage you to review the hyperlane docs to find instructions on a setup that suits your needs.
 
-To re-iterate, there are [many ways](https://github.com/hyperlane-xyz/hyperlane-monorepo/tree/main/rust/config) the validator is configured. Some knowledge of chains are provided as [default configurations](https://github.com/hyperlane-xyz/hyperlane-monorepo/tree/main/rust/config) in the binary. Stride is not defined there, and will have to be defined explicitly.
+Docs
+  * https://docs.hyperlane.xyz/docs/operate/agent-config
+  * https://docs.hyperlane.xyz/docs/operate/config-reference
 
-Config files can be specified through an env var `CONFIG_FILES` as a comma separated list. Otherwise, environment variables can be [specified directly](https://docs.hyperlane.xyz/docs/operate/config-reference) following some patterns. Finally, configurations can be set through command lind argument as shown above (e.g. `--originChainName`).
+#### Agent Config
+Create an `agent-config.json` file and store it in a `config` directory at the same level that the binary is executed from. If you're using the dockerfile, this will be `app/config/agent-config.json`
 
-Examples of tranforming configurations between the different input methods:
-
-Config File (JSON)
 ```js
-// /path/to/config.json
+// config/agent-config.json
 {
-  "db": "/path/to/dir",
-  "chains": {
-    "stride": { 
-      "name": "stride",
-      "domainId": 745,
-      "grpcUrl": "http://stride-grpc.polkachu.com:12290"
-    } 
-  }
-}
-
-// Run with
-CONFIG_FILES=/path/to/config.json ./validator
-```
-Command line arguments
-```bash
-./validator --db "path/to/dir" \
-  --chains.stride.name stride \
-  --chains.stride.domain 745 \
-  --chains.stride.rpcurls.0.https "http://stride-grpc.polkachu.com:12290"
-```
-Environment Variables
-```bash
-HYP_DB="/path/to/dir"
-HYP_CHAINS_STRIDE_NAME="stride"
-HYP_CHAINS_STRIDE_DOMAIN=745
-HYP_CHAINS_STRIDE_RPCURLS_0_HTTPS="http://stride-grpc.polkachu.com:12290"
-
-# Run with
-./validator
-```
-
-Hyperlane's [config reference](https://docs.hyperlane.xyz/docs/operate/config-reference) provides examples of translating between these three formats for each configuration. Note: `AWS_SECRET_ACCESS_KEY` and `AWS_SECRET_ACCESS_ID` must be specified as an environment variable.
-
-
-* Necessary configurations as env vars
-```bash
-HYP_ORIGINCHAINNAME="stride"
-HYP_DB="{path-to-db}"
-HYP_INTERVAL=5
-
-HYP_CHAINS_STRIDE_CHAINID="stride-1"
-HYP_CHAINS_STRIDE_DOMAINID=745
-HYP_CHAINS_STRIDE_PROTOCOL="cosmos"
-HYP_CHAINS_STRIDE_BECH32PREFIX="stride"
-
-HYP_CHAINS_STRIDE_RPCURLS_0_HTTPS="{stride-rpc-endpoint}"
-HYP_CHAINS_STRIDE_GRPCURL="{stride-grpc-endpoint}"
-
-HYP_CHAINS_STRIDE_CANONICAL_ASSET="ustrd"
-HYP_CHAINS_STRIDE_CONTRACTADDRESSBYTES=32
-HYP_CHAINS_STRIDE_GASPRICE_AMOUNT="0.025"
-HYP_CHAINS_STRIDE_GASPRICE_DENOM="ustrd"
-
-# TODO: replace with prod block height
-HYP_CHAINS_STRIDE_INDEX_FROM=3799834
-HYP_CHAINS_STRIDE_INDEX_CHUNK=10000
-
-HYP_CHAINS_STRIDE_BLOCKS_CONFIRMATION=1
-HYP_CHAINS_STRIDE_BLOCKS_ESTIMATEBLOCKTIME=5
-HYP_CHAINS_STRIDE_BLOCKS_REORD_PERIOD=1
-
-# TODO: replace with prod contracts
-HYP_CHAINS_STRIDE_MAILBOX="0xc9c2f63f96400eb1c83b9ad774cb1b06ab7f17af2d72fcdd6be8d4910f193749"
-HYP_CHAINS_STRIDE_INTERCHAINGASPAYMASTER="0x42bd8a4b3b08062291975233ff1720a45ba43ceda0d9c865d2e07379dcad17b2"
-HYP_CHAINS_STRIDE_VALIDATORANNOUNCE="0x83a96514493213f8c553639353da5a8738729b9c546f324c3b5a2b1d59474b0a"
-HYP_CHAINS_STRIDE_MERKLETREEHOOK="0x86ca34a645c067cb7e847b2fc537b3823803f6860f4dd4779a997c30085a59dc"
-
-HYP_CHAINS_STRIDE_SIGNER_TYPE="cosmosKey"
-HYP_CHAINS_STRIDE_SIGNER_PREFIX="stride"
-# This is the private key of a stride account (not to be confused with the AWS validator key that signs hyperlane messages)
-# It is only responsible for submitting a "validator announce" message when registering the validator
-# 1 STRD in this account should be sufficient
-# To generate the private key from a cosmos address, run:
-# >>> strided keys export {key-name} --unarmored-hex --unsafe
-HYP_CHAINS_STRIDE_SIGNER_KEY=
-
-HYP_VALIDATOR_TYPE="aws"
-# AWS Region that's used for the AWS validator key
-HYP_VALIDATOR_REGION=
-# This the name of the AWS key that's used to sign hyperlane messages
-# You can use the unique key ID or the alias (e.g. "alias/hyperlane-validator-{name}-stride-signer")
-HYP_VALIDATOR_ID=
-
-HYP_CHECKPOINTSYNCER_TYPE="s3"
-# AWS Region that's used for the s3 bucket
-HYP_CHECKPOINTSYNCER_REGION=
-# This is the name of the AWS s3 bucket that stores signatures
-# (e.g. "hyperlane-valdiator-{name}-signatures-stride)
-HYP_CHECKPOINTSYNCER_BUCKET=
-
-# These must be env vars
-AWS_ACCESS_KEY_ID=
-AWS_SECRET_ACCESS_KEY=
-```
-
-* Necessary configurations as `json` format (in `agent-config.json`)
-```js
-{
+  "originChainName": "stride",
   "validator": {
     "type": "aws",
-    "region": "",
-    "id": ""
   },
   "checkpointsyncer": {
     "type": "s3",
-    "region": "",
-    "bucket": ""
   },
+  "interval": 5,
   "chains": {
     "stride": {
       "name": "stride",
-      "chainId": "stride-1",
-      "domainId": 745,
+      "domainId": 1651,
+      "chainId": "stride-internal-1",
       "protocol": "cosmos",
       "canonicalAsset": "ustrd",
       "bech32Prefix": "stride",
-      "signer": {
-        "type": "comsosKey",
-        "prefix": "stride",
-        "key": "" // recommended to provide this as an env var due to its sensitivity (see above)
-      },
       "rpcUrls": [
         {
-          "http": "{stride-rpc-endpoint}"
+          "http": "https://stride-validator.testnet-1.stridenet.co"
         }
       ],
-      "grpcUrl": "{stride-grpc-endpoint}",
+      "grpcUrls": [
+        {
+          "http": "http://stride-direct.testnet-1.stridenet.co:9090"
+        }
+      ],
+      "grpcUrl": "http://stride-direct.testnet-1.stridenet.co:9090",
       "gasPrice": {
         "amount": "0.025",
         "denom": "ustrd"
       },
-      "blocks": {
-        "confirmations": 1,
-        "estimateBlockTime": 5,
-        "reorgPeriod": 1
-      },
+      "contractAddressBytes": 32,
       "index": {
         "from": 3799834,
         "chunk": 10000
       },
-      "contractAddressBytes": 32,
-      // TODO: replace with prod contracts
+      "blocks": {
+        "confirmations": 1,
+        "estimatedBlockTime": 5,
+        "reorgPeriod": 1
+      },
+      "signer": {
+        "type": "cosmosKey",
+        "prefix": "stride",
+      },
       "mailbox": "0xc9c2f63f96400eb1c83b9ad774cb1b06ab7f17af2d72fcdd6be8d4910f193749",
       "validatorAnnounce": "0x83a96514493213f8c553639353da5a8738729b9c546f324c3b5a2b1d59474b0a",
       "interchainGasPaymaster": "0x42bd8a4b3b08062291975233ff1720a45ba43ceda0d9c865d2e07379dcad17b2",
@@ -213,7 +103,39 @@ AWS_SECRET_ACCESS_KEY=
   }
 }
 ```
-Note: multiple formats for providing configurations can be used as long as all the necessary values are provided. 
+
+#### Environment Variables
+In addition to the configuration above, provide the following as environment variables, using your preferred method of secret management for those that are sensitive.
+
+```bash
+# AWS Configuration
+AWS_DEFAULT_REGION=
+AWS_ACCESS_KEY_ID=
+AWS_SECRET_ACCESS_KEY=
+
+# Path to validator database - this can be any folder, but the only requirement is that the directory must exsit
+# If using the dockerfile, this should be `/etc/data/db`
+HYP_DB=
+
+# This is the private key of a stride account (not to be confused with the AWS validator key that signs hyperlane messages)
+# It is only responsible for submitting a "validator announce" message when registering the validator
+# 1 STRD in this account should be sufficient
+# To generate the private key from a cosmos address, run:
+# >>> strided keys export {key-name} --unarmored-hex --unsafe
+HYP_CHAINS_STRIDE_SIGNER_KEY=
+
+# AWS Region that's used for the AWS validator key
+HYP_VALIDATOR_REGION=
+# This the name of the AWS key that's used to sign hyperlane messages
+# You can use the unique key ID or the alias (e.g. "alias/hyperlane-validator-{name}-stride-signer")
+HYP_VALIDATOR_ID=
+
+# AWS Region that's used for the s3 bucket
+HYP_CHECKPOINTSYNCER_REGION=
+# This is the name of the AWS s3 bucket that stores signatures
+# (e.g. "hyperlane-valdiator-{name}-signatures-stride)
+HYP_CHECKPOINTSYNCER_BUCKET=
+```
 
 
 ### Monitoring
