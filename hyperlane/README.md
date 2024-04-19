@@ -54,10 +54,10 @@ Create an `agent-config.json` file and store it in a `config` directory at the s
 {
   "originChainName": "stride",
   "validator": {
-    "type": "aws",
+    "type": "aws"
   },
   "checkpointsyncer": {
-    "type": "s3",
+    "type": "s3"
   },
   "interval": 5,
   "chains": {
