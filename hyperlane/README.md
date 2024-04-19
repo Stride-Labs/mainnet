@@ -142,7 +142,7 @@ HYP_CHECKPOINTSYNCER_BUCKET=
 ```
 
 ### Running
-Finally, run the binary with:
+Finally, run the validator with:
 ```bash
 ./validator
 ```
