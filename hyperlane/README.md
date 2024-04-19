@@ -101,26 +101,27 @@ Hyperlane's [config reference](https://docs.hyperlane.xyz/docs/operate/config-re
 ```bash
 HYP_ORIGINCHAINNAME="stride"
 HYP_DB="{path-to-db}"
-# Not configured for us but marked as required in hyperlane docs
 HYP_INTERVAL=5
+
+HYP_CHAINS_STRIDE_CHAINID="stride-1"
 HYP_CHAINS_STRIDE_DOMAIN=745
 HYP_CHAINS_STRIDE_PROTOCOL="cosmos"
 HYP_CHAINS_STRIDE_BECH32PREFIX="stride"
+
 HYP_CHAINS_STRIDE_RPCURLS_0_HTTPS="{stride-rpc-endpoint}"
-# Not documented, educated guess
-HYP_CHAIN_STRIDE_GRPCURL="{stride-grpc-endpoint}"
-HYP_CHAIN_STRIDE_CANONICAL_ASSET="ustrd"
-HYP_CHAIN_STRIDE_CONTRACTADDRESSBYTES=32
-HYP_CHAIN_STRIDE_GASPRICE_AMOUNT="0.025"
-HYP_CHAIN_STRIDE_GASPRICE_DENOM="ustrd"
+HYP_CHAINS_STRIDE_GRPCURL="{stride-grpc-endpoint}"
 
-HYP_CHAIN_STRIDE_INDEX_FROM=3799834
-HYP_CHAIN_STRIDE_INDEX_CHUNK=10000
+HYP_CHAINS_STRIDE_CANONICAL_ASSET="ustrd"
+HYP_CHAINS_STRIDE_CONTRACTADDRESSBYTES=32
+HYP_CHAINS_STRIDE_GASPRICE_AMOUNT="0.025"
+HYP_CHAINS_STRIDE_GASPRICE_DENOM="ustrd"
 
-HYP_CHAIN_STRIDE_BLOCKS_CONFIRMATION=1
-HYP_CHAIN_STRIDE_BLOCKS_ESTIMATEBLOCKTIME=5
-HYP_CHAIN_STRIDE_BLOCKS_REORD_PERIOD=1
+HYP_CHAINS_STRIDE_INDEX_FROM=3799834
+HYP_CHAINS_STRIDE_INDEX_CHUNK=10000
 
+HYP_CHAINS_STRIDE_BLOCKS_CONFIRMATION=1
+HYP_CHAINS_STRIDE_BLOCKS_ESTIMATEBLOCKTIME=5
+HYP_CHAINS_STRIDE_BLOCKS_REORD_PERIOD=1
 
 # TODO: replace with prod contracts
 HYP_CHAINS_STRIDE_MAILBOX="0xc9c2f63f96400eb1c83b9ad774cb1b06ab7f17af2d72fcdd6be8d4910f193749"
@@ -169,17 +170,9 @@ AWS_SECRET_ACCESS_KEY=
     "region": "",
     "bucket": ""
   },
-  "blocks": {
-    "confirmations": 1,
-    "estimateBlockTime": 5,
-    "reorgPeriod": 1
-  },
-  "index": {
-    "from": 3799834,
-    "chunk": 10000
-  },
   "chains": {
     "stride": {
+      "chainId": "stride-1",
       "signer": {
         "type": "comsosKey",
         "prefix": "stride",
@@ -199,6 +192,15 @@ AWS_SECRET_ACCESS_KEY=
       "gasPrice": {
         "amount": "0.025",
         "denom": "ustrd"
+      },
+      "blocks": {
+        "confirmations": 1,
+        "estimateBlockTime": 5,
+        "reorgPeriod": 1
+      },
+      "index": {
+        "from": 3799834,
+        "chunk": 10000
       },
       "contractAddressBytes": 32,
       // TODO: replace with prod contracts
