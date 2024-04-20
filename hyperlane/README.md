@@ -37,7 +37,7 @@ softwareupdate --install-rosetta --agree-to-license
 
 # Build the binary (it will be placed in `target/release/validator`)
 cd rust 
-cargo build --release bin validator
+cargo build --release --bin validator
 ```
 
 
