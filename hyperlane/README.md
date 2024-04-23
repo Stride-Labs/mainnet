@@ -74,15 +74,15 @@ Create an `agent-config.json` file and store it in a `config` directory at the s
       "bech32Prefix": "stride",
       "rpcUrls": [
         {
-          "http": "{RPC_URL}"
+          "http": "{RPC_URL}" // FILL THIS IN
         }
       ],
       "grpcUrls": [
         {
-          "http": "{GRPC_URL}"
+          "http": "{GRPC_URL}"  // FILL THIS IN
         }
       ],
-      "grpcUrl": "{GRPC_URL}",
+      "grpcUrl": "{GRPC_URL}",  // FILL THIS IN
       "gasPrice": {
         "amount": "0.025",
         "denom": "ustrd"
