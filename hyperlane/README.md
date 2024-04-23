@@ -95,6 +95,10 @@ Create an `agent-config.json` file and store it in a `config` directory at the s
         "estimatedBlockTime": 5,
         "reorgPeriod": 1
       },
+      "signer": {
+        "type": "cosmosKey",
+        "prefix": "stride"
+      },
       "mailbox": "0x89945750e089d84581f194e1947a58480b335f18386ad4f761f05feebf5e2454",
       "validatorAnnounce": "0xf57d954bf3ddb5f1032a0e020a99e931215cf83ceb4de987c781488065aaae0d",
       "interchainGasPaymaster": "0x89f21bd61e9a38be1c8cff5a5b5c78433c22d554cb4247499ce4e761821685ed",
