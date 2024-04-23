@@ -51,8 +51,6 @@ Docs
 #### Agent Config
 Create an `agent-config.json` file and store it in a `config` directory at the same level that the binary is executed from. If you're using the dockerfile, this will be `app/config/agent-config.json`
 
-**NOTE: This has the current testnet values. We'll provide an updated file once the mainnet contracts are deployed.**
-
 ```js
 // config/agent-config.json
 {
