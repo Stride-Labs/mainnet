@@ -67,44 +67,39 @@ Create an `agent-config.json` file and store it in a `config` directory at the s
   "chains": {
     "stride": {
       "name": "stride",
-      "domainId": 1651,
-      "chainId": "stride-internal-1",
+      "domainId": 745,
+      "chainId": "stride-1",
       "protocol": "cosmos",
       "canonicalAsset": "ustrd",
       "bech32Prefix": "stride",
       "rpcUrls": [
         {
-          "http": "https://stride-validator.testnet-1.stridenet.co"
+          "http": "{RPC_URL}"
         }
       ],
       "grpcUrls": [
         {
-          "http": "http://stride-direct.testnet-1.stridenet.co:9090"
+          "http": "{GRPC_URL}"
         }
       ],
-      "grpcUrl": "http://stride-direct.testnet-1.stridenet.co:9090",
+      "grpcUrl": "{GRPC_URL}",
       "gasPrice": {
         "amount": "0.025",
         "denom": "ustrd"
       },
       "contractAddressBytes": 32,
       "index": {
-        "from": 3799834,
+        "from": 8686128,
         "chunk": 10000
       },
       "blocks": {
-        "confirmations": 1,
-        "estimatedBlockTime": 5,
-        "reorgPeriod": 1
+        "confirmations": 0,
+        "reorgPeriod": 0
       },
-      "signer": {
-        "type": "cosmosKey",
-        "prefix": "stride"
-      },
-      "mailbox": "0xc9c2f63f96400eb1c83b9ad774cb1b06ab7f17af2d72fcdd6be8d4910f193749",
-      "validatorAnnounce": "0x83a96514493213f8c553639353da5a8738729b9c546f324c3b5a2b1d59474b0a",
-      "interchainGasPaymaster": "0x42bd8a4b3b08062291975233ff1720a45ba43ceda0d9c865d2e07379dcad17b2",
-      "merkleTreeHook": "0x86ca34a645c067cb7e847b2fc537b3823803f6860f4dd4779a997c30085a59dc"
+      "mailbox": "0x89945750e089d84581f194e1947a58480b335f18386ad4f761f05feebf5e2454",
+      "validatorAnnounce": "0xf57d954bf3ddb5f1032a0e020a99e931215cf83ceb4de987c781488065aaae0d",
+      "interchainGasPaymaster": "0x89f21bd61e9a38be1c8cff5a5b5c78433c22d554cb4247499ce4e761821685ed",
+      "merkleTreeHook": "0x7ab4a8c3ba5371e34cd8d5dc584e0d924504fc21c3cbf41c3f64d436176bf007"
     }
   }
 }
