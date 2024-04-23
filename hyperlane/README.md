@@ -91,8 +91,9 @@ Create an `agent-config.json` file and store it in a `config` directory at the s
         "chunk": 10000
       },
       "blocks": {
-        "confirmations": 0,
-        "reorgPeriod": 0
+        "confirmations": 1,
+        "estimatedBlockTime": 5,
+        "reorgPeriod": 1
       },
       "mailbox": "0x89945750e089d84581f194e1947a58480b335f18386ad4f761f05feebf5e2454",
       "validatorAnnounce": "0xf57d954bf3ddb5f1032a0e020a99e931215cf83ceb4de987c781488065aaae0d",
