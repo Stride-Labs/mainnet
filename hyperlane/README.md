@@ -88,7 +88,7 @@ Create an `agent-config.json` file and store it in a `config` directory at the s
       "contractAddressBytes": 32,
       "index": {
         "from": 8686128,
-        "chunk": 10000
+        "chunk": 5
       },
       "blocks": {
         "confirmations": 1,
