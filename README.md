@@ -14,14 +14,14 @@ Requirements for running a node are fairly minimal. You should have a 4 CPU 32 G
 Please look at the [chain registry](https://github.com/cosmos/chain-registry/tree/master/stride) for connection info for Stride. A quick summary:
 
     chain-id = stride-1
-    stride hash = 4913e1dd1a9b0e6e55678d3eede25f7c8a5b43a2
-    stride version = v18.0.0
+    stride hash = 5b8c74bb048b3fdf20c713b3adaecd3b584728cb
+    stride version = v22.0.0
     genesis file = https://raw.githubusercontent.com/Stride-Labs/mainnet/main/mainnet/genesis.json
     seeds = ade4d8bc8cbe014af6ebdf3cb7b1e9ad36f412c0@seeds.polkachu.com:12256, babc3f3f7804933265ec9c40ad94f4da8e9e0017@seed.rhinostake.com:12256, 20e1000e88125698264454a884812746c2eb4807@seeds.lavenderfive.com:12256
 
 We would recommend using a snapshot as opposed to connecting through state sync. We've found snapshots can fully catch up to mainnet slightly more consistently than state sync. Many members of the Stride community consistently upload high-quality snapshots. A couple to highlight are [Polkachu](https://polkachu.com/tendermint_snapshots/stride) and [BccNodes](https://bccnodes.com/m/stride/#snapshot).
 
-[This script](https://github.com/Stride-Labs/mainnet/blob/main/mainnet/join_stride.sh) will also help you connect your node to Stride's mainnet. Please note that this script is intended as an aid, and might not suit all purposes. 
+[This script](https://github.com/Stride-Labs/mainnet/blob/main/mainnet/join_stride.sh) will also help you connect your node to Stride's mainnet. Please note that this script is intended as an aid, and might not suit all purposes.
 
 ## Getting Ready for the Stride-ICS Migration
 

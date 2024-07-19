@@ -1,8 +1,8 @@
 #!/bin/bash
 set -e
-clear 
+clear
 
-SCRIPT_VERSION="v2.2.0"
+SCRIPT_VERSION="v2.3.0"
 
 # you can always install this script with
 # bash -c "$(curl -sSL node.stride.zone/install)"
@@ -14,7 +14,7 @@ ITALIC="\033[3m"
 NC="\033[0m"
 LOG_FILE="install.log"
 
-STRIDE_COMMIT_HASH=v18.0.0
+STRIDE_COMMIT_HASH=v22.0.0
 GENESIS_URL=https://raw.githubusercontent.com/Stride-Labs/mainnet/main/mainnet/genesis.json
 CHAIN_NAME=stride-1
 PERSISTENT_PEER_ID=""
@@ -75,7 +75,7 @@ printf $BLINE
 printf "\nGreat, now we'll download the latest version of Stride.\n"
 printf "Stride will keep track of blockchain state in ${BOLD}$STRIDE_FOLDER${NC}\n\n"
 
-if [ -d $STRIDE_FOLDER ] 
+if [ -d $STRIDE_FOLDER ]
 then
     printf "${BOLD}Looks like you already have Stride installed.${NC}\n"
     printf "Proceed carefully, because you won't be able to recover your data if you overwrite it.\n\n\n"
@@ -118,7 +118,7 @@ date > $LOG_PATH
 
 printf "\nFetching Stride's code..."
 git clone https://github.com/Stride-Labs/stride.git >> $LOG_PATH 2>&1
-cd $INSTALL_FOLDER/stride 
+cd $INSTALL_FOLDER/stride
 git checkout $STRIDE_COMMIT_HASH >> $LOG_PATH 2>&1
 printf " Done \n"
 
@@ -144,7 +144,7 @@ install_cosmovisor() {
 
     cd $INSTALL_FOLDER
     git clone https://github.com/cosmos/cosmos-sdk >> $LOG_PATH 2>&1
-    cd cosmos-sdk 
+    cd cosmos-sdk
     git checkout cosmovisor/v1.1.0 >> $LOG_PATH 2>&1
     make cosmovisor >> $LOG_PATH 2>&1
     mv $STRIDE_FOLDER/cosmovisor/cosmovisor "$BINARY_LOCATION/cosmovisor${suffix}"
@@ -171,17 +171,17 @@ if [[ -f $COSMOVISOR_BINARY ]]; then
             esac
         done
 
-        if [ $overwrite = true ]; then 
+        if [ $overwrite = true ]; then
             printf "\nInstalling now!\n"
             rm $COSMOVISOR_BINARY
-            install_cosmovisor 
-        else 
+            install_cosmovisor
+        else
             COSMOVISOR_BINARY="${COSMOVISOR_BINARY}-v1.1.0"
             printf "\nNo problem! We'll download to ${COSMOVISOR_BINARY} instead.\n"
             install_cosmovisor -v1.1.0
         fi
     fi
-else 
+else
     printf "\nInstalling now!\n"
     install_cosmovisor
 fi
@@ -209,7 +209,7 @@ printf "\nTo expedite connecting, we'll fetch a recent Stride mainnet snapshot..
 curl -L -f $SNAPSHOT_URL -o ${STRIDE_FOLDER}/pruned_state.tar.lz4 --progress-bar
 lz4 -c -d ${STRIDE_FOLDER}/pruned_state.tar.lz4 | tar -x -C $STRIDE_FOLDER
 rm -f ${STRIDE_HOME}/pruned_state.tar.lz4
-printf "\nDone! Now we'll setup your local config...\n" 
+printf "\nDone! Now we'll setup your local config...\n"
 
 sed -i -E "s|snapshot-interval = .*|snapshot-interval = 200|g" $app_path
 sed -i -E "s|trust_period = \"168h0m0s\"|trust_period = \"3600s\"|g" $config_path
@@ -254,7 +254,7 @@ done
 PORT_NUMBER=6060
 lsof -i tcp:${PORT_NUMBER} | awk 'NR!=1 {print $2}' | xargs -r kill
 PORT_NUMBER=26657
-lsof -i tcp:${PORT_NUMBER} | awk 'NR!=1 {print $2}' | xargs -r kill 
+lsof -i tcp:${PORT_NUMBER} | awk 'NR!=1 {print $2}' | xargs -r kill
 # we likely don't need to kill this - look into why this is causing issues
 PORT_NUMBER=26557
 lsof -i tcp:${PORT_NUMBER} | awk 'NR!=1 {print $2}' | xargs -r kill

@@ -58,14 +58,14 @@ Install the Stride binary
 sudo apt-get install git
 git clone https://github.com/Stride-Labs/stride
 cd stride
-git checkout v18.0.0
+git checkout v22.0.0
 make install
 strided version
 ```
 
 #### Configure the binary
 ```
-strided keys add <key-name> 
+strided keys add <key-name>
 strided config chain-id stride-1
 strided init <your_custom_moniker> --chain-id stride-1
 curl https://raw.githubusercontent.com/Stride-Labs/mainnet/main/mainnet/genesis.json > ~/.stride/config/genesis.json
@@ -73,17 +73,17 @@ sudo ufw allow 26656
 ```
 
 Set the seed in the config.toml (find seeds here: https://github.com/cosmos/chain-registry/blob/master/stride/chain.json):
-``` 
+```
 nano $HOME/.stride/config/config.toml
-seeds="" 
+seeds=""
 indexer = "null"
 ```
 Configure also the app.toml:
 ```
 minimum-gas-prices = 0.001ustrd
-pruning: "custom" 
+pruning: "custom"
 pruning-keep-recent = "100"
-pruning-keep-every = "0" 
+pruning-keep-every = "0"
 pruning-interval ="10"
 snapshot-interval = 1000
 snapshot-keep-recent = 2
@@ -91,7 +91,7 @@ snapshot-keep-recent = 2
 
 #### Create the service file for Stride to make sure it remains running at all times:
 ```
-sudo tee /etc/systemd/system/strided.service > /dev/null <<EOF  
+sudo tee /etc/systemd/system/strided.service > /dev/null <<EOF
 [Unit]
 Description=Stride Daemon
 After=network-online.target
