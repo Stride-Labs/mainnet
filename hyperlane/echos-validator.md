@@ -8,7 +8,7 @@ Feel free to use the same AWS keys as you did for Stride to make key management 
 
 ## S3 Bucket
 
-You'll need a new bucket for the forma signatures. Follow the following guides to create it:
+You'll need a new bucket for the echos signatures. Follow the following guides to create it:
 
 - Create s3 bucket (bucket name format should be `hyperlane-validator-{moniker}-signatures-echos`)
   - https://docs.hyperlane.xyz/docs/operate/validators/validator-signatures-aws#2-create-an-s3-bucket
@@ -75,7 +75,7 @@ You'll need a new bucket for the forma signatures. Follow the following guides t
 
 **Note: If you're using the same AWS key as you did on Stride, then the only variables that should change compared to the stride deployment are:**
 
-- `HYP_CHAINS_FORMA_SIGNER_KEY`
+- `HYP_CHAINS_ECHOS_SIGNER_KEY`
 - `HYP_CHECKPOINTSYNCER_BUCKET`
 - `HYP_CHECKPOINTSYNCER_REGION`
 
